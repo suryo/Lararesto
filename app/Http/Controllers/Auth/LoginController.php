@@ -61,7 +61,7 @@ class LoginController extends Controller
         if ($user->hasRole('Admin')) {
             return redirect('/dashboard');
         } else  if ($user->hasRole('member')) {
-            return redirect('/member/board');
+            return redirect('/menu');
         }
     }
     /**
