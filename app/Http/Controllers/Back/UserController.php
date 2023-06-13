@@ -177,7 +177,15 @@ class UserController extends Controller
         Auth::logout();
 
         Auth::loginUsingId($id);
-        return redirect()->route('dashboard');
+
+        $user = User::find($id);
+
+        if ($user->hasRole('Admin')) {
+            return redirect('/dashboard');
+        } else  if ($user->hasRole('member')) {
+            return redirect('/menu');
+        }
+        //return redirect()->route('dashboard');
        
     }
 
