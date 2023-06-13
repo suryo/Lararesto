@@ -30,7 +30,7 @@
             </h3>
          </div>
          <div class="col col-auto">
-            <div class="fs-5 fw-medium"><span>Table 3</span></div>
+            <div class="fs-5 fw-medium"><span>{{ Auth::user()->name }}</span></div>
          </div>
       </div>
    </div>
@@ -44,7 +44,7 @@
          @foreach ($category as $category)
          <!-- category item -->
          <div class="category-item col">
-            <a href="/waiters/menu" class="text-decoration-none">
+            <a href="/submenu/?menu={{ $category->id }}" class="text-decoration-none">
                <div class="card border-0">
                   <img src="../waiters-assets/img/banner/banner-brew.png" class="card-img" alt="">
                   <div class="card-img-overlay top-50 translate-middle-y">
