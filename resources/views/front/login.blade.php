@@ -93,7 +93,7 @@ License: For each use you must have a valid license purchased only from above li
 									<div id="qr-reader"></div>
     								<div id="qr-reader-results"></div>
 									
-									<script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+									<script src="{{ URL::asset('/assets/libs/html5-qrcode/html5-qrcode.min.js') }}"></script>
 									<script src="html5-qrcode-demo.js"></script>
 
 
