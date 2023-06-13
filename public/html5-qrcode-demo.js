@@ -1,39 +1,23 @@
-function docReady(fn) {
-    // see if DOM is already available
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-        // call on next available tick
-        setTimeout(fn, 1);
-    } else {
-        document.addEventListener("DOMContentLoaded", fn);
-    }
-} 
+let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 10, qrbox: {width: 250, height: 250} },
+/* verbose= */ false);
 
-docReady(function() {
-    var resultContainer = document.getElementById('qr-reader-results');
-    var lastResult, countResults = 0;
-    
-    var html5QrcodeScanner = new Html5QrcodeScanner(
-        "qr-reader", { fps: 10, qrbox: 250 });
-    
-    function onScanSuccess(decodedText, decodedResult) {
-        if (decodedText !== lastResult) {
-            ++countResults;
-            lastResult = decodedText;
-            console.log(`Scan result = ${decodedText}`, decodedResult);
- 
-            resultContainer.innerHTML += `<div>[${countResults}] - ${decodedText}</div>`;
-            console.log((decodedText));
-            window.location.replace(decodedText);
-            // Optional: To close the QR code scannign after the result is found
-            html5QrcodeScanner.clear();
-        }
-    }
-    
-    // Optional callback for error, can be ignored.
-    function onScanError(qrCodeError) {
-        // This callback would be called in case of qr code scan error or setup error.
-        // You can avoid this callback completely, as it can be very verbose in nature.
-    }
-    
-    html5QrcodeScanner.render(onScanSuccess, onScanError);
-});
+html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
+function onScanFailure(error) {
+    // handle scan failure, usually better to ignore and keep scanning.
+    // for example:
+   console.log("error");
+}
+
+function onScanSuccess(decodedText, decodedResult) {
+    // handle the scanned code as you like, for example:
+    // console.log(Code matched = ${decodedText}, decodedResult);
+    $('#hasil_qrcode').val(decodedText);
+    window.location.replace(decodedText);
+    let id = decodedText;
+    html5QrcodeScanner.clear().then(_ => {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    })
+}

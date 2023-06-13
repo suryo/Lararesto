@@ -90,10 +90,14 @@ License: For each use you must have a valid license purchased only from above li
 									
 
 
-									<div id="qr-reader"></div>
-    								<div id="qr-reader-results"></div>
+									<div id="reader"></div>
+									<input type="text" name="hasil_qrcode" id="hasil_qrcode">
+    								{{-- <div id="qr-reader-results"></div> --}}
+										<div id="reader-results"></div>
 									
+									{{-- <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script> --}}
 									<script src="{{ URL::asset('/assets/libs/html5-qrcode/html5-qrcode.min.js') }}"></script>
+									{{-- <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script> --}}
 									<script src="html5-qrcode-demo.js"></script>
 
 
