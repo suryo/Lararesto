@@ -91,7 +91,7 @@ License: For each use you must have a valid license purchased only from above li
 
 
 									<div id="reader"></div>
-									<input type="text" name="hasil_qrcode" id="hasil_qrcode">
+								
     								{{-- <div id="qr-reader-results"></div> --}}
 										<div id="reader-results"></div>
 									
