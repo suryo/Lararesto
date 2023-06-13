@@ -4572,7 +4572,12 @@
                         @if (!(Auth::user()))
                         <img src="{{url('images')}}/imagenotavailable.jpg" alt="user" />   
                         @else
-                        <img src="{{url('images')}}/users/{{ Str::ucfirst(Auth::user()->image) }}" alt="user" />
+                            @if (Auth::user()->image=="")
+                            <img src="{{url('images')}}/imagenotavailable.jpg" alt="user" /> 
+                            @else
+                            <img src="{{url('images')}}/users/{{ Auth::user()->image }}" alt="user" />
+                            @endif
+                      
                         @endif
                         
                     </div>

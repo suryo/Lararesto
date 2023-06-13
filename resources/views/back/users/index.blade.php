@@ -546,25 +546,25 @@
                       </thead>
                       <tbody>
                           @foreach ($data as $key => $user)
-                              <tr>
+                                <tr>
                                   <td style="color:rgba(80, 74, 74, 0.333)" class=" align-items-center text-center"> <a href="{{ route('users.show',$user->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ ++$i }}</a></td>
-                                 <td>  {!! QrCode::size(150)->generate(url('loginas')."?id=". $user->id."&email='".$user->email."'" ); !!}</td>
+                                <td>  {!! QrCode::size(150)->generate(url('loginas')."?id=". $user->id."&email='".$user->email."'" ); !!}</td>
                                   <td class="">
                                     {{-- <a href="{{ route('users.show',$user->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a> --}}
 
                                     <!--begin:: Avatar -->
-															<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-																<a href="{{ route('users.show',$user->id) }}">
-																	<div class="symbol-label">
+                              <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                <a href="{{ route('users.show',$user->id) }}">
+                                  <div class="symbol-label">
                                     @if (!empty($user->image))
                                       <img src="{{ url('images') }}/users/{{ $user->image }}" alt="user image" class="w-100" />
                                     @else
                                       <img src="{{ url('images') }}/imagenotavailable.jpg" alt="user image" class="w-100" />
                                     @endif
-																		
-																	</div>
-																</a>
-															</div>
+                                    
+                                  </div>
+                                </a>
+                              </div>
 															<!--end::Avatar-->
 															<!--begin::User details-->
 															<div class="d-flex flex-column">
