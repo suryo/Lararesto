@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
 
         $historyorders = DB::select("select YEAR(tanggalorder) as date, MONTH(tanggalorder) as month,sum(itemsubtotal) as jumlah
-				from order_models where deleted = 'false' 
+				from pos_order_models where deleted = 'false' 
 			 group by YEAR(tanggalorder), MONTH(tanggalorder) order by tanggalorder asc");
     //  /dd($historyorders);
 
