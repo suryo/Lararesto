@@ -111,6 +111,14 @@
                   <a class="btn w-100 text-start text-capitalize border-0" href="#">sign in</a>
                   <a class="btn w-100 text-start text-capitalize border-0" href="#">sign up</a>
                   <a class="btn w-100 text-start text-capitalize border-0" href="#">sign out</a>
+                  <a class="btn w-100 text-start text-capitalize border-0" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+               </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="menu-link px-5">
+                     @csrf
+                 </form>
                </div>
             </div>
          </div>
