@@ -130,13 +130,13 @@ class FrontCartController extends Controller
 
     public function cartList(Request $request)
     {
+        
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
        
 
         $cartItems = \Cart::getContent();
        
-        dump($cartItems);
         #ambil session id gift yang dipilih
         $gift_box_id_chosen = Session::get('gift');
 
@@ -146,11 +146,13 @@ class FrontCartController extends Controller
         $cartItem = \Cart::getContent();
         $cartItems = $cartItem->sort();
 
-      
+        $product = $cartItems;
+
+        dump($product);
 
         $title = "Cart";
         $pages = "cart";
-        return view('waiters/cart', compact('cartItems', 'title', 'pages'));
+        return view('waiters/cart', compact('cartItems', 'title', 'pages', 'product'));
         // return view('front/cart', compact('cartItems', 'title', 'pages'));
     }
 
@@ -265,7 +267,18 @@ class FrontCartController extends Controller
 
 
     public function addToCart(Request $request)
-    {       
+    {   
+
+
+        dump($request->id);
+        dump($request->name);
+        dump($request->quant);
+        dump($request->stock);
+        dump($request->stockweb);
+        dump($request->price);
+        dump($request->images);
+
+        dd("masuk ke cart")     ;
         $qty = 1;
         $types = "NORMAL";
         $this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory);

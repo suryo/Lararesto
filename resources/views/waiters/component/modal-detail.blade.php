@@ -39,7 +39,7 @@
                   {{ $modalitem->brand }} - {{ $modalitem->name }} 
                </h3>
                <p class="small mb-4">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa vitae nostrum, beatae quam sint voluptatibus eos esse dolor adipisci tenetur repellat corrupti, quaerat repudiandae, id nihil consectetur. Reprehenderit, mollitia soluta.
+                  {{ $item->description }}
                </p>
                <div class="overflow-x-auto w-100">
                   <nav id="menu-portion" class="text-nowrap text-capitalize">
@@ -109,19 +109,37 @@
          </div>
          <div class="modal-footer border-dark-subtle">
             <div class="d-flex w-100 align-items-center justify-content-between">
-               <h4 id="totallabel" class="fw-semibold mb-0">Rp {{ $modalitem->price * 1000 }},-</h4>
+               <h4 id="totallabel{{ $modalitem->id }}" class="fw-semibold mb-0">Rp {{ $modalitem->price * 1000 }},-</h4>
                <div class="input-group w-auto">
-                  <button class="btn border-dark" onclick="itemminus{{ $modalitem->id }}()">
+                  <button class="btn border-dark" onclick="itemminus{{ $modalitem->id }}({{ $modalitem->id }})">
                      <i class="bi bi-dash-lg"></i>
                   </button>
-                  <input type="number" min="1" max="100" value="1" class="form-control border-dark text-center fw-semibold bg-light px-0" style="width: 70px;">
-                  <button class="btn border-dark" onclick="itemplus{{ $modalitem->id }}()">
+                  <input id="totalqty{{ $modalitem->id }}" type="number" min="1" max="100" value="1" class="form-control border-dark text-center fw-semibold bg-light px-0" style="width: 70px;">
+                  <button class="btn border-dark" onclick="itemplus{{ $modalitem->id }}({{ $modalitem->id }})">
                      <i class="bi bi-plus-lg"></i>
                   </button>
                </div>
             </div>
             <div class="w-100">
-               <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress()">Order Now!</button>
+               <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data" class="d-md-flex w-100 gap-3">
+                  @csrf
+                  @php
+                  $imageName = "imagenotavailable.jpg";
+                  // if (item.images.length > 0) {
+                  //     imageName = item.images[0];
+                  // }
+                  @endphp
+                  <input type="hidden" value="{{ $modalitem->id }}" name="id">
+                  <input type="hidden" value="{{ $modalitem->name }}" name="name">
+                  <input type="hidden" name="quant" value="1" id="qty-product{{ $modalitem->id }}">
+                  <input type="hidden" name="stock" value="1" id="stock-product">
+                  <input type="hidden" name="stockweb" value="{{ $modalitem->id }}" id="stockweb">
+                  <input type="hidden" value="{{ $modalitem->price }}" name="price">
+                  <input type="hidden" value="{{ $imageName }}" name="images">
+
+                  <button class="btn btn-lg text-bg-dark w-100">Order Now!</button>
+               </form>
+               {{-- <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress({{$modalitem->id}})">Order Now!</button> --}}
             </div>
          </div>
       </div>
@@ -139,9 +157,9 @@
 
 
 <script type="text/javascript">
-
+var qty{{ $modalitem->id }} = 1;
 var total = {{ $modalitem->price }}*1000;
-var qty = 1;
+
 
 function myFunction<?php echo $modalitem->id ?>() {
    var total = {{ $modalitem->price }}*1000;
@@ -160,19 +178,70 @@ function myFunction<?php echo $modalitem->id ?>() {
     document.getElementById("totallabel").innerHTML = "Rp"+"."+total+" ,-";
    }
 
-   function itemplus<?php echo $modalitem->id ?>(){
-      console.log(qty);
-      qty = qty + 1;
+   function itemplus<?php echo $modalitem->id ?>(id){
+      console.log(qty{{ $modalitem->id }});
+      qty{{ $modalitem->id }} = qty{{ $modalitem->id }} + 1;
       var total = {{ $modalitem->price }}*1000;
-      total = total * qty;
-      document.getElementById("totallabel").innerHTML = "Rp"+"."+total+" ,-";
+      total = total * qty{{ $modalitem->id }};
+      console.log("Rp"+"."+total+" ,-");
+      document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total+" ,-";
+      document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
+      document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
    }
 
-   function itemminus<?php echo $modalitem->id ?>(){
-      qty = qty - 1;
+   function itemminus<?php echo $modalitem->id ?>(id){
+      console.log(qty{{ $modalitem->id }});
+      qty{{ $modalitem->id }} = qty{{ $modalitem->id }} - 1;
       var total = {{ $modalitem->price }}*1000;
-      total = total * qty;
-      document.getElementById("totallabel").innerHTML = "Rp"+"."+total+" ,-";
+      total = total * qty{{ $modalitem->id }};
+      console.log("Rp"+"."+total+" ,-");
+      document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total+" ,-";
+      document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
+      document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
    }
+
+   function codeAddress(id) {
+        console.log("test add to cart");
+        let urlAction = "{{ route('cart.store') }}";
+        let strFooter = '';
+            strFooter +=
+        '<form action="' + urlAction +
+                '" method="POST" enctype="multipart/form-data" class="d-md-flex w-100 gap-3">' +
+                '@csrf' +
+                '<input type="hidden" value="' + item.id + '" name="id">' +
+                '<input type="hidden" value="' + item.product_name + '" name="name">' +
+                '<input type="hidden" name="quant[2]" value="1" id="qty-product">' +
+                '<input type="hidden" name="stock" value="1" id="stock-product">' +
+                '<input type="hidden" name="stockweb" value="' + item.stockweb + '" id="stockweb">' +
+                '<input type="hidden" value="' + item.product_weight + '" name="gramature">' +
+                '<input type="hidden" value="' + collectionName + '" name="collection">' +
+                '<input type="hidden" value="' + item.disc_event + '" name="discount">' +
+                '<input type="hidden" value="' + item.product_price + '" name="pricemaster">' +
+                '<input type="hidden" value="' + product_price_after_disc + '" name="priceafterdiscount">' +
+                '<input type="hidden" value="' + productPrice + '" name="price">';
+
+
+
+            let imageName = "imagenotavailable.jpg";
+            if (item.images.length > 0) {
+                imageName = item.images[0];
+            }
+
+            strFooter += '<input type="hidden" value="' + imageName + '" name="images">';
+
+            strFooter +=
+                '<button name="addCartContinueShopping" data-bs-dismiss="modal" class="btn btn-light w-100 mb-2 mb-md-0"  onclick="$(\'#loading\').collapse(\'show\');">Continue Shopping</button>' +
+                '<button name="addCartContinueCart" data-bs-dismiss="modal" class="btn btn-dark w-100 mb-2 mb-lg-0"  onclick="$(\'#loading\').collapse(\'show\');">Shopping Cart & Checkout</button>' +
+                '</form>';
+
+        
+
+
+        qtyPopup = +document.getElementById("qtypopup").value;
+        harga = +document.getElementById("Harga").innerHTML;
+        document.getElementById("qtypopup").value = qtyPopup;
+        calculated = qtyPopup * harga;
+        document.getElementById("totalnya"+id).innerHTML = calculated.toFixed(2);
+    }
 
    </script>

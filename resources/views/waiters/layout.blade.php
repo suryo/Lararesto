@@ -25,7 +25,7 @@
    @yield('konten')
 
    <!-- nav to cart -->
-   @if ($pages == 'landing' || $pages == 'menu')
+   @if ($pages == 'landing' || $pages == 'menu' || $pages == 'Submenu')
       @include('waiters/component/nav-tocart')
    @endif
 

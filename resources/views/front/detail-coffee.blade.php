@@ -999,6 +999,7 @@
     window.onload = codeAddress;
 
     function codeAddress() {
+        console.log("test add to cart");
         qtyPopup = +document.getElementById("qtypopup").value;
         harga = +document.getElementById("Harga").innerHTML;
         document.getElementById("qtypopup").value = qtyPopup;

@@ -17,7 +17,7 @@
 <body>
 
     {{-- navbar --}}
-    @include('waiters/component/navbar')
+    @include('waiters/component/nav-sidebar')
 
     {{-- header menu --}}
     @if ($pages == 'landing' || $pages == 'Landing' || $pages == 'submenu' || $pages == 'Submenu' || $pages == 'cart')

@@ -33,7 +33,7 @@
                   {{ $item->brand }} - {{ $item->name }}
                </h6>
                <p class="card-text small mb-0" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed doloribus alias dolorem, maiores modi animi excepturi in, inventore, vitae repudiandae placeat asperiores saepe adipisci. Vero sapiente totam in laudantium nulla.
+                  {{ $item->description }}
                </p>
                <p class="card-text small">
                   <span class="text-decoration-underline">More Detail</span>
