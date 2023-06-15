@@ -8,7 +8,7 @@
             <span><i class="bi bi-three-dots"></i></span>
          </button>
       </div>
-      <a class="navbar-brand me-0" href="/waiters/">
+      <a class="navbar-brand me-0" href="{{ url('menu') }}">
          <img src="../waiters-assets/img/logo/logotype.png" height="auto" style="width: 36vw; max-width: 160px;" alt="">
       </a>
       <div style="margin-right: -.5rem;">

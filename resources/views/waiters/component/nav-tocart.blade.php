@@ -4,7 +4,7 @@
          <a class="btn text-bg-dark w-100 btn-lg position-relative" href="{{ url('/cart') }}">
             <span>View Order</span>
             <span class="badge position-absolute top-50 translate-middle-y start-0 ms-3" style="background-color: #fd4f00;">
-               0
+               {{ Cart::getTotalQuantity() }}
             </span>
          </a>
       </div>

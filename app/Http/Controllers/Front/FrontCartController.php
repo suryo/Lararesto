@@ -130,7 +130,7 @@ class FrontCartController extends Controller
 
     public function cartList(Request $request)
     {
-        
+        //\Cart::clear();
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
        
@@ -146,9 +146,15 @@ class FrontCartController extends Controller
         $cartItem = \Cart::getContent();
         $cartItems = $cartItem->sort();
 
-        $product = $cartItems;
-
-        dump($product);
+        //dump($cartItems);
+        $product = [];
+        $keranjang = [];
+        foreach ($cartItems as $key => $items) {
+        //$items->price = $items->price;
+           array_push($product, $items);
+           
+        }
+        // dd($product);
 
         $title = "Cart";
         $pages = "cart";
@@ -270,20 +276,32 @@ class FrontCartController extends Controller
     {   
 
 
-        dump($request->id);
-        dump($request->name);
-        dump($request->quant);
-        dump($request->stock);
-        dump($request->stockweb);
-        dump($request->price);
-        dump($request->images);
+        // dump($request->id);
+        // dump($request->name);
+        // dump($request->quant);
+        // dump($request->stock);
+        // dump($request->stockweb);
+        // dump($request->price);
+        // dump($request->images);
 
-        dd("masuk ke cart")     ;
+        // dump($request->description);
+        // dump($request->portion);
+        // dump($request->units);
+        // dump($request->brand);
+        // dump($request->category);
+        // dump($request->subcategory);
+
+        //dd("masuk ke cart")     ;
         $qty = 1;
         $types = "NORMAL";
+        $qty = $request->quant;
+        $types = $request->types;
+        $id_category = $request->id_category;
+        //$this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory);
         $this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory);
+        
         return redirect()
-        ->route('submenu.index',"menu=".$request->menu)
+        ->route('submenu.index',"menu=".$id_category)
         ->with([
             'modal' => $request->id
         ]);
@@ -333,42 +351,7 @@ class FrontCartController extends Controller
     public function removeCart(Request $request)
     {
         $items = \Cart::getContent();
-
-        // foreach ($items as $item) {
-        //     $item->id; // the Id of the item
-        //     $item->name; // the name
-        //     $item->price; // the single price without conditions applied
-        //     $item->getPriceSum(); // the subtotal without conditions applied
-        //     $item->getPriceWithConditions(); // the single price with conditions applied
-        //     $item->getPriceSumWithConditions(); // the subtotal with conditions applied
-        //     $item->quantity; // the quantity
-        //     $item->attributes; // the attributes
-        //     // dump($item);
-        //     // dump($item->id);
-        //     // dump($item->attributes["types"]);
-        //     // dump("GIFTSET" . $request->id);
-        //     // dump("============================");
-        //     //if ($item->id == $request->id) {
-        //     //dump("ada gift set");
-
-        //     if (($item->attributes["types"]) == ("GIFTSET" . $request->id)) {
-        //         //dump("hapus id ".$item->id);
-        //         //     dump($item->id);
-        //         \Cart::remove($item->id);
-        //         $this->GiftBoxCart();
-        //         session(['totalbeforediscount' => \Cart::getTotal()]);
-        //         session()->flash('success', 'Item Cart Remove Successfully !');
-        //         // return redirect()->route('cart.list');
-        //     } else {
-        //         //dump("bukan giftset");
-        //     }
-        //     //}
-        // }
-        // dump($request->id);
-        // dd("hapus");
         \Cart::remove($request->id);
-        // $this->GiftBoxCart();
-        // session(['totalbeforediscount' => \Cart::getTotal()]);
         session()->flash('success', 'Item Cart Remove Successfully !');
         return redirect()->route('cart.list');
     }
@@ -427,25 +410,7 @@ class FrontCartController extends Controller
 
             array_push($gift, $gft);
         }
-
-
         return $gift;
-
-        // $gft = $product_free_gift_models_res[0];
-        // $gft->gift_box_id = ($product_free_gift_models_res[0]->product_id);
-        // $gft->gift_box_name = ($product_free_gift_models_res[0]->product_name);
-        // $gft->gift_box_minimum_order = ($product_free_gift_models_res[0]->minimum_order);
-        // $gft->gift_box_real_price = ($product_free_gift_models_res[0]->product_price);
-        // $gft->min_gift_box_real_price = $gft->gift_box_real_price * -1;
-
-        // if (!empty($product_free_gift_models_res[0]->fileimages)) {
-        //     $gft->gift_box_images = (json_decode($product_free_gift_models_res[0]->fileimages))[0];
-        // } else {
-        //     $gft->gift_box_images = null;
-        // }
-
-        // array_push($gift, $gft);
-        // return $gift[0];
     }
     public function AddItemCart($id, $name, $price, $qty, $images, $types,$description, $portion, $units, $brand, $category, $subcategory)
     {
@@ -455,7 +420,7 @@ class FrontCartController extends Controller
             [
                 'id' => $id,
                 'name' => $name,
-                'price' => $price,
+                'price' => $price*1000,
                 'quantity' => $qty,
                 'attributes' => array(
                     'description' => $description,

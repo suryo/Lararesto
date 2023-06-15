@@ -58,19 +58,18 @@
                   {{ $modalitem->brand }} - {{ $modalitem->name }} 
                </h3>
                <p class="small mb-4">
-                  {{ $item->description }}
+                  {{ $modalitem->description }}
                </p>
                <div class="overflow-x-auto w-100">
                   <nav id="menu-portion" class="text-nowrap text-capitalize">
-                     @if (count($modalitem->variant))
+                     {{-- @if (count($modalitem->variant))
                          @foreach ($modalitem->variant as $variant)
                          <a data-bs-toggle="modal" class="btn btn-outline-dark {{ $variant->id==$modalitem->id ? 'active' : '' }}" href="#modal-detail-menu{{ $variant->id }}">
                            <strong>{{ $variant->portion }}</strong> <br> Rp&nbsp;75.000,-
                         </a>
-                        {{-- <a data-bs-toggle="modal" href="#modal-detail-menu{{ $variant->id }}" class="text-decoration-none">das {{ $variant->id }} --}}
-                        </a>
+                      
                          @endforeach
-                     @endif
+                     @endif --}}
                      {{-- <a class="btn btn-outline-dark active" href="#">
                         <strong>solo</strong> <br> Rp&nbsp;75.000,-
                      </a>
@@ -96,11 +95,11 @@
             </div>
 
             <div class="container-fluid p-3">
-               <ul id="mods" class="list-group list-group-flush text-capitalize">
+               {{-- <ul id="mods" class="list-group list-group-flush text-capitalize">
 
                   @if (count($modalitem->additional))
                          @foreach ($modalitem->additional as $additional)
-                          <!-- mods item -->
+                        
                            <li class="list-group-item px-0">
                               <div class="form-check">
                                  <input onclick="myFunction<?php echo $modalitem->id ?>()" name="additionaloption{{ $modalitem->id }}[]" type="checkbox" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $additional->id }}, "name":"{{ $additional->name }}", "price":{{ $additional->price }} }' id="mods{{ $additional->id }}" >
@@ -115,10 +114,7 @@
                            </li>
                          @endforeach
                      @endif
-                  <!-- mods item -->
-                 
-
-               </ul>
+               </ul> --}}
             </div>
 
             <div class="container-fluid p-3">
@@ -144,13 +140,6 @@
                   @csrf
                   @php
                   $imageName = "imagenotavailable.jpg";
-
-                  if (isset($modalitem->fileimages)) {
-                  $imagetype = gettype(json_decode($modalitem->fileimages));
-                  $image = (json_decode($modalitem->fileimages));
-                  $imageName = $image[0];
-               }
-
                   // if (item.images.length > 0) {
                   //     imageName = item.images[0];
                   // }

@@ -40,8 +40,18 @@
    <section>
       <div class="container">
          <div id="order-list" class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-
+            @foreach ($product as $cartitems)
             <div class="col order-item mb-3">
+               @include('waiters/component/order-item')
+            </div>
+            @endforeach
+            {{-- <div class="col order-item mb-3">
+               @include('waiters/component/order-item')
+            </div>
+            <div class="col order-item mb-3">
+               @include('waiters/component/order-item')
+            </div> --}}
+            {{-- <div class="col order-item mb-3">
                @include('waiters/component/order-item')
             </div>
             <div class="col order-item mb-3">
@@ -58,17 +68,11 @@
             </div>
             <div class="col order-item mb-3">
                @include('waiters/component/order-item')
-            </div>
-            <div class="col order-item mb-3">
-               @include('waiters/component/order-item')
-            </div>
-            <div class="col order-item mb-3">
-               @include('waiters/component/order-item')
-            </div>
+            </div> --}}
 
          </div>
          <div class="text-end pt-5">
-            <a href="/waiters/menu" class="btn text-bg-dark">
+            <a href="{{ url('menu') }}" class="btn text-bg-dark">
                <i class="bi bi-plus"></i> Add More Items
             </a>
          </div>
@@ -98,6 +102,9 @@
             </div>
          </div>
          <hr>
+         @foreach ($product as $item)
+             
+         @endforeach
          <div class="row row-cols-2">
             <div class="col">Subtotal</div>
             <div class="col d-flex justify-content-between">
@@ -155,5 +162,5 @@
 {{-- @include('waiters/component/modal-detail') --}}
 
 @foreach ($product as $modalitem)
-@include('waiters/component/modal-detail')
+@include('waiters/component/modal-cart-detail')
 @endforeach
