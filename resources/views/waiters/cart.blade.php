@@ -109,7 +109,7 @@
             <div class="col">Subtotal</div>
             <div class="col d-flex justify-content-between">
                <span>Rp</span>
-               <span>150.000,-</span>
+               <span>{{ Cart::getSubTotal() }},-</span>
             </div>
          </div>
          <div class="row row-cols-2">
@@ -130,7 +130,7 @@
             <div class="col">Total</div>
             <div class="col d-flex justify-content-between">
                <span>Rp</span>
-               <span>125.000,-</span>
+               <span>{{ Cart::getTotal() }},-</span>
             </div>
          </div>
          <a class="btn text-bg-dark w-100 btn-lg position-relative" href="/waiters/checkout">

@@ -114,6 +114,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/product', ProductController::class);
 
 
+
+    Route::get('/menu', [FrontProductController::class, 'menu'])->name('menu.index');
+    Route::get('/submenu', [FrontProductController::class, 'submenu'])->name('submenu.index');
+
+    Route::get('/cart', [FrontCartController::class, 'cartList'])->name('cart.list');
+    Route::post('fcart', [FrontCartController::class, 'addToCart'])->name('cart.store');
+    Route::post('fcart-modal', [FrontCartController::class, 'addToCartModal'])->name('cartmodal.store');
+    Route::post('update-cart', [FrontCartController::class, 'updateCart'])->name('cart.update');
+    Route::post('update-cart-gifting', [FrontCartController::class, 'updateCartGifting'])->name('cart.update.gifting');
+    Route::post('remove', [FrontCartController::class, 'removeCart'])->name('cart.remove');
+    Route::post('clear', [FrontCartController::class, 'clearAllCart'])->name('cart.clear');
+    Route::post('cart-update-discount', [FrontCartController::class, 'updateDiscountCart'])->name('cart.updatediscount');
+
+
 });
 
 // category
@@ -146,17 +160,7 @@ Route::get('/master', function () {
     ]);
 });
 
-Route::get('/menu', [FrontProductController::class, 'menu'])->name('menu.index');
-Route::get('/submenu', [FrontProductController::class, 'submenu'])->name('submenu.index');
 
-Route::get('/cart', [FrontCartController::class, 'cartList'])->name('cart.list');
-Route::post('fcart', [FrontCartController::class, 'addToCart'])->name('cart.store');
-Route::post('fcart-modal', [FrontCartController::class, 'addToCartModal'])->name('cartmodal.store');
-Route::post('update-cart', [FrontCartController::class, 'updateCart'])->name('cart.update');
-Route::post('update-cart-gifting', [FrontCartController::class, 'updateCartGifting'])->name('cart.update.gifting');
-Route::post('remove', [FrontCartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [FrontCartController::class, 'clearAllCart'])->name('cart.clear');
-Route::post('cart-update-discount', [FrontCartController::class, 'updateDiscountCart'])->name('cart.updatediscount');
 
 // ============================================ UI TEMPLATE
 

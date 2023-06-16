@@ -8,13 +8,16 @@
          @endif
         
       </div>
+      @php
+         // dump($cartitems);
+      @endphp
       <div class="col-8">
          <div class="card-body p-0">
             <h6 class="card-title text-capitalize small mb-1 opacity-75">
-               {{  $cartitems->category }} &nbsp;&nbsp;&nbsp; {{  $cartitems->subcategory }}
+               {{  $cartitems->attributes->category }} &nbsp;&nbsp;&nbsp; {{  $cartitems->attributes->subcategory }}
             </h6>
             <h6 class="card-title text-capitalize fw-semibold mb-1">
-               {{  $cartitems->brand }}-{{  $cartitems->name }}
+               {{  $cartitems->attributes->brand }}-{{  $cartitems->name }}
             </h6>
             <p class="card-text small mb-2">
                Qty. {{  $cartitems->quantity }}
@@ -23,13 +26,14 @@
                Rp {{  $cartitems->price }},-
             </p>
             <p class="card-text">
-               <a data-bs-toggle="modal" href="#modal-detail-menu" class="text-dark text-decoration-none me-3">
+               
+               <a data-bs-toggle="modal" href="#modal-cart-detail-menu{{ $cartitems->id }}" class="text-dark text-decoration-none me-3">
                   <u><small>EDIT</small></u> <i class="bi bi-pencil-fill"></i>
                </a>
-               <form action="{{ route('cart.remove') }}" method="POST"  id="formdeleteitemscart">
+               <form action="{{ route('cart.remove') }}" method="POST"  id="formdeleteitemscart{{ $cartitems->id }}">
                   @csrf
                   <input type="hidden" value="{{ $cartitems->id }}" name="id">
-                  <a class="text-dark text-decoration-none" onclick="document.getElementById('formdeleteitemscart').submit()">
+                  <a class="text-dark text-decoration-none" onclick="document.getElementById('formdeleteitemscart{{ $cartitems->id }}').submit()">
                      <u><small>DELETE</small></u> <i class="bi bi-trash2-fill"></i>
                   </a>
                   {{-- <button class="text-dark text-decoration-none"><u><small>DELETE</small></u> <i class="bi bi-trash2-fill"></i></button> --}}

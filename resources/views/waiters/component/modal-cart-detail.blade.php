@@ -1,4 +1,4 @@
-<div id="modal-detail-menu{{ $modalitem->id }}" class="modal fade" tabindex="-1">
+<div id="modal-cart-detail-menu{{ $modalitem->id }}" class="modal fade" tabindex="-1">
    <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable" style="$modal-fade-transform: scale(.8)">
       <div class="modal-content">
          <div class="modal-header border-0 pb-0 position-absolute top-0 start-0" style="z-index: 100;">
@@ -13,20 +13,24 @@
                   <button data-bs-target="#carousel-detail-img" data-bs-slide-to="2"></button>
                </div>
                @php
-               $image=[];
-               if (isset($modalitem->fileimages)) {
-                  $imagetype = gettype(json_decode($modalitem->fileimages));
-                  $image = (json_decode($modalitem->fileimages));
-               }
+               // $image=[];
+               // if (isset($modalitem->fileimages)) {
+               //    $imagetype = gettype(json_decode($modalitem->fileimages));
+               //    $image = (json_decode($modalitem->fileimages));
+               // }
+
+            // echo "id ".$modalitem->id;
+            // dump($modalitem)
                
                @endphp
                <div class="carousel-inner">
-                  @if (isset($modalitem->fileimages)) {
-                  @foreach ($image as $itemimage) 
-                  <div class="carousel-item {{ $loop->index==0 ? "active" : ""  }}">
-                     <img src="{{ url('files/product-images/')."/".$itemimage }}" class="d-block w-100" alt="">
+                  @if ($modalitem->attributes->images!="imagenotavailable.jpg") 
+                 
+                  {{-- @foreach ($image as $itemimage)  --}}
+                  <div class="carousel-item active">
+                     <img src="{{ url('files/product-images/')."/".$modalitem->attributes->images }}" class="d-block w-100" alt="">
                   </div>
-                  @endforeach
+                  {{-- @endforeach --}}
                   @else
                   <div class="carousel-item active">
                      <img src="{{ url('files/imagenotavailable.jpg')}}" class="d-block w-100" alt="">
@@ -55,10 +59,10 @@
                   <span class="me-2">coffee</span> <span>manual brew</span>
                </h6>
                <h3 class="text-capitalize fw-semibold fs-4">
-                  {{ $modalitem->brand }} - {{ $modalitem->name }} 
+                  {{ $modalitem->attributes->brand }} - {{ $modalitem->name }} 
                </h3>
                <p class="small mb-4">
-                  {{ $modalitem->description }}
+                  {{ $modalitem->attributes->description }}
                </p>
                <div class="overflow-x-auto w-100">
                   <nav id="menu-portion" class="text-nowrap text-capitalize">
@@ -124,12 +128,12 @@
          </div>
          <div class="modal-footer border-dark-subtle">
             <div class="d-flex w-100 align-items-center justify-content-between">
-               <h4 id="totallabel{{ $modalitem->id }}" class="fw-semibold mb-0">Rp {{ $modalitem->price * 1000 }},-</h4>
+               <h4 id="totallabel{{ $modalitem->id }}" class="fw-semibold mb-0">Rp {{ $modalitem->price * $modalitem->quantity }},-</h4>
                <div class="input-group w-auto">
                   <button class="btn border-dark" onclick="itemminus{{ $modalitem->id }}({{ $modalitem->id }})">
                      <i class="bi bi-dash-lg"></i>
                   </button>
-                  <input id="totalqty{{ $modalitem->id }}" type="number" min="1" max="100" value="1" class="form-control border-dark text-center fw-semibold bg-light px-0" style="width: 70px;">
+                  <input id="totalqty{{ $modalitem->id }}" type="number" min="1" max="100" value="{{ $modalitem->quantity }}" class="form-control border-dark text-center fw-semibold bg-light px-0" style="width: 70px;">
                   <button class="btn border-dark" onclick="itemplus{{ $modalitem->id }}({{ $modalitem->id }})">
                      <i class="bi bi-plus-lg"></i>
                   </button>
@@ -139,7 +143,15 @@
                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data" class="d-md-flex w-100 gap-3">
                   @csrf
                   @php
-                  $imageName = "imagenotavailable.jpg";
+                 
+
+                  if($modalitem->attributes->images!="imagenotavailable.jpg")
+                  {
+                     $imageName = $modalitem->attributes->images;
+                  }
+                  else {
+                     $imageName = "imagenotavailable.jpg";
+                  }
                   // if (item.images.length > 0) {
                   //     imageName = item.images[0];
                   // }
@@ -151,16 +163,16 @@
                   <input type="hidden" name="quant" value="1" id="qty-product{{ $modalitem->id }}">
                   <input type="hidden" name="stock" value="1" id="stock-product">
                   <input type="hidden" name="stockweb" value="{{ $modalitem->id }}" id="stockweb">
-                  <input type="hidden" value="{{ $modalitem->price }}" name="price">
+                  <input type="hidden" value="{{ $modalitem->price/1000 }}" name="price">
                   <input type="hidden" value="{{ $imageName }}" name="images">
                   <input type="hidden" value="{{ $imageName }}" name="types">
-                  <input type="hidden" value="{{ $modalitem->portion }}" name="portion">
-                  <input type="hidden" value="{{ $modalitem->description }}" name="description">
+                  <input type="hidden" value="{{ $modalitem->attributes->portion }}" name="portion">
+                  <input type="hidden" value="{{ $modalitem->attributes->description }}" name="description">
                   <input type="hidden" value="" name="units">
-                  <input type="hidden" value="{{ $modalitem->brand }}" name="brand">
-                  <input type="hidden" value="{{ $modalitem->category }}" name="category">
-                  <input type="hidden" value="{{ $modalitem->subcategory }}" name="subcategory">
-                  <input type="hidden" value="{{ $modalitem->id_category }}" name="id_category">
+                  <input type="hidden" value="{{ $modalitem->attributes->brand }}" name="brand">
+                  <input type="hidden" value="{{ $modalitem->attributes->category }}" name="category">
+                  <input type="hidden" value="{{ $modalitem->attributes->subcategory }}" name="subcategory">
+                  <input type="hidden" value="{{ $modalitem->attributes->idcategory }}" name="id_category">
                   
                   
 
@@ -184,12 +196,12 @@
 
 
 <script type="text/javascript">
-var qty{{ $modalitem->id }} = 1;
-var total = {{ $modalitem->price }}*1000;
+var qty{{ $modalitem->id }} = {{ $modalitem->quantity }};
+var total = {{ $modalitem->price }};
 
 
 function myFunction<?php echo $modalitem->id ?>() {
-   var total = {{ $modalitem->price }}*1000;
+   var total = {{ $modalitem->price }};
    var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
    var checkedValue = null; 
    var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
@@ -208,7 +220,7 @@ function myFunction<?php echo $modalitem->id ?>() {
    function itemplus<?php echo $modalitem->id ?>(id){
       console.log(qty{{ $modalitem->id }});
       qty{{ $modalitem->id }} = qty{{ $modalitem->id }} + 1;
-      var total = {{ $modalitem->price }}*1000;
+      var total = {{ $modalitem->price }};
       total = total * qty{{ $modalitem->id }};
       console.log("Rp"+"."+total+" ,-");
       document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total+" ,-";
@@ -219,7 +231,7 @@ function myFunction<?php echo $modalitem->id ?>() {
    function itemminus<?php echo $modalitem->id ?>(id){
       console.log(qty{{ $modalitem->id }});
       qty{{ $modalitem->id }} = qty{{ $modalitem->id }} - 1;
-      var total = {{ $modalitem->price }}*1000;
+      var total = {{ $modalitem->price }};
       total = total * qty{{ $modalitem->id }};
       console.log("Rp"+"."+total+" ,-");
       document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total+" ,-";

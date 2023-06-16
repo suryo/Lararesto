@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -84,22 +84,22 @@ class FrontCartController extends Controller
 
 
         #check condition apakah sub total sudah memungkinkan mendapatkan free gift box
-        if (\Cart::getSubTotal() >   $gift_box_minimum_order) {
+        if (Cart::getSubTotal() >   $gift_box_minimum_order) {
             $payload = [
                 'status1' => "success1",
-                'subtotal' => \Cart::getSubTotal(),
+                'subtotal' => Cart::getSubTotal(),
                 'min order' => $gift_box_minimum_order
             ];
 
             if (empty($cartItems[$gift_box_id])) {
                 $payload = [
                     'status11' => "success11",
-                    'subtotal' => \Cart::getSubTotal(),
+                    'subtotal' => Cart::getSubTotal(),
                     'min order' => $gift_box_minimum_order
                 ];
                 $this->AddItemCart($gift_box_id, $gift_box_name, 0, 1, $gift_box_gramature, $gift_box_images, "FREEGIFT");
             }
-        } else if (\Cart::getSubTotal() <   $gift_box_minimum_order) {
+        } else if (Cart::getSubTotal() <   $gift_box_minimum_order) {
             $payload = [
                 'status2' => "success2",
                 'subtotal' => \Cart::getSubTotal(),
@@ -154,7 +154,7 @@ class FrontCartController extends Controller
            array_push($product, $items);
            
         }
-        // dd($product);
+        // dump($product);
 
         $title = "Cart";
         $pages = "cart";
@@ -275,6 +275,18 @@ class FrontCartController extends Controller
     public function addToCart(Request $request)
     {   
 
+        $cartItem = \Cart::getContent();
+        $cartItems = $cartItem->sort();
+
+        $checkstatus = false;
+        foreach ($cartItems as $key) {
+            if($key->id == $request->id)
+            {
+                $checkstatus = true;
+              
+
+            }
+        }
 
         // dump($request->id);
         // dump($request->name);
@@ -291,14 +303,23 @@ class FrontCartController extends Controller
         // dump($request->category);
         // dump($request->subcategory);
 
-        //dd("masuk ke cart")     ;
+      
         $qty = 1;
         $types = "NORMAL";
         $qty = $request->quant;
         $types = $request->types;
-        $id_category = $request->id_category;
+        $id_category = $request->id_category;  
+        
+        //dump($id_category);
+        //dd("masuk ke cart")     ;
         //$this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory);
-        $this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory);
+        if($checkstatus==true)
+        {
+            Cart::remove($request->id);
+            // dd("barang sudah di hapus");
+        }
+        //dd("barang ditambahkan");
+        $this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
         
         return redirect()
         ->route('submenu.index',"menu=".$id_category)
@@ -324,6 +345,7 @@ class FrontCartController extends Controller
 
     public function updateCart(Request $request)
     {
+       
         $value = 0;
         //## kondisi saat qty barang dikurangi
         if (isset($_POST['minus'])) {
@@ -350,6 +372,7 @@ class FrontCartController extends Controller
 
     public function removeCart(Request $request)
     {
+        //dd($request->id);
         $items = \Cart::getContent();
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
@@ -412,7 +435,7 @@ class FrontCartController extends Controller
         }
         return $gift;
     }
-    public function AddItemCart($id, $name, $price, $qty, $images, $types,$description, $portion, $units, $brand, $category, $subcategory)
+    public function AddItemCart($id, $name, $price, $qty, $images, $types,$description, $portion, $units, $brand, $category, $subcategory, $idcategory)
     {
         //if($types =='Giftset')
 
@@ -431,6 +454,7 @@ class FrontCartController extends Controller
                     'brand' => $brand,
                     'category' => $category,
                     'subcategory' => $subcategory,
+                    'idcategory' => $idcategory,
                 )
             ]
         );
@@ -449,6 +473,7 @@ class FrontCartController extends Controller
     }
     public function RemoveItemCart($id)
     {
+        //dd($id);
         \Cart::remove($id);
     }
     public function GiftBoxCart()
