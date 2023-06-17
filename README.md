@@ -1,5 +1,4 @@
-# supresso-waiters-beta
-
+# Lararesto - (Resto Information System with Laravel)
 ## Installation
 
 * Composer Install
