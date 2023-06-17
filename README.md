@@ -36,5 +36,5 @@ php artisan serve --host 0.0.0.0
 ## link
 
 * login : <http://127.0.0.1:8000/login>
-username : indracodev@gmail.com / #1ndracodeV
-username : as.sgiworld@gmail.com / 123456
+username : admin@gmail.com / 12345678
+username : meja1 / 123456
