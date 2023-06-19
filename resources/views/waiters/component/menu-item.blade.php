@@ -30,7 +30,7 @@
                   {{ $category[0]->name }} &nbsp;&nbsp;&nbsp; {{ $submenu->name }}
                </h6>
                <h6 class="card-title text-capitalize fw-semibold">
-                  {{ $item->brand }} - {{ $item->name }}
+                  {{ $item->name }}
                </h6>
                <p class="card-text small mb-0" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;">
                   {{ $item->description }}

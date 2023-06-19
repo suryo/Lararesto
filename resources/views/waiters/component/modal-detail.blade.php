@@ -52,10 +52,11 @@
 
             <div class="container-fluid p-3 mb-4">
                <h6 class="text-capitalize small mb-1">
-                  <span class="me-2">coffee</span> <span>manual brew</span>
+                  <span class="me-2">{{ $modalitem->category }}</span> <span>{{ $modalitem->subcategory }}</span>
                </h6>
                <h3 class="text-capitalize fw-semibold fs-4">
-                  {{ $modalitem->brand }} - {{ $modalitem->name }} 
+                   {{ $modalitem->name }} 
+                   {{-- by {{ $modalitem->brand }} --}}
                </h3>
                <p class="small mb-4">
                   {{ $item->description }}
@@ -92,7 +93,7 @@
 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Choice</strong>
-               <span>Choose up to 1</span>
+               {{-- <span>Choose up to 1</span> --}}
             </div>
 
             <div class="container-fluid p-3">
@@ -106,10 +107,10 @@
                                  <input onclick="myFunction<?php echo $modalitem->id ?>({{ $modalitem->id }})" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" >
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                                     <div><span>{{ $optional->name }}</span></div>
-                                    <div class="d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
+                                    {{-- <div class="d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
                                        <span>+&nbsp;Rp&nbsp;</span>
                                        <span>{{ $optional->price }};-</span>
-                                    </div>
+                                    </div> --}}
                                  </label>
                               </div>
                            </li>
@@ -122,7 +123,7 @@
             @if ($modalitem->flag_spicy == true)
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Spicy Level</strong>
-               <span>Choose up to 1</span>
+               {{-- <span>Choose up to 1</span> --}}
             </div>
 
             <div class="container-fluid p-3">
