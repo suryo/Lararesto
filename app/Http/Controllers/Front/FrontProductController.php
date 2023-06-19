@@ -64,13 +64,17 @@ class FrontProductController extends Controller
 
         $product = [];
         for ($p=0; $p < count($res_product); $p++) {
-            $res_additional = DB::select("select * from pos_additional_products where id_product=".$res_product[$p]->id);
+            $res_additional = DB::select("select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product=".$res_product[$p]->id." and ap.deleted='false'");
+            $res_optional = DB::select("select * from pos_optional_products as op INNER JOIN pos_optional as a on op.id_optional = a.id where op.id_product=".$res_product[$p]->id." and op.deleted='false'");
+            
             $res_variant = [];
             if ($res_product[$p]->variant<>"") {
                 $res_variant = DB::select("select * from pos_products where variant=".$res_product[$p]->variant);
             }
           
             $res_product[$p]->additional = $res_additional;
+            $res_product[$p]->optional = $res_optional;
+            
             $res_product[$p]->variant = $res_variant;
             array_push($product, $res_product[$p]);
         }
