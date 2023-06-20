@@ -43,11 +43,11 @@
    <div class="container py-4">
       <div class="row row-cols-1 row-cols-md-auto flex-md-nowrap gy-2 gy-md-0 gx-md-3">
          <div class="col">
-            <select name="" id="" class="form-select">
-               <option value="1">Coffee</option>
-               <option value="2">Beverage</option>
-               <option value="3">Western Food</option>
-               <option value="4">Indonesian Food</option>
+            <select name="" id="menu" class="form-select" onchange="redirectmenu(this.value)">
+               <option value="1" {{ $menu==1 ? "selected" : "" }}>Coffee</option>
+               <option value="2" {{ $menu==2 ? "selected" : "" }}>Beverage</option>
+               <option value="3" {{ $menu==3 ? "selected" : "" }}>Western Food</option>
+               <option value="4" {{ $menu==4 ? "selected" : "" }}>Indonesian Food</option>
             </select>
          </div>
          <div class="col">
@@ -64,6 +64,16 @@
       </div>
    </div>
 </header>
+
+<script>
+   function redirectmenu(valuenya)
+   {
+      var path = "{{ url('submenu?menu=')}}";
+      path = path+valuenya;
+      
+      window.location.replace(path);
+   }
+</script>
 
 
 
