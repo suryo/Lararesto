@@ -53,8 +53,8 @@
          <div class="col">
             <div class="overflow-x-auto">
                <nav class="text-nowrap text-capitalize">
-                @foreach ($subcategory as $submenu)
-                  <a class="btn btn-outline-dark active" href="#">
+                @foreach ($menusubcategory as $submenu)
+                  <a class="btn btn-outline-dark active" href="{{ url('submenu/?menu='.$menu.'&id_sub_category='.$submenu->id) }}">
                      {{ $submenu->name }}
                   </a>
                 @endforeach
@@ -99,3 +99,5 @@
 @foreach ($product as $modalitem)
 @include('waiters/component/modal-detail')
 @endforeach
+
+
