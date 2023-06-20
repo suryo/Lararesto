@@ -53,7 +53,7 @@ class FrontProductController extends Controller
         if ((isset($_GET["menu"]))) {
             if(isset($_GET["id_sub_category"]))
             {
-                $menusubcategory = DB::select('select * from pos_sub_category where category_id = '.$menu);
+                $menusubcategory = DB::select('select * from pos_sub_category where deleted="false" and category_id = '.$menu);
                 $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu.' and id='.$_GET["id_sub_category"]);
                 $res_product = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
                 LEFT JOIN pos_brand as b on b.id = p.id_brand
@@ -62,7 +62,7 @@ class FrontProductController extends Controller
             }
             else
             {
-                $menusubcategory = DB::select('select * from pos_sub_category where category_id = '.$menu);
+                $menusubcategory = DB::select('select * from pos_sub_category where deleted="false" and category_id = '.$menu);
                 $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu);
                 $res_product = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
                 LEFT JOIN pos_brand as b on b.id = p.id_brand
