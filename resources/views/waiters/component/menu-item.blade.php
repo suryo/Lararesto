@@ -13,6 +13,7 @@
                } else {
                      $image = "";
                } 
+               
                @endphp
 
                @if ($image == "")
@@ -45,3 +46,12 @@
       </div>
    </div>
 </a>
+
+@php
+                     
+// $test3 = '{item0:{"id":5,"name":"NASI JAGUNG","price":12000},item1:{"id":6,"name":"NASI MERAH","price":12000},item2:{"id":7,"name":"NASI PUTIH","price":12000}}';
+// $jsn = json_decode($test3);
+
+//dd($jsn);
+@endphp
+

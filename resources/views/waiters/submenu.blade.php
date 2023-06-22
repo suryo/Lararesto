@@ -65,6 +65,8 @@
    </div>
 </header>
 
+
+
 <script>
    function redirectmenu(valuenya)
    {
@@ -74,6 +76,7 @@
       window.location.replace(path);
    }
 </script>
+
 
 
 
@@ -103,6 +106,8 @@
   
 
 </main>
+
+
 
 @endsection
 

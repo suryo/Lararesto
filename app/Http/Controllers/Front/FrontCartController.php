@@ -136,7 +136,7 @@ class FrontCartController extends Controller
        
 
         $cartItems = \Cart::getContent();
-       
+        dump($cartItems);
         #ambil session id gift yang dipilih
         $gift_box_id_chosen = Session::get('gift');
 
@@ -151,10 +151,20 @@ class FrontCartController extends Controller
         $keranjang = [];
         foreach ($cartItems as $key => $items) {
         //$items->price = $items->price;
-           array_push($product, $items);
-           
+        if (condition) {
+            # code...
         }
-        // dump($product);
+        $normalisasi_id_item = str_replace('menu-', '', $items->id);
+        $iditem = ((explode("-",$normalisasi_id_item))[0]);
+        $intid =(int)$iditem;
+        $sql = "select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product='".$intid."' and ap.deleted='false'";
+        dump($sql);
+        $items->additional=DB::select("select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product='".$intid."' and ap.deleted='false'");
+       dd($items->additional);
+        array_push($product, $items);
+        //dump($iditem);
+        }
+         dd($product[0]->additional);
 
         $title = "Cart";
         $pages = "cart";
@@ -278,7 +288,11 @@ class FrontCartController extends Controller
         $cartItem = \Cart::getContent();
         $cartItems = $cartItem->sort();
 
+       
+
+        # fungsi untuk cek apakah menu yang di tambahkan pada cart sudah ada atau belum ada
         $checkstatus = false;
+        $countitem = 1;
         foreach ($cartItems as $key) {
             if($key->id == $request->id)
             {
@@ -286,23 +300,38 @@ class FrontCartController extends Controller
               
 
             }
+            if (strpos($key->id, $request->id) !== false)
+            {
+                $countitem = $countitem + 1;
+            }
         }
 
-        // dump($request->id);
-        // dump($request->name);
-        // dump($request->quant);
-        // dump($request->stock);
-        // dump($request->stockweb);
-        // dump($request->price);
-        // dump($request->images);
+        #additional start
 
-        // dump($request->description);
-        // dump($request->portion);
-        // dump($request->units);
-        // dump($request->brand);
-        // dump($request->category);
-        // dump($request->subcategory);
+$res_additional = json_decode($request->additional);
+//dd(($additional));
+        #additional end
 
+        // dump($request->additional);
+        // $test = $request->additional;
+        // '{item0:{"id":5,"name":"NASI JAGUNG","price":12000},item1:{"id":6,"name":"NASI MERAH","price":12000},item2:{"id":7,"name":"NASI PUTIH","price":12000}}'
+        //dd(json_decode($jsn));
+
+        dump($request->id);
+        dump($request->name);
+        dump($request->quant);
+        dump($request->stock);
+        dump($request->stockweb);
+        dump($request->price);
+        dump($request->images);
+
+        dump($request->description);
+        dump($request->portion);
+        dump($request->units);
+        dump($request->brand);
+        dump($request->category);
+        dump($request->subcategory);
+        //dd("masuk ke cart")     ;
       
         $qty = 1;
         $types = "NORMAL";
@@ -311,7 +340,7 @@ class FrontCartController extends Controller
         $id_category = $request->id_category;  
         
         //dump($id_category);
-        //dd("masuk ke cart")     ;
+       
         //$this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory);
         if($checkstatus==true)
         {
@@ -319,8 +348,18 @@ class FrontCartController extends Controller
             // dd("barang sudah di hapus");
         }
         //dd("barang ditambahkan");
-        $this->AddItemCart($request->id, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
-        
+        $this->AddItemCart("menu-".$request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
+        if ($res_additional != null){
+            for ($i = 0; $i < count($res_additional); $i++) {
+                dump($res_additional);
+                $add = $res_additional[$i];
+                //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
+                $this->AddItemCart('add-' . $add->id . '|' . $request->id . '-' . $countitem,  $add->name, $add->price, $add->qty, "", $types,"", "", "", "", "", "", "");
+            }
+        }
+
+        //dd(\Cart::getContent());
+
         return redirect()
         ->route('submenu.index',"menu=".$id_category)
         ->with([

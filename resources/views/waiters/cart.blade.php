@@ -40,10 +40,14 @@
    <section>
       <div class="container">
          <div id="order-list" class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-            @foreach ($product as $cartitems)
+            @foreach ($product as $cartitems)  
+            @if (strpos($cartitems->id, 'menu-') !== false)
             <div class="col order-item mb-3">
+             
                @include('waiters/component/order-item')
-            </div>
+             
+            </div>  
+            @endif
             @endforeach
             {{-- <div class="col order-item mb-3">
                @include('waiters/component/order-item')
@@ -162,5 +166,7 @@
 {{-- @include('waiters/component/modal-detail') --}}
 
 @foreach ($product as $modalitem)
-@include('waiters/component/modal-cart-detail')
+  
+      @include('waiters/component/modal-cart-detail')
+ 
 @endforeach

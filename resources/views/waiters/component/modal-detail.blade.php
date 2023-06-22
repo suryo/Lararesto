@@ -56,7 +56,7 @@
                </h6>
                <h3 class="text-capitalize fw-semibold fs-4">
                    {{ $modalitem->name }} 
-                   {{-- by {{ $modalitem->brand }} --}}
+                 
                </h3>
                <p class="small mb-4">
                   {{ $item->description }}
@@ -68,32 +68,18 @@
                          <a data-bs-toggle="modal" class="btn btn-outline-dark {{ $variant->id==$modalitem->id ? 'active' : '' }}" href="#modal-detail-menu{{ $variant->id }}">
                            <strong>{{ $variant->portion }}</strong> <br> Rp&nbsp;75.000,-
                         </a>
-                        {{-- <a data-bs-toggle="modal" href="#modal-detail-menu{{ $variant->id }}" class="text-decoration-none">das {{ $variant->id }} --}}
+                     
                         </a>
                          @endforeach
                      @endif
-                     {{-- <a class="btn btn-outline-dark active" href="#">
-                        <strong>solo</strong> <br> Rp&nbsp;75.000,-
-                     </a>
-                     <a class="btn btn-outline-dark" href="#">
-                        <strong>doppio</strong> <br> Rp&nbsp;75.000,-
-                     </a>
-                     <a class="btn btn-outline-dark" href="#">
-                        <strong>small</strong> <br> Rp&nbsp;75.000,-
-                     </a>
-                     <a class="btn btn-outline-dark" href="#">
-                        <strong>medium</strong> <br> Rp&nbsp;75.000,-
-                     </a>
-                     <a class="btn btn-outline-dark" href="#">
-                        <strong>large</strong> <br> Rp&nbsp;75.000,-
-                     </a> --}}
+                   
                   </nav>
                </div>
             </div>
 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Choice</strong>
-               {{-- <span>Choose up to 1</span> --}}
+              
             </div>
 
             <div class="container-fluid p-3">
@@ -107,10 +93,7 @@
                                  <input onclick="myFunction<?php echo $modalitem->id ?>({{ $modalitem->id }})" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" >
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                                     <div><span>{{ $optional->name }}</span></div>
-                                    {{-- <div class="d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
-                                       <span>+&nbsp;Rp&nbsp;</span>
-                                       <span>{{ $optional->price }};-</span>
-                                    </div> --}}
+                                  
                                  </label>
                               </div>
                            </li>
@@ -123,7 +106,7 @@
             @if ($modalitem->flag_spicy == true)
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Spicy Level</strong>
-               {{-- <span>Choose up to 1</span> --}}
+               
             </div>
 
             <div class="container-fluid p-3">
@@ -221,16 +204,14 @@
                   @php
                   $imageName = "imagenotavailable.jpg";
 
-                  if (isset($modalitem->fileimages)) {
+                  if (isset($modalitem->fileimages)) 
+                  {
                   $imagetype = gettype(json_decode($modalitem->fileimages));
                   $image = (json_decode($modalitem->fileimages));
                   $imageName = $image[0];
-               }
+                  }
 
-                  // if (item.images.length > 0) {
-                  //     imageName = item.images[0];
-                  // }
-                  //dump($modalitem)
+               
                   @endphp
                 
                   <input type="hidden" value="{{ $modalitem->id }}" name="id">
@@ -249,11 +230,13 @@
                   <input type="hidden" value="{{ $modalitem->subcategory }}" name="subcategory">
                   <input type="hidden" value="{{ $modalitem->id_category }}" name="id_category">
                   
+
+                  <input type="hidden" value="" id="additional{{ $modalitem->id }}" name="additional">
                   
 
                   <button class="btn btn-lg text-bg-dark w-100">Order Now!</button>
                </form>
-               {{-- <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress({{$modalitem->id}})">Order Now!</button> --}}
+              
             </div>
          </div>
       </div>
@@ -275,7 +258,6 @@ var qty{{ $modalitem->id }} = 1;
 var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
 var spicy= false;
 var spicyprice = 5000;
-console.log(total{{ $modalitem->id }});
 document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
 
 
@@ -286,15 +268,23 @@ function myFunction<?php echo $modalitem->id ?>(id) {
    var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
    total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
    var len = inputElements.length;
+   var additionalstring = "";
+
+   //recalc choice start
+   var chooseadd = [];
     for (var i=0; i<len; i++) {
       let arrayval = JSON.parse(inputElements[i].value);
-      console.log(arrayval);
       if (inputElements[i].checked) {
-         total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }});
-      }      
+         arrayval.qty = qty{{ $modalitem->id }};
+         chooseadd.push(arrayval)
+         total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }});     
+      } 
     }
-    console.log(total{{ $modalitem->id }});
+    //recalc choice end
+
+    additionalstring = "{"+additionalstring+"}";
     document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
+    document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
    }
 
 
@@ -325,18 +315,25 @@ function myFunction<?php echo $modalitem->id ?>(id) {
       var checkedValue = null; 
       var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
       var len = inputElements.length;
+
+      //recalc choice start
+      var chooseadd = [];
       for (var i=0; i<len; i++) {
          let arrayval = JSON.parse(inputElements[i].value);
-         console.log(arrayval);
          if (inputElements[i].checked) {
+            arrayval.qty = qty{{ $modalitem->id }};
+            chooseadd.push(arrayval)
             total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }}) ;
          }      
       }
+      //recalc choice end
 
       document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
       document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
       document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
       document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
+
+      document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
 
       
    }
@@ -360,54 +357,84 @@ function myFunction<?php echo $modalitem->id ?>(id) {
       var checkedValue = null; 
       var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
       var len = inputElements.length;
+
+      //recalc choice start
+      var chooseadd = [];
       for (var i=0; i<len; i++) {
          let arrayval = JSON.parse(inputElements[i].value);
-         console.log(arrayval);
          if (inputElements[i].checked) {
+            arrayval.qty = qty{{ $modalitem->id }};
+            chooseadd.push(arrayval)
             total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }}) ;
          }      
       }
+      //recalc choice end
 
 
       document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
       document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
       document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
       document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
+
+      document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
 
    }
 
    function itemminus<?php echo $modalitem->id ?>(id){
       console.log(qty{{ $modalitem->id }});
-      qty{{ $modalitem->id }} = qty{{ $modalitem->id }} - 1;
-      var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
-      if (spicy==true)
-      {  
-         total{{ $modalitem->id }} = (total{{ $modalitem->id }} * qty{{ $modalitem->id }}) + (spicyprice* qty{{ $modalitem->id }});
-      }
-      else
-      {  
-         total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
-      }
-      console.log("Rp"+"."+total{{ $modalitem->id }}+" ,-");
 
-      var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
-      var checkedValue = null; 
-      var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
-      var len = inputElements.length;
+      if (qty{{ $modalitem->id }} >=2) {
+         qty{{ $modalitem->id }} = qty{{ $modalitem->id }} - 1;
+         var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
+         if (spicy==true)
+         {  
+            total{{ $modalitem->id }} = (total{{ $modalitem->id }} * qty{{ $modalitem->id }}) + (spicyprice* qty{{ $modalitem->id }});
+         }
+         else
+         {  
+            total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
+         }
+         console.log("Rp"+"."+total{{ $modalitem->id }}+" ,-");
+         var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
+         var checkedValue = null; 
+         var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
+         var len = inputElements.length;
+
+         //recalc choice start
+         var chooseadd = [];
+         for (var i=0; i<len; i++) {
+            let arrayval = JSON.parse(inputElements[i].value);
+            console.log(arrayval);
+            if (inputElements[i].checked) {
+               arrayval.qty = qty{{ $modalitem->id }};
+            chooseadd.push(arrayval)
+               total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }}) ;
+            }      
+         }
+         //recalc choice end
+
+         document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
+         document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
+         document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
+         document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
+
+         document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
+         }
+   }
+
+   function recalc_choice()
+   {
+      var chooseadd = [];
       for (var i=0; i<len; i++) {
          let arrayval = JSON.parse(inputElements[i].value);
          console.log(arrayval);
          if (inputElements[i].checked) {
-            total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }}) ;
-         }      
+            arrayval.qty = qty{{ $modalitem->id }};
+            chooseadd.push(arrayval)
+            total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }});        
+         } 
       }
-
-
-      document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
-      document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
-      document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
-      document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
-
+      return chooseadd;
    }
 
    function codeAddress(id) {
@@ -430,22 +457,16 @@ function myFunction<?php echo $modalitem->id ?>(id) {
                 '<input type="hidden" value="' + product_price_after_disc + '" name="priceafterdiscount">' +
                 '<input type="hidden" value="' + productPrice + '" name="price">';
 
-
-
             let imageName = "imagenotavailable.jpg";
             if (item.images.length > 0) {
                 imageName = item.images[0];
             }
 
             strFooter += '<input type="hidden" value="' + imageName + '" name="images">';
-
             strFooter +=
                 '<button name="addCartContinueShopping" data-bs-dismiss="modal" class="btn btn-light w-100 mb-2 mb-md-0"  onclick="$(\'#loading\').collapse(\'show\');">Continue Shopping</button>' +
                 '<button name="addCartContinueCart" data-bs-dismiss="modal" class="btn btn-dark w-100 mb-2 mb-lg-0"  onclick="$(\'#loading\').collapse(\'show\');">Shopping Cart & Checkout</button>' +
                 '</form>';
-
-        
-
 
         qtyPopup = +document.getElementById("qtypopup").value;
         harga = +document.getElementById("Harga").innerHTML;

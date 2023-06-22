@@ -99,12 +99,29 @@
             </div>
 
             <div class="container-fluid p-3">
-               {{-- <ul id="mods" class="list-group list-group-flush text-capitalize">
+               <ul id="mods" class="list-group list-group-flush text-capitalize">
+
+          
+                     @php
+                     $array = $cartItems;
+                     $iditems = str_replace('menu-', '', $cartitems->id);
+                     $index = 0
+                     @endphp
+             
+      
+      
+                  @foreach ($array as $additional)
+                  @if ((strpos($additional->id, $iditems) !== false)&&(strpos($additional->id, "add") !== false))
+                     @if ($index==0)
+                     {{ strtolower($additional->name) }} 
+                     @else
+                     | {{ strtolower($additional->name) }} 
+                     @endif
 
                   @if (count($modalitem->additional))
                          @foreach ($modalitem->additional as $additional)
                         
-                           <li class="list-group-item px-0">
+                           {{-- <li class="list-group-item px-0">
                               <div class="form-check">
                                  <input onclick="myFunction<?php echo $modalitem->id ?>()" name="additionaloption{{ $modalitem->id }}[]" type="checkbox" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $additional->id }}, "name":"{{ $additional->name }}", "price":{{ $additional->price }} }' id="mods{{ $additional->id }}" >
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
@@ -115,10 +132,10 @@
                                     </div>
                                  </label>
                               </div>
-                           </li>
+                           </li> --}}
                          @endforeach
                      @endif
-               </ul> --}}
+               </ul>
             </div>
 
             <div class="container-fluid p-3">
@@ -157,6 +174,7 @@
                   // }
                   //dump($modalitem)
                   @endphp
+                  
                 
                   <input type="hidden" value="{{ $modalitem->id }}" name="id">
                   <input type="hidden" value="{{ $modalitem->name }}" name="name">
@@ -173,6 +191,10 @@
                   <input type="hidden" value="{{ $modalitem->attributes->category }}" name="category">
                   <input type="hidden" value="{{ $modalitem->attributes->subcategory }}" name="subcategory">
                   <input type="hidden" value="{{ $modalitem->attributes->idcategory }}" name="id_category">
+
+                  <input type="hidden" value="" name="additional">
+
+                
                   
                   
 
