@@ -29,7 +29,7 @@
             </h3>
          </div>
          <div class="col col-auto">
-            <div class="fs-5 fw-medium"><span>Table 3</span></div>
+            <div class="fs-5 fw-medium"><span>{{ Auth::user()->name }}</span></div>
          </div>
       </div>
    </div>
