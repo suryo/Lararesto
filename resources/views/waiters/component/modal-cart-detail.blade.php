@@ -93,8 +93,72 @@
                </div>
             </div>
 
+          
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
-               <strong>Mods</strong>
+               <strong>Choice</strong>
+               <span>Choose up to 1</span>
+            </div>
+
+            <div class="container-fluid p-3">
+               <ul id="mods" class="list-group list-group-flush text-capitalize">
+
+                  @if (count($modalitem->optional))
+                         @foreach ($modalitem->optional as $optional)
+                          <!-- mods item -->
+                           <li class="list-group-item px-0">
+                              <div class="form-check">
+                                 <input onclick="myFunction<?php echo $modalitem->id ?>({{ $modalitem->id }})" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" >
+                                 <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
+                                    <div><span>{{ $optional->name }}</span></div>
+                                  
+                                 </label>
+                              </div>
+                           </li>
+                         @endforeach
+                     @endif
+                  <!-- mods item -->
+               </ul>
+            </div>
+
+
+            <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
+               <strong>Spicy Level</strong>
+               
+            </div>
+
+            <div class="container-fluid p-3">
+               <ul id="mods" class="list-group list-group-flush text-capitalize">
+                  <li class="list-group-item px-0">
+                     <div class="form-check">
+                        <input name="spicylevel" id="spicylevel" type="radio" active onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},false)" class="form-check-input rounded-circle bg-dark border-dark" value="0" >
+                        <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
+                           <div><span>No Spicy</span></div>
+                           <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
+                              <span>+&nbsp;Rp&nbsp;</span>
+                              <span>1000;-</span>
+                           </div>
+                        </label>
+                     </div>
+                  </li>
+
+                  <li class="list-group-item px-0">
+                     <div class="form-check">
+                        <input name="spicylevel" id="spicylevel" type="radio" onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},true)" class="form-check-input rounded-circle bg-dark border-dark" value="5000" >
+                        <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
+                           <div><span>Spicy</span></div>
+                           <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
+                              <span>+&nbsp;Rp&nbsp;</span>
+                              <span>1000;-</span>
+                           </div>
+                        </label>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+            
+
+            <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
+               <strong>Additional</strong>
                <span>Choose up to 1</span>
             </div>
 
@@ -104,26 +168,52 @@
           
                      @php
                      $array = $cartItems;
-                     $iditems = str_replace('menu-', '', $cartitems->id);
-                     $index = 0
+                     $iditems = str_replace('menu-', '', $modalitem->id);
+                     $index = 0;
+                    $aditionalchoosen = [];
+                   
                      @endphp
              
       
       
                   @foreach ($array as $additional)
-                  @if ((strpos($additional->id, $iditems) !== false)&&(strpos($additional->id, "add") !== false))
+                  @php
+                     if ((strpos($additional->id, "add") !== false)&&(strpos($additional->id, $iditems) !== false)) {
+                     $explode_code_additional =  (explode("|",$additional->id));
+                     $code_additional = $explode_code_additional;
+                     $get_id_additioinal =  (explode("-",$code_additional[0]));
+                     $id_additional = $get_id_additioinal[1];
+                
+                     array_push($aditionalchoosen, $id_additional);
+                     }
+               
+                  @endphp
+                  {{-- @if ((strpos($additional->id, $iditems) !== false)&&(strpos($additional->id, "add") !== false))
                      @if ($index==0)
-                     {{ strtolower($additional->name) }} 
+                     {{ strtolower($additional->name) }} (  {{ strtolower($additional->id) }}) 
                      @else
                      | {{ strtolower($additional->name) }} 
                      @endif
+                  @endif --}}
+                  @endforeach
+
+             
 
                   @if (count($modalitem->additional))
                          @foreach ($modalitem->additional as $additional)
-                        
-                           {{-- <li class="list-group-item px-0">
+                           <li class="list-group-item px-0">
                               <div class="form-check">
-                                 <input onclick="myFunction<?php echo $modalitem->id ?>()" name="additionaloption{{ $modalitem->id }}[]" type="checkbox" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $additional->id }}, "name":"{{ $additional->name }}", "price":{{ $additional->price }} }' id="mods{{ $additional->id }}" >
+                                 @php
+                                    # filter berdasarkan id
+                                    $additionanlId = $additional->id;
+                                    $filteredArray = array_filter($aditionalchoosen, function($key) use ($additionanlId) {
+                                       $isFound = $key == $additionanlId;
+                                       return $isFound;
+                                    });
+                                    # jika ada maka true
+                                    $isAvailable = count($filteredArray) > 0; 
+                                 @endphp
+                                 <input {{ $isAvailable ? "checked" : "" }} onclick="myFunction<?php echo $modalitem->id ?>()" name="additionaloption{{ $modalitem->id }}[]" type="checkbox" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $additional->id }}, "name":"{{ $additional->name }}", "price":{{ $additional->price }} }' id="mods{{ $additional->id }}" >
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                                     <div><span>{{ $additional->name }}</span></div>
                                     <div class="d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
@@ -132,10 +222,17 @@
                                     </div>
                                  </label>
                               </div>
-                           </li> --}}
+                           </li>
                          @endforeach
                      @endif
+
+                  
                </ul>
+            </div>
+
+            <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
+               <strong>Special Request</strong>
+               <span></span>
             </div>
 
             <div class="container-fluid p-3">

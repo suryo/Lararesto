@@ -174,7 +174,7 @@
 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Special Request</strong>
-               <span>Choose up to 1</span>
+               <span></span>
             </div>
 
            

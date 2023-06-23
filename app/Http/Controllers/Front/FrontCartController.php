@@ -136,7 +136,7 @@ class FrontCartController extends Controller
        
 
         $cartItems = \Cart::getContent();
-        dump($cartItems);
+        //dump($cartItems);
         #ambil session id gift yang dipilih
         $gift_box_id_chosen = Session::get('gift');
 
@@ -151,20 +151,25 @@ class FrontCartController extends Controller
         $keranjang = [];
         foreach ($cartItems as $key => $items) {
         //$items->price = $items->price;
-        if (condition) {
-            # code...
+
+       
+        if (strpos($items->id, 'menu-') !== false) {
+            $normalisasi_id_item = str_replace('menu-', '', $items->id);
+            $iditem = ((explode("-",$normalisasi_id_item))[0]);
+            $sql = "select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product='".$iditem."' and ap.deleted='false'";
+            //dump($sql);
+            $items->additional=DB::select("select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product='".$iditem."' and ap.deleted='false'");
+            $items->optional = DB::select("select * from pos_optional_products as op INNER JOIN pos_optional as a on op.id_optional = a.id where op.id_product=".$iditem." and op.deleted='false'");
+            
+            //dd($items->additional);
+            array_push($product, $items);
         }
-        $normalisasi_id_item = str_replace('menu-', '', $items->id);
-        $iditem = ((explode("-",$normalisasi_id_item))[0]);
-        $intid =(int)$iditem;
-        $sql = "select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product='".$intid."' and ap.deleted='false'";
-        dump($sql);
-        $items->additional=DB::select("select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product='".$intid."' and ap.deleted='false'");
-       dd($items->additional);
-        array_push($product, $items);
+      
+       
+        
         //dump($iditem);
         }
-         dd($product[0]->additional);
+         //dump($product);
 
         $title = "Cart";
         $pages = "cart";

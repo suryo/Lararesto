@@ -35,11 +35,11 @@
 
             @foreach ($array as $additional)
             @if ((strpos($additional->id, $iditems) !== false)&&(strpos($additional->id, "add") !== false))
-@if ($index==0)
-{{ strtolower($additional->name) }} 
-@else
- | {{ strtolower($additional->name) }} 
-@endif
+               @if ($index==0)
+               {{ strtolower($additional->name) }} 
+               @else
+               | {{ strtolower($additional->name) }} 
+               @endif
                
                {{-- <form action="{{ route('cart.remove') }}" method="POST"  id="formdeleteadditionalcart{{ $additional->id }}">
                   @csrf
