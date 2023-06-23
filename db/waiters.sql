@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : xampp72
+ Source Server         : xampp74
  Source Server Type    : MySQL
  Source Server Version : 100414
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 19/06/2023 16:46:30
+ Date: 23/06/2023 16:59:10
 */
 
 SET NAMES utf8mb4;
@@ -1342,163 +1342,192 @@ CREATE TABLE `pos_products`  (
   `units` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `fileimages` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `deleted` enum('false','true') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'false',
   `flag_spicy` enum('true','false') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'true',
   `flag_optional` enum('true','false') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'true',
   `flag_additional` enum('true','false') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'true',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 147 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 175 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pos_products
 -- ----------------------------
-INSERT INTO `pos_products` VALUES (1, 1, 1, 1, NULL, 'lampung', '100% Robusta No Acidity and Strong Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (2, 1, 1, 1, NULL, 'aceh gayo', '100% Arabica Medium Acidity and Mild Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (3, 1, 1, 1, NULL, 'java', '100% Robusta No Acidity and Good Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (4, 1, 1, 1, NULL, 'toraja kalosi', '100% Arabica Low Acidity and Heavy Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (5, 1, 1, 1, NULL, 'flores bajawa', '100% Arabica Low Acidty and Heavy Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (6, 1, 1, 1, NULL, 'sumatra mandheling', '100% Arabica Medium Acidity and Good Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (7, 1, 1, 1, NULL, 'bali kintamani', '100% Arabica Lively Acidity and Mild Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (8, 1, 1, 1, NULL, 'peaberry', '100% Arabica Medium Acidity and Good Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (9, 1, 1, 1, NULL, 'sumatra mandheling rainforest', '100% Arabica Medium Acidity and Good Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (10, 1, 1, 1, NULL, 'java arabica organic', '100% Arabica Mild Acidity and Heavy Body', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (11, 1, 1, 1, NULL, 'luwak arabica', '100% Arabica Mild Acidity and Heavy Body', '', 95, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (12, 1, 1, 1, NULL, 'vietnam drip', 'Robusta Coffee Dripped With Condensed Milk', '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (13, 1, 1, 2, NULL, 'brazilia', NULL, '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (14, 1, 1, 2, NULL, 'costa rica', NULL, '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (15, 1, 1, 2, NULL, 'nanyang', NULL, '', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (16, 1, 1, 3, '1', 'espresso', 'Pure Coffee Single Shoot', 'solo', 26, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (17, 1, 1, 3, '1', 'espresso', 'Pure Coffee Double Shoot', 'doppio', 32, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (18, 1, 1, 3, '2', 'ristretto', 'A \"short shot\" of a highly concentrated espresso. Extracted with a finer grind using half as much water, resulting in about 15ml of richer, smoother, and sweeter coffee.', 'solo', 26, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (19, 1, 1, 3, '2', 'ristretto', 'A \"short shot\" of a highly concentrated espresso. Extracted with a finer grind using half as much water, resulting in about 15ml of richer, smoother, and sweeter coffee.', 'doppio', 32, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (20, 1, 1, 3, NULL, 'espresso macchiato', 'Pure Coffee with foam milk\r\n', 'solo', 30, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (21, 1, 1, 3, NULL, 'americano', 'Espresso and water', 's', 36, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (22, 1, 1, 3, NULL, 'americano', 'Espresso and water', 'm', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (23, 1, 1, 3, NULL, 'americano', 'Espresso and water', 'l', 40, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (24, 1, 1, 3, NULL, 'cappuccino', 'Espresso and milk with thick foam', 's', 44, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (25, 1, 1, 3, NULL, 'cappuccino', 'Espresso and milk with thick foam', 'm', 48, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (26, 1, 1, 3, NULL, 'cappuccino', 'Espresso and milk with thick foam', 'l', 52, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (27, 1, 1, 3, NULL, 'caffe latte', 'Espresso and milk with foam', 's', 44, NULL, NULL, '[\"caffe-latte.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (28, 1, 1, 3, NULL, 'caffe latte', 'Espresso and milk with foam', 'm', 48, NULL, NULL, '[\"caffe-latte.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (29, 1, 1, 3, NULL, 'caffe latte', 'Espresso and milk with foam', 'l', 52, NULL, NULL, '[\"caffe-latte.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (30, 1, 1, 3, NULL, 'caffe mocha', 'Espresso and milk with chocolate', 's', 46, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (31, 1, 1, 3, NULL, 'caffe mocha', 'Espresso and milk with chocolate', 'm', 50, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (32, 1, 1, 3, NULL, 'caffe mocha', 'Espresso and milk with chocolate', 'l', 54, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (33, 1, 1, 3, NULL, 'caramel macchiato', 'Espresso and milk with Caramel flavour and topping', 's', 54, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (34, 1, 1, 3, NULL, 'caramel macchiato', 'Espresso and milk with Caramel flavour and topping', 'm', 58, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (35, 1, 1, 3, NULL, 'caramel macchiato', 'Espresso and milk with Caramel flavour and topping', 'l', 62, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (36, 1, 1, 3, NULL, 'delasia latte', 'Espresso and milk with Condensed milk\r\n', 's', 54, NULL, NULL, '[\"delasia-latte.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (37, 1, 1, 3, NULL, 'delasia latte', 'Espresso and milk with Condensed milk\r\n', 'm', 58, NULL, NULL, '[\"delasia-latte.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (38, 1, 1, 3, NULL, 'delasia latte', 'Espresso and milk with Condensed milk\r\n', 'l', 62, NULL, NULL, '[\"delasia-latte.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (39, 1, 1, 3, NULL, 'supresso nanyang', 'Black Coffee with Condensed milk\r\n', 's', 30, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (40, 1, 1, 3, NULL, 'supresso nanyang', 'Black Coffee with Condensed milk\r\n', 'm', 33, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (41, 1, 1, 3, NULL, 'supresso nanyang', 'Black Coffee with Condensed milk\r\n', 'l', 36, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (42, 1, 1, 3, NULL, 'supresso chocolate', 'Chocolate With Milk\r\n', 's', 50, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (43, 1, 1, 3, NULL, 'supresso chocolate', 'Chocolate With Milk\r\n', 'm', 55, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (44, 1, 1, 3, NULL, 'supresso chocolate', 'Chocolate With Milk\r\n', 'l', 60, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (45, 1, 1, 3, NULL, 'jaheku latte', NULL, 's', 40, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (46, 1, 1, 4, NULL, 'coffee crumble', 'Ice blended with coffee and Cookies', 'm', 60, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (47, 1, 1, 4, NULL, 'mocha', 'Ice blended with coffee and chocolate', 'm', 50, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (48, 1, 1, 4, NULL, 'salted caramel', 'Ice Blended with Coffee and salted Caramel flavour', 'm', 64, NULL, NULL, '[\"salted-caramel-frappe-feed.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (49, 1, 2, 5, NULL, 'pinky', 'Ice blended with berry jam and milk', 'm', 49, NULL, NULL, '[\"pinky-frappe.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (50, 1, 2, 5, NULL, 'matcha', 'Ice Blended with Matcha and milk', 'm', 60, NULL, NULL, '[\"matcha-frape-1.jpg\",\"matcha-frappe.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (51, 1, 2, 5, NULL, 'cookies crumble', 'Ice blended cookies and milk with chocolate\r\nIce blended cookies and milk with chocolate', 'm', 50, NULL, NULL, '[\"cookies-crumble.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (52, 1, 2, 5, NULL, 'chocochip', 'Ice blended chocochip and milk with chocolate', 'm', 60, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (53, 1, 2, 5, NULL, 'banana', 'Ice blended Milk and Banana Syrup', 'm', 56, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (54, 1, 2, 5, NULL, 'monster milo', 'Ice blended with chocolate and Milo', 'm', 40, NULL, NULL, '[\"monster-milo.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (55, 1, 2, 5, NULL, 'monster supresso', 'Shaken milk with Chocolate, milk and Hazelnut syrup', 'm', 40, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (56, 1, 2, 6, NULL, 'green tea latte', 'Green tea and milk', 'm', 58, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (57, 1, 2, 6, NULL, 'black tea latte', 'Black tea and milk', 'm', 45, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (58, 1, 2, 6, NULL, 'iced lychee tea', 'Tea and Lychee Syrup with Lychee fruit', 'm', 38, NULL, NULL, '[\"iced-lychee-tea.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (59, 1, 2, 6, NULL, 'iced orange tea', 'Tea and Orange Syrup with Orange fruit', 'm', 38, NULL, NULL, '[\"iced-orange-tea.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (60, 1, 2, 6, NULL, 'iced berry lemonade', 'Berry jam with Lemon and Tea', 'm', 42, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (61, 1, 2, 6, NULL, 'iced greentea lemonade', 'Green Tea and Lemon', 'm', 38, NULL, NULL, '[\"iced-greentea-lemonade.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (62, 1, 2, 6, NULL, 'iced straight tea', 'Pure Black tea\r\n', 'm', 28, NULL, NULL, '[\"iced-straight-tea.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (63, 1, 2, 6, NULL, 'hot tea', 'Chamomile tea bag', 'm', 28, NULL, NULL, '[\"hot-tea.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (64, 1, 2, 7, NULL, 'strawberry soda', 'Soda with strawberry syrup', '', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (65, 1, 2, 7, NULL, 'orange soda', 'Soda with orange syrup', '', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (66, 1, 2, 7, NULL, 'coco pandan soda', 'Soda with Cocopandan syrup and Aloe Vera', '', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (67, 1, 2, 7, NULL, 'lemon soda', 'Soda with Lemon syrup', '', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (68, 1, 2, 8, NULL, 'banana', NULL, '', 12, NULL, NULL, '[\"add-ons-banana.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (69, 1, 2, 8, NULL, 'vanilla', NULL, '', 12, NULL, NULL, '[\"add-ons-vanilla.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (70, 1, 2, 8, NULL, 'caramel', NULL, '', 12, NULL, NULL, '[\"add-ons-caramel.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (71, 1, 2, 8, NULL, 'hazelnut', NULL, '', 12, NULL, NULL, '[\"add-ons-hazelnut.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (72, 1, 2, 8, NULL, 'salted caramel', NULL, '', 12, NULL, NULL, '[\"add-ons-salted-caramel.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (73, 1, 2, 8, NULL, 'espresso', NULL, '', 8, NULL, NULL, '[\"add-ons-espresso.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (74, 1, 2, 8, NULL, 'whipped cream', NULL, '', 8, NULL, NULL, '[\"add-ons-whipped-cream.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (75, 1, 2, 8, NULL, 'skim milk', NULL, '', 8, NULL, NULL, '[\"add-ons-skimmed-milk.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (76, 1, 2, 8, NULL, 'soya milk', NULL, '', 8, NULL, NULL, '[\"add-ons-soya-milk.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (77, 1, 3, 9, NULL, 'gourmet breakfast', 'A Complete Breakfast with Chipolatas, Smoked Beef Brisket, Sunny Side Ups, Baked Bean, Cherry Tomatoes, Ruccola, Sauteed Mushrooms and Toasted Whead bread served with Butter and Strawberry Jam\r\n', '', 110, NULL, NULL, NULL, NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (78, 1, 3, 9, NULL, 'eggs benedict', 'A Classic Breakfast of Perfectly Poached Eggs Accompaned with English Muffins, Hash Brown, SMoked Beef Brisket, Spinach, Cherry Tomatoes & Sauteed Mushroom Served With Hollandaise sesauce Sprinkled Spring Onion/Scallion\r\n', '', 55, NULL, NULL, NULL, NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (79, 1, 3, 9, NULL, 'mushroom omelette', 'A Warm Breakfast of Wheat Toasts and Classic Hotel Inspired Omellete with Mushroom and Rucolla, Cherry Tomatoes, Mozarella, Butter And Sprinkled Parmesan Cheese\r\n', '', 55, NULL, NULL, NULL, NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (80, 1, 3, 9, NULL, 'tuna sandwich', 'An American Classic of Tuna Chunk, Bell pepper / Capsicum, Onion, Tomatoes,Scramblle Egg, Malted Mozarella Cheese & Mayonaise\r\n', '', 75, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (81, 1, 3, 9, NULL, 'supresso sandwich', 'A Special Two Stacked Sandwich With Shredded Chicken Mayo Raisin, Smoked Beef Brisket, Tomatoes, FreshLettuce, Onion, Boned Egg and Mozarella Cheese and Mayonaise\r\n', '', 75, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (82, 1, 3, 9, NULL, 'banh mi', 'Supresso\'s Take on the Tradisional Vietnamese, Grilled Chicken Sandwich with Baguette, Corriander Leafe, Pickle and Omellet and Mayonaise\r\n', '', 75, NULL, NULL, '[\"banh-mi.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (83, 1, 3, 9, NULL, 'kaya toast', 'Toast Bread, SAlted Butter Topped with Kaya Sauce\r\n', '', 30, NULL, NULL, '[\"kaya-toast.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (84, 1, 3, 9, NULL, 'cheese and cheese fries', 'Pottato Fries Topped with Melted Mozzarella and Red Cheddar Cheese\r\n', '', 50, NULL, NULL, NULL, NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (85, 1, 3, 9, NULL, 'supresso sampler', NULL, '', 85, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (86, 1, 3, 9, NULL, 'supresso fried rice', NULL, '', 60, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (87, 1, 3, 9, NULL, 'barbeque fried rice', NULL, '', 60, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (88, 1, 3, 9, NULL, 'supresso salad', 'Grill Fillet Chicken Breast,Boiled Egg, Babyromaine and Ice Berg Lettuce, Bell Peppers/ Capsicum, Cherry Tomatoes, Cucumber, Onions & Garlic Croutons, Sprinkled with Parmesan Chesse and Served with Caesar Dressing\r\n', '', 75, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (89, 1, 3, 9, NULL, 'supresso cordon bleu', NULL, '', 90, NULL, NULL, '[\"supresso-cordon-bleu.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (90, 1, 3, 9, NULL, 'fish n chips', NULL, '', 105, NULL, NULL, NULL, NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (91, 1, 3, 10, NULL, 'margarita pizza', 'Thin Crust Pizza with Fresh Tomatoes, Parmesan Mozarella Cheese and Olive oil on Supresso, Made Tomat Concase Sauce & Topped Rucolla\r\n', '', 80, NULL, 'Pax', '[\"pizza-margarita.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (92, 1, 3, 10, NULL, 'pepperoni pizza', 'Thin Crust Pizza with Beef Papperoni, Fresh Tomatoes Parmesan, Mozarella, Rucolla and Olive oil on Supresso, Made Tomatoes Concasse Sauce\r\n', '', 90, NULL, 'Pax', '[\"pizza-pepperoni.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (93, 1, 3, 10, NULL, 'supresso pizza', 'The Ultimate Thin Crust Pizza With Chicken Sausage, Grill Chicken, Fresh Onion & Bell Pepper,Parmesan, Mozarella, Rucolla and Olive Oil on Supresso Made Tomato Concase Sauce\r\n', '', 105, NULL, 'Pax', '[\"supresso-pizza.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (94, 1, 3, 11, NULL, 'bolognese', 'Fettucine Pasta, Supresso made Bolognaise sauce with Minced Beef, Onion & Carrot, Topped with Rucolla, Watercress, Parmesan Cheese and Truffle Oil\r\n', '', 85, NULL, 'Dish', '[\"pasta-bolognese.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (95, 1, 3, 11, NULL, 'aglio olio chicken', 'Fettucine Pasta with Fresh Minced Garlic Sauteed in Olive Oil & Dried Chilli, Served Grilled Chicken Breast, Rucolla,Watercress Parmesan Cheese and Truffle Oil', '', 85, NULL, 'Dish', '[\"pasta-aglio-olio-chicken.jpg\"]', NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (96, 1, 3, 11, NULL, 'aglio olio seafood', 'Fettucine Pasta with mix Seafood, Fish and Shrimp, Fresh Minced Garlic, Sauteed in Olive oil & Dried Chilli, Served with Rucolla, Watercress, Parmesan cheese and Truffle Oil', '', 85, NULL, 'Dish', '[\"pasta-aglio-olio-seafood.jpg\"]', NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (97, 1, 3, 11, NULL, 'aglio olio tuna', 'Fettucine Pasta with Mix Tuna , Fresh Minced Garlic, Onion, Bell Pepper, Sauteed in Olive Oil served with Rucolla, Watercress and Parmesan Cheese', '', 85, NULL, 'Pax', '[\"pasta-aglio-olio-tuna.jpg\"]', NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (98, 1, 3, 11, NULL, 'carbonara', 'Fettucine Pasta ,Smoked Beef Brisket in Creamy Sauce with Fresh Minced Garlic, Onion Sauteed in Olive oil Served with Rucolla, Watercress, Parmesan Cheese and Truffle Oil\r\n', '', 85, NULL, 'Pax', '[\"pasta-carbonara.jpg\"]', NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (99, 1, 3, 11, NULL, 'al fungi', 'Supresso\'s Mix Of Pasta Spaghetti, Fresh Minced Garlic, Onion, Mushroom Sauteed in Olive Oil and Cream Topped with Rucolla, Watercress, Parmesan Cheese and Truffle oil', '', 85, NULL, 'Pax', '[\"pasta-al-fungi.jpg\"]', NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (100, 1, 3, 11, NULL, 'new orleans', 'Spaghetti Pasta,Cream Based Cajun Spice, Sauce Pasta mix with Fresh Minced Garlic, Onion, Bellpepper, Mushroom Sauteed in Olive Oil and Cream, Served with Grilled Cajun Chicken, Rucolla, Watercress,Parmesan and Truffle Oil', '', 85, NULL, 'Pax', '[\"pasta-new-orleans.jpg\"]', NULL, 'false', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (101, 2, 4, 12, NULL, 'nasi rames komplit', 'Daging Rendang, Bali Telur & Tahu, Mie Goreng, Tumis Tempe & Kacang Panjang, Sambal Korek dan Kerupuk\r\n', '', 55, NULL, 'Pax', '[\"nasi-rames-komplit.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (102, 2, 4, 12, NULL, 'nasi campur komplit', 'Sayur Urap, Bihun Kecap, Sambal Goreng Tempe, Kare Ayam, Bali Telur & Tahu, Sambal Korek dan Kerupuk\r\n', '', 55, NULL, 'Pax', '[\"nasi-campur-komplit.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (103, 2, 4, 12, NULL, 'nasi jagung komplit', 'Bali Ayam, Bali Tahu & Telur, Sayur Urap, Ikan Asin Jambrong, Sambal Goreng Tempe, dan Sambal Terasi\r\n', '', 55, NULL, 'Pax', '[\"nasi-jagung-komplit.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (104, 2, 4, 12, NULL, 'nasi pecel sayur', 'Kecambah Panjang, Kacang Panjang, Wortel, daun Singkong Timun dan Kemangi. Bumbu Pecel, Ayam & Tempe Goreng Kremes, Tahu Goreng, Telur Ceplok Setengah Matang, dan Kerupuk Puli\r\n', '', 45, NULL, 'Pax', '[\"nasi-pecel-sayur-ayam.jpeg\",\"nasi-pecel-sayur-empal-daging.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (105, 2, 4, 12, NULL, 'nasi urap sayur', 'Kecambah Panjang , Kacang Panjang , Wortel, Daun Singkong, Timun , Kemangi. Bumbu Sayur Urap, Ayam dan Tempe goreng kremes, Tahu goreng , Sambal Bali dan Telur Rebus , Kerupuk Puli\r\n', '', 45, NULL, 'Pax', '[\"nasi-urap-sayur-ayam.jpeg\",\"nasi-urap-sayur-empal-daging.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (106, 2, 4, 12, NULL, 'nasi ayam geprek', 'Ayam Tanpa Tulang goreng tepung, disertai lalapan ( Timun, Tomat, Kemangi) dan disajikan dengan sambal korek\r\n', '', 45, NULL, 'Pax', '[\"nasi-ayam-geprek.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (107, 2, 4, 12, NULL, 'nasi kare ayam', NULL, '', 60, NULL, 'Pax', '[\"nasi-kare-ayam.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (108, 2, 4, 12, NULL, 'nasi ayam goreng laos', 'Ayam Goreng disajikan dengan tempe dan kremesan bumbu Laos, Lalapan ( kemangi , Timun, Tomat) dan Sambal terasi\r\n', '', 60, NULL, 'Pax', '[\"nasi-ayam-goreng-laos.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (109, 2, 4, 12, NULL, 'bubur ayam', 'Bubur dengan Kuah Kare, Ayam Suwir, Kacang tanah, Cakue, Kulit pangsit goreng, Telur Asin , Sambal Soto, Seledri, bawang Merah Goreng, Kerupuk Udang\r\n', '', 40, NULL, 'Pax', '[\"bubur-ayam.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (110, 2, 4, 12, NULL, 'mie ayam jamur', NULL, '', 40, NULL, 'Pax', '[\"mie-ayam-jamur-mie hijau.jpeg\",\"mie-ayam-jamur-mie-kuning.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (111, 2, 4, 12, NULL, 'tahu telur', 'Olahan Bumbu Petis dan Kecap Manis, Tahu goreng, Telur dadar goreng, Kecambah Pendek, Sambal Soto, Kerupuk Udang\r\n', '', 45, NULL, 'Pax', '[\"tahu-telur.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (112, 2, 4, 12, NULL, 'mie godog', 'Mie Kuah, Kubis , Daun Bawang, Ayam Suwir, Telur rebus , Acar, Bawang merah goreng, dan Kerupuk Udang\r\n', '', 45, NULL, 'Pax', '[\"mie-godog.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (113, 2, 4, 12, NULL, 'lontong sayur', 'Kuah Sayur Lodeh ( Wortel, Labu Siam, Kacang Panjang, Pepaya Muda, Santan, Cabe rawit) Kare Ayam, Telur Rebus, Serundeng, dan Emping Blinjo\r\n', '', 60, NULL, 'Pax', '[\"lontong-sayur-kare-ayam.jpeg\",\"lontong-sayur-rendang-daging.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (114, 2, 4, 12, NULL, 'nasi goreng teri', 'Supresso\'s take on teh tradisional Indonesian Fried Rice with Shrimp paste and Sliced pan - Fried Chicken Breast, Accompanied With Pickles, Sunny Side up and Shrimp Cracker on the Side\r\n', '', 50, NULL, 'Pax', '[\"nasi-goreng-teri-medan.jpg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (115, 2, 4, 12, NULL, 'gado-gado', 'Aneka Sayuran (Selada, Timun, tomat, Kecambah dan Kacang Panjang) Telur Rebus, Tahu dan Tempe Goreng, Lontong , Kerupuk Udang , Emping Blinjo, Sambal Soto dan Olahan Bumbu Gado - gado\r\n', '', 60, NULL, 'Pax', '[\"gado-gado.jpg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (116, 2, 4, 13, NULL, 'nasi ayam kemangi', 'Special Indonesian Food ayam dimasak dengan bumbu merah dengan santan disajikan dengan sayur kacang panjang dengan bumbu Jukut dan Sambal Matah\r\n', '', 38, NULL, 'Pax', '[\"nasi-ayam-kemangi.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (117, 2, 4, 13, NULL, 'nasi ayam teriyaki', 'Rice Bowl, Ayam Crispy, Saus Teriyaki, Tumis wortel,Kubis dan Telur\r\n', '', 38, NULL, 'Pax', '[\"nasi-ayam-teriyaki.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (118, 2, 4, 13, NULL, 'nasi dory sambal matah', 'Rice Bowl, Dorry Crispy,Sambal Matah ( Cabe rawit, Daun jeruk, Sereh, Bawang merah, Terasi Udang, Minyak Ayam )\r\n', '', 38, NULL, 'Pax', '[\"nasi-dory-sambal-matah.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (119, 2, 4, 13, NULL, 'nasi goreng bali', NULL, '', 38, NULL, 'Pax', '[\"nasi-goreng-bali.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (120, 2, 4, 13, NULL, 'nasi goreng gila', 'Nasi goreng Rice Bowl, Saos Tomat, Bumbu Terasi, Chicken Sausage, Ayam Suwir, Telur Mata Sapi, Acar Timun dan Kerupuk Bintang\r\n', '', 38, NULL, 'Pax', '[\"nasi-goreng-gila.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (121, 2, 4, 14, NULL, 'bubur candil', 'Bola - bola ketan di masak dengan gula merah dan santan\r\n', '', 30, NULL, 'Pax', '[\"bubur-candil.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (122, 2, 4, 14, NULL, 'es cendol', 'Santan Tapioca pandan with coconut milk\r\n', '', 30, NULL, 'Pax', '[\"es-cendol.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (123, 2, 4, 14, NULL, 'es kelapa jelly', 'Syrup coco pandan, dan Selasih\r\n', '', 30, NULL, 'Pax', '[\"es-kelapa-jelly.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (124, 2, 4, 14, NULL, 'es jagung manis', NULL, '', 30, NULL, 'Pax', '[\"es-jagung-manis.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (125, 2, 4, 14, NULL, 'ronde', 'Hidangan dessert cake, dengan Kuah Jahe, Bola - Bola Ketan, Kelapa Jelly, Mutiara, Dan Kacang Tanah\r\n', '', 30, NULL, 'Pax', '[\"ronde.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (126, 2, 4, 15, NULL, 'nasi tongseng', 'Soup Ayam dengan kuah santan dan sayuran kubis, tomat, cabe rawit dan disajikan dengan emping\r\n', '', 65, NULL, 'Pax', '[\"nasi-tongseng-ayam.jpeg\",\"nasi-tongseng-kambing.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (127, 2, 4, 15, NULL, 'nasi gulai kambing', NULL, '', 65, NULL, 'Pax', '[\"nasi-gulai-kambing.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (128, 2, 4, 15, NULL, 'nasi rawon daging', 'Soup Daging sapi dimasak dengan bumbu kluwek, Disajikan dengan tempe dan telur asin, Tauge, Kerupuk udang, sambal terasi dan daun bawang\r\n', '', 65, NULL, 'Pax', '[\"nasi-rawon-daging.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (129, 2, 4, 15, NULL, 'nasi soto betawi', 'Soup Daging dimasak dengan santan dan susu, disajikan dengan emping, jeruk nipis, Kentang, Tomat, Daun Bawang, dan sambal Soto\r\n', '', 65, NULL, 'Pax', '[\"nasi-soto-betawi.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (130, 2, 4, 15, NULL, 'nasi soto ayam', 'Soup Ayam disajikan dengan Soun, telur, Kubis, Krupuk Udang, Kripik kentang, Jeruk Nipis dan Sambal Soto\r\n', '', 60, NULL, 'Pax', '[\"nasi-soto-ayam.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (131, 2, 4, 15, NULL, 'nasi soto medan', 'Sup Ayam khas Medan , Santan, Soun, Telur Rebus,Perkedel Kentang, Jeruk Nipis, Sambal Soto, Tomat dan Emping Mlinjo\r\n', '', 60, NULL, 'Pax', '[\"nasi-soto-medan.jpg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (132, 2, 4, 15, NULL, 'nasi asem-asem ayam', NULL, '', 60, NULL, 'Pax', '[\"nasi-asem-asem-ayam.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (133, 2, 4, 15, NULL, 'nasi sayur asem komplit', 'Kuah Sayur Asem ( Daging , Labu Siam , Kacang Panjang, Kubis Putih, Jagung Manis, Kacang Tanah) Ikan Asin Jombrong,Telur Asin, Tempe Goreng dan Sambal Terasi\r\n', '', 60, NULL, 'Pax', '[\"nasi-sayur-asem-komplit.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (134, 2, 4, 15, NULL, 'sayur asem', NULL, '', 35, NULL, 'Pax', '[\"sayur-asem.jpeg\"]', NULL, 'true', 'false', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (135, 2, 4, 16, NULL, 'nasi putih', 'Nasi Putih\r\n', '', 12, NULL, 'Pax', '[\"nasi-putih.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (136, 2, 4, 16, NULL, 'nasi merah', 'Nasi Merah\r\n', '', 12, NULL, 'Pax', '[\"nasi-merah.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (137, 2, 4, 16, NULL, 'nasi jagung', 'Nasi Jagung\r\n', '', 12, NULL, 'Pax', '[\"nasi-jagung.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (138, 2, 4, 17, NULL, 'sambal terasi', 'Cabe Rawit, Bawang Putih , Terasi, Udang Tumis dengan Minyak Bawang\r\n', '', 12, NULL, 'Pax', '[\"sambal-terasi.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (139, 2, 4, 17, NULL, 'sambal korek', 'Cabe rawit, Bawang Putih dengan minyak bawang\r\n', '', 12, NULL, 'Pax', '[\"sambal-korek.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (140, 2, 4, 18, NULL, 'pastel', NULL, '', 18, NULL, 'Pax', '[\"pastel.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (141, 2, 4, 18, NULL, 'kroket ayam', NULL, '', 18, NULL, 'Pax', '[\"kroket-ayam.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (142, 2, 4, 18, NULL, 'risoles ayam', 'Risoles, daging ayam, Telur Rebus, Jagung Manis, Mayonise, dan SKM\r\n', '', 18, NULL, 'Pax', '[\"risoles-ayam.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (143, 2, 4, 18, NULL, 'risoles mayo smoked beef', 'Risoles, Smokeed Beef, Telur Rebus, Jagung Manis, Mayonise, dan SKM\r\n', '', 18, NULL, 'Pax', '[\"risoles-mayo-smoked-beef.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (144, 2, 4, 18, NULL, 'lumpia goreng', 'Lumpia Goreng ( Ayam dan Rebung )\r\n', '', 18, NULL, 'Pax', '[\"lumpia-goreng.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (145, 2, 4, 18, NULL, 'tahu isi', NULL, '', 35, NULL, 'Pax', '[\"tahu-isi.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (146, 2, 4, 18, NULL, 'tempe mendoan', NULL, '', 35, NULL, 'Pax', '[\"tempe-mendoan.jpeg\"]', NULL, 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (1, 1, 1, 1, NULL, 'lampung', '100% Robusta No Acidity and Strong Body', '', 35, NULL, NULL, '[\"manual_brew_lampung.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (2, 1, 1, 1, NULL, 'aceh gayo', '100% Arabica Medium Acidity and Mild Body', '', 35, NULL, NULL, '[\"manual_brew_aceh_gayo.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (3, 1, 1, 1, NULL, 'java', '100% Robusta No Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_java.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (4, 1, 1, 1, NULL, 'toraja kalosi', '100% Arabica Low Acidity and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_toraja_kalosi.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (5, 1, 1, 1, NULL, 'flores bajawa', '100% Arabica Low Acidty and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_flores.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (6, 1, 1, 1, NULL, 'sumatra mandheling', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_sumatra.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (7, 1, 1, 1, NULL, 'bali kintamani', '100% Arabica Lively Acidity and Mild Body', '', 35, NULL, NULL, '[\"manual_brew_bali_kintamani.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (8, 1, 1, 1, NULL, 'peaberry', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_peaberry.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (9, 1, 1, 1, NULL, 'sumatra mandheling rainforest', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_sumatra.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (10, 1, 1, 1, NULL, 'java arabica organic', '100% Arabica Mild Acidity and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_java.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (11, 1, 1, 1, NULL, 'luwak arabica', '100% Arabica Mild Acidity and Heavy Body', '', 80, NULL, NULL, '[\"manual_brew_luwak.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (12, 1, 1, 1, NULL, 'vietnam drip', 'Robusta Coffee Dripped With Condensed Milk', '', 35, NULL, NULL, '[\"manual_brew_vietnam_drip.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (13, 1, 1, 2, NULL, 'drip coffee brazilia', NULL, '', 18, NULL, NULL, '[\"drip_coffee_brazilia.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (14, 1, 1, 2, NULL, 'drip coffee costa rica', NULL, '', 18, NULL, NULL, '[\"drip_coffee_costa_rica.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (15, 1, 1, 2, NULL, 'drip coffee nanyang', NULL, '', 18, NULL, NULL, '[\"drip_coffee_nanyang.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (16, 1, 1, 3, '1', 'espresso', 'Pure Coffee Single Shoot', 'solo', 26, NULL, NULL, '[\"espresso.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (17, 1, 1, 3, '1', 'espresso', 'Pure Coffee Double Shoot', 'doppio', 32, NULL, NULL, '[\"espresso.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (18, 1, 1, 3, '2', 'ristretto', 'A \"short shot\" of a highly concentrated espresso. Extracted with a finer grind using half as much water, resulting in about 15ml of richer, smoother, and sweeter coffee.', 'solo', 26, NULL, NULL, '[\"ristretto.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (19, 1, 1, 3, '2', 'ristretto', 'A \"short shot\" of a highly concentrated espresso. Extracted with a finer grind using half as much water, resulting in about 15ml of richer, smoother, and sweeter coffee.', 'doppio', 32, NULL, NULL, '[\"ristretto.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (20, 1, 1, 3, NULL, 'espresso macchiato', 'Pure Coffee with foam milk\r\n', 'solo', 30, NULL, NULL, '[\"espresso_macchiato.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (21, 1, 1, 3, NULL, 'americano', 'Espresso and water', 's', 36, NULL, NULL, '[\"americano.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (22, 1, 1, 3, NULL, 'americano', 'Espresso and water', 'm', 35, NULL, NULL, '[\"americano.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (23, 1, 1, 3, NULL, 'americano', 'Espresso and water', 'l', 40, NULL, NULL, '[\"americano.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (24, 1, 1, 3, NULL, 'cappuccino', 'Espresso and milk with thick foam', 's', 44, NULL, NULL, '[\"cappuccino.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (25, 1, 1, 3, NULL, 'cappuccino', 'Espresso and milk with thick foam', 'm', 46, NULL, NULL, '[\"cappuccino.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (26, 1, 1, 3, NULL, 'cappuccino', 'Espresso and milk with thick foam', 'l', 52, NULL, NULL, '[\"cappuccino.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (27, 1, 1, 3, NULL, 'caffe latte', 'Espresso and milk with foam', 's', 44, NULL, NULL, '[\"caffe-latte.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (28, 1, 1, 3, NULL, 'caffe latte', 'Espresso and milk with foam', 'm', 46, NULL, NULL, '[\"caffe-latte.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (29, 1, 1, 3, NULL, 'caffe latte', 'Espresso and milk with foam', 'l', 52, NULL, NULL, '[\"caffe-latte.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (30, 1, 1, 3, NULL, 'caffe mocha', 'Espresso and milk with chocolate', 's', 46, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (31, 1, 1, 3, NULL, 'caffe mocha', 'Espresso and milk with chocolate', 'm', 50, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (32, 1, 1, 3, NULL, 'caffe mocha', 'Espresso and milk with chocolate', 'l', 54, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (33, 1, 1, 3, NULL, 'caramel macchiato', 'Espresso and milk with Caramel flavour and topping', 's', 54, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (34, 1, 1, 3, NULL, 'caramel macchiato', 'Espresso and milk with Caramel flavour and topping', 'm', 58, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (35, 1, 1, 3, NULL, 'caramel macchiato', 'Espresso and milk with Caramel flavour and topping', 'l', 62, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (36, 1, 1, 3, NULL, 'delasia latte', 'Espresso and milk with Condensed milk\r\n', 's', 54, NULL, NULL, '[\"delasia-latte.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (37, 1, 1, 3, NULL, 'delasia latte', 'Espresso and milk with Condensed milk\r\n', 'm', 46, NULL, NULL, '[\"delasia-latte.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (38, 1, 1, 3, NULL, 'delasia latte', 'Espresso and milk with Condensed milk\r\n', 'l', 62, NULL, NULL, '[\"delasia-latte.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (39, 1, 1, 3, NULL, 'supresso nanyang', 'Black Coffee with Condensed milk\r\n', 's', 30, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (40, 1, 1, 3, NULL, 'supresso nanyang', 'Black Coffee with Condensed milk\r\n', 'm', 33, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (41, 1, 1, 3, NULL, 'supresso nanyang', 'Black Coffee with Condensed milk\r\n', 'l', 36, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (42, 1, 1, 3, NULL, 'supresso chocolate', 'Chocolate With Milk\r\n', 's', 50, NULL, NULL, '[\"choco_iced_choco_supresso.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (43, 1, 1, 3, NULL, 'supresso chocolate', 'Chocolate With Milk\r\n', 'm', 46, NULL, NULL, '[\"choco_iced_choco_supresso.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (44, 1, 1, 3, NULL, 'supresso chocolate', 'Chocolate With Milk\r\n', 'l', 60, NULL, NULL, '[\"choco_iced_choco_supresso.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (45, 1, 1, 3, NULL, 'jaheku latte', NULL, 's', 28, NULL, NULL, '[\"jahe_jaheku_latte.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (46, 1, 1, 4, NULL, 'coffee crumble', 'Ice blended with coffee and Cookies', 'm', 60, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (47, 1, 1, 4, NULL, 'mocha', 'Ice blended with coffee and chocolate', 'm', 50, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (48, 1, 1, 4, NULL, 'salted caramel', 'Ice Blended with Coffee and salted Caramel flavour', 'm', 64, NULL, NULL, '[\"salted-caramel-frappe-feed.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (49, 1, 2, 5, NULL, 'pinky', 'Ice blended with berry jam and milk', 'm', 49, NULL, NULL, '[\"pinky-frappe.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (50, 1, 2, 5, NULL, 'matcha', 'Ice Blended with Matcha and milk', 'm', 60, NULL, NULL, '[\"matcha-frape-1.jpg\",\"matcha-frappe.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (51, 1, 2, 5, NULL, 'cookies crumble', 'Ice blended cookies and milk with chocolate\r\nIce blended cookies and milk with chocolate', 'm', 50, NULL, NULL, '[\"cookies-crumble.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (52, 1, 2, 5, NULL, 'chocochip', 'Ice blended chocochip and milk with chocolate', 'm', 60, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (53, 1, 2, 5, NULL, 'banana', 'Ice blended Milk and Banana Syrup', 'm', 56, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (54, 1, 2, 5, NULL, 'choco monster', 'Ice blended with chocolate and Milo', 'm', 40, NULL, NULL, '[\"monster-milo.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (55, 1, 2, 5, NULL, 'monster supresso', 'Shaken milk with Chocolate, milk and Hazelnut syrup', 'm', 40, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (56, 1, 2, 6, NULL, 'green tea latte', 'Green tea and milk', 'm', 46, NULL, NULL, '[\"tea_iced_green_tea_latte.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (57, 1, 2, 6, NULL, 'black tea latte', 'Black tea and milk', 'm', 45, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (58, 1, 2, 6, NULL, 'iced lychee tea', 'Tea and Lychee Syrup with Lychee fruit', 'm', 38, NULL, NULL, '[\"iced-lychee-tea.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (59, 1, 2, 6, NULL, 'iced orange tea', 'Tea and Orange Syrup with Orange fruit', 'm', 38, NULL, NULL, '[\"iced-orange-tea.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (60, 1, 2, 6, NULL, 'iced berry lemonade', 'Berry jam with Lemon and Tea', 'm', 42, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (61, 1, 2, 6, NULL, 'iced greentea lemonade', 'Green Tea and Lemon', 'm', 38, NULL, NULL, '[\"iced-greentea-lemonade.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (62, 1, 2, 6, NULL, 'iced straight tea', 'Pure Black tea\r\n', 'm', 20, NULL, NULL, '[\"iced-straight-tea.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (63, 1, 2, 6, NULL, 'hot tea', 'Chamomile tea bag', 'm', 28, NULL, NULL, '[\"hot-tea.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (64, 1, 2, 7, NULL, 'strawberry soda', 'Soda with strawberry syrup', '', 38, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (65, 1, 2, 7, NULL, 'orange soda', 'Soda with orange syrup', '', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (66, 1, 2, 7, NULL, 'coco pandan soda', 'Soda with Cocopandan syrup and Aloe Vera', '', 38, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (67, 1, 2, 7, NULL, 'lemon soda', 'Soda with Lemon syrup', '', 38, NULL, NULL, NULL, NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (68, 1, 2, 8, NULL, 'banana', NULL, '', 12, NULL, NULL, '[\"add-ons-banana.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (69, 1, 2, 8, NULL, 'vanilla', NULL, '', 12, NULL, NULL, '[\"add-ons-vanilla.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (70, 1, 2, 8, NULL, 'caramel', NULL, '', 12, NULL, NULL, '[\"add-ons-caramel.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (71, 1, 2, 8, NULL, 'hazelnut', NULL, '', 12, NULL, NULL, '[\"add-ons-hazelnut.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (72, 1, 2, 8, NULL, 'salted caramel', NULL, '', 12, NULL, NULL, '[\"add-ons-salted-caramel.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (73, 1, 2, 8, NULL, 'espresso', NULL, '', 10, NULL, NULL, '[\"add-ons-espresso.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (74, 1, 2, 8, NULL, 'whipped cream', NULL, '', 10, NULL, NULL, '[\"add-ons-whipped-cream.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (75, 1, 2, 8, NULL, 'skim milk', NULL, '', 10, NULL, NULL, '[\"add-ons-skimmed-milk.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (76, 1, 2, 8, NULL, 'soya milk', NULL, '', 10, NULL, NULL, '[\"add-ons-soya-milk.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (77, 1, 3, 9, NULL, 'gourmet breakfast', 'A Complete Breakfast with Chipolatas, Smoked Beef Brisket, Sunny Side Ups, Baked Bean, Cherry Tomatoes, Ruccola, Sauteed Mushrooms and Toasted Whead bread served with Butter and Strawberry Jam\r\n', '', 110, NULL, NULL, '[\"gourmet-breakfast.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (78, 1, 3, 9, NULL, 'eggs benedict', 'A Classic Breakfast of Perfectly Poached Eggs Accompaned with English Muffins, Hash Brown, SMoked Beef Brisket, Spinach, Cherry Tomatoes & Sauteed Mushroom Served With Hollandaise sesauce Sprinkled Spring Onion/Scallion\r\n', '', 55, NULL, NULL, '[\"eggs_benedict.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (79, 1, 3, 9, NULL, 'mushroom omelette', 'A Warm Breakfast of Wheat Toasts and Classic Hotel Inspired Omellete with Mushroom and Rucolla, Cherry Tomatoes, Mozarella, Butter And Sprinkled Parmesan Cheese\r\n', '', 55, NULL, NULL, '[\"mushroom-omelette.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (80, 1, 3, 9, NULL, 'tuna sandwich', 'An American Classic of Tuna Chunk, Bell pepper / Capsicum, Onion, Tomatoes,Scramblle Egg, Malted Mozarella Cheese & Mayonaise\r\n', '', 75, NULL, NULL, '[\"tuna-sandwich.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (81, 1, 3, 9, NULL, 'supresso sandwich', 'A Special Two Stacked Sandwich With Shredded Chicken Mayo Raisin, Smoked Beef Brisket, Tomatoes, FreshLettuce, Onion, Boned Egg and Mozarella Cheese and Mayonaise\r\n', '', 75, NULL, NULL, '[\"supresso_sandwich.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (82, 1, 3, 9, NULL, 'banh mi', 'Supresso\'s Take on the Tradisional Vietnamese, Grilled Chicken Sandwich with Baguette, Corriander Leafe, Pickle and Omellet and Mayonaise\r\n', '', 75, NULL, NULL, '[\"banh-mi.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (83, 1, 3, 9, NULL, 'kaya toast', 'Toast Bread, SAlted Butter Topped with Kaya Sauce\r\n', '', 30, NULL, NULL, '[\"kaya-toast.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (84, 1, 3, 9, NULL, 'cheese and cheese fries', 'Pottato Fries Topped with Melted Mozzarella and Red Cheddar Cheese\r\n', '', 50, NULL, NULL, '[\"cheese-and-cheese.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (85, 1, 3, 9, NULL, 'supresso sampler', NULL, '', 85, NULL, NULL, '[\"supresso_sampler.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (86, 1, 3, 9, NULL, 'nasi goreng terasi', NULL, '', 60, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (87, 1, 3, 9, NULL, 'barbeque fried rice', NULL, '', 60, NULL, NULL, NULL, NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (88, 1, 3, 9, NULL, 'supresso salad', 'Grill Fillet Chicken Breast,Boiled Egg, Babyromaine and Ice Berg Lettuce, Bell Peppers/ Capsicum, Cherry Tomatoes, Cucumber, Onions & Garlic Croutons, Sprinkled with Parmesan Chesse and Served with Caesar Dressing\r\n', '', 75, NULL, NULL, '[\"supresso_salad.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (89, 1, 3, 9, NULL, 'supresso cordon bleu', NULL, '', 90, NULL, NULL, '[\"supresso-cordon-bleu.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (90, 1, 3, 9, NULL, 'fish n chips', NULL, '', 105, NULL, NULL, NULL, NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (91, 1, 3, 10, NULL, 'margarita pizza', 'Thin Crust Pizza with Fresh Tomatoes, Parmesan Mozarella Cheese and Olive oil on Supresso, Made Tomat Concase Sauce & Topped Rucolla\r\n', '', 80, NULL, 'Pax', '[\"pizza-margarita.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (92, 1, 3, 10, NULL, 'pepperoni pizza', 'Thin Crust Pizza with Beef Papperoni, Fresh Tomatoes Parmesan, Mozarella, Rucolla and Olive oil on Supresso, Made Tomatoes Concasse Sauce\r\n', '', 90, NULL, 'Pax', '[\"pizza-pepperoni.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (93, 1, 3, 10, NULL, 'supresso pizza', 'The Ultimate Thin Crust Pizza With Chicken Sausage, Grill Chicken, Fresh Onion & Bell Pepper,Parmesan, Mozarella, Rucolla and Olive Oil on Supresso Made Tomato Concase Sauce\r\n', '', 105, NULL, 'Pax', '[\"supresso-pizza.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (94, 1, 3, 11, NULL, 'bolognese', 'Fettucine Pasta, Supresso made Bolognaise sauce with Minced Beef, Onion & Carrot, Topped with Rucolla, Watercress, Parmesan Cheese and Truffle Oil\r\n', '', 85, NULL, 'Dish', '[\"pasta-bolognese.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (95, 1, 3, 11, NULL, 'aglio olio chicken', 'Fettucine Pasta with Fresh Minced Garlic Sauteed in Olive Oil & Dried Chilli, Served Grilled Chicken Breast, Rucolla,Watercress Parmesan Cheese and Truffle Oil', '', 85, NULL, 'Dish', '[\"pasta-aglio-olio-chicken.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (96, 1, 3, 11, NULL, 'aglio olio seafood', 'Fettucine Pasta with mix Seafood, Fish and Shrimp, Fresh Minced Garlic, Sauteed in Olive oil & Dried Chilli, Served with Rucolla, Watercress, Parmesan cheese and Truffle Oil', '', 85, NULL, 'Dish', '[\"pasta-aglio-olio-seafood.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (97, 1, 3, 11, NULL, 'aglio olio tuna', 'Fettucine Pasta with Mix Tuna , Fresh Minced Garlic, Onion, Bell Pepper, Sauteed in Olive Oil served with Rucolla, Watercress and Parmesan Cheese', '', 85, NULL, 'Pax', '[\"pasta-aglio-olio-tuna.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (98, 1, 3, 11, NULL, 'carbonara', 'Fettucine Pasta ,Smoked Beef Brisket in Creamy Sauce with Fresh Minced Garlic, Onion Sauteed in Olive oil Served with Rucolla, Watercress, Parmesan Cheese and Truffle Oil\r\n', '', 85, NULL, 'Pax', '[\"pasta-carbonara.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (99, 1, 3, 11, NULL, 'al fungi', 'Supresso\'s Mix Of Pasta Spaghetti, Fresh Minced Garlic, Onion, Mushroom Sauteed in Olive Oil and Cream Topped with Rucolla, Watercress, Parmesan Cheese and Truffle oil', '', 85, NULL, 'Pax', '[\"pasta-al-fungi.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (100, 1, 3, 11, NULL, 'new orleans', 'Spaghetti Pasta,Cream Based Cajun Spice, Sauce Pasta mix with Fresh Minced Garlic, Onion, Bellpepper, Mushroom Sauteed in Olive Oil and Cream, Served with Grilled Cajun Chicken, Rucolla, Watercress,Parmesan and Truffle Oil', '', 85, NULL, 'Pax', '[\"pasta-new-orleans.jpg\"]', NULL, 'false', 'false', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (101, 2, 4, 12, NULL, 'nasi rames komplit', 'Daging Rendang, Bali Telur & Tahu, Mie Goreng, Tumis Tempe & Kacang Panjang, Sambal Korek dan Kerupuk\r\n', '', 55, NULL, 'Pax', '[\"nasi-rames-komplit.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (102, 2, 4, 12, NULL, 'nasi campur komplit', 'Sayur Urap, Bihun Kecap, Sambal Goreng Tempe, Kare Ayam, Bali Telur & Tahu, Sambal Korek dan Kerupuk\r\n', '', 55, NULL, 'Pax', '[\"nasi-campur-komplit.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (103, 2, 4, 12, NULL, 'nasi jagung komplit', 'Bali Ayam, Bali Tahu & Telur, Sayur Urap, Ikan Asin Jambrong, Sambal Goreng Tempe, dan Sambal Terasi\r\n', '', 55, NULL, 'Pax', '[\"nasi-jagung-komplit.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (104, 2, 4, 12, NULL, 'nasi pecel sayur', 'Kecambah Panjang, Kacang Panjang, Wortel, daun Singkong Timun dan Kemangi. Bumbu Pecel, Ayam & Tempe Goreng Kremes, Tahu Goreng, Telur Ceplok Setengah Matang, dan Kerupuk Puli\r\n', '', 45, NULL, 'Pax', '[\"nasi-pecel-sayur-ayam.jpeg\",\"nasi-pecel-sayur-empal-daging.jpeg\"]', NULL, 'true', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (105, 2, 4, 12, NULL, 'nasi urap sayur', 'Kecambah Panjang , Kacang Panjang , Wortel, Daun Singkong, Timun , Kemangi. Bumbu Sayur Urap, Ayam dan Tempe goreng kremes, Tahu goreng , Sambal Bali dan Telur Rebus , Kerupuk Puli\r\n', '', 45, NULL, 'Pax', '[\"nasi-urap-sayur-ayam.jpeg\",\"nasi-urap-sayur-empal-daging.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (106, 2, 4, 12, NULL, 'nasi ayam geprek', 'Ayam Tanpa Tulang goreng tepung, disertai lalapan ( Timun, Tomat, Kemangi) dan disajikan dengan sambal korek\r\n', '', 45, NULL, 'Pax', '[\"nasi-ayam-geprek.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (107, 2, 4, 12, NULL, 'nasi kare ayam', NULL, '', 60, NULL, 'Pax', '[\"nasi-kare-ayam.jpeg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (108, 2, 4, 12, NULL, 'nasi ayam goreng laos', 'Ayam Goreng disajikan dengan tempe dan kremesan bumbu Laos, Lalapan ( kemangi , Timun, Tomat) dan Sambal terasi\r\n', '', 60, NULL, 'Pax', '[\"nasi-ayam-goreng-laos.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (109, 2, 4, 12, NULL, 'bubur ayam', 'Bubur dengan Kuah Kare, Ayam Suwir, Kacang tanah, Cakue, Kulit pangsit goreng, Telur Asin , Sambal Soto, Seledri, bawang Merah Goreng, Kerupuk Udang\r\n', '', 40, NULL, 'Pax', '[\"bubur-ayam.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (110, 2, 4, 12, NULL, 'mie ayam jamur', NULL, '', 40, NULL, 'Pax', '[\"mie-ayam-jamur-mie hijau.jpeg\",\"mie-ayam-jamur-mie-kuning.jpeg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (111, 2, 4, 12, NULL, 'tahu telur', 'Olahan Bumbu Petis dan Kecap Manis, Tahu goreng, Telur dadar goreng, Kecambah Pendek, Sambal Soto, Kerupuk Udang\r\n', '', 45, NULL, 'Pax', '[\"tahu-telur.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (112, 2, 4, 12, NULL, 'mie godog', 'Mie Kuah, Kubis , Daun Bawang, Ayam Suwir, Telur rebus , Acar, Bawang merah goreng, dan Kerupuk Udang\r\n', '', 45, NULL, 'Pax', '[\"mie-godog.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (113, 2, 4, 12, NULL, 'lontong sayur kare ayam', 'Kuah Sayur Lodeh ( Wortel, Labu Siam, Kacang Panjang, Pepaya Muda, Santan, Cabe rawit) Kare Ayam, Telur Rebus, Serundeng, dan Emping Blinjo\r\n', '', 60, NULL, 'Pax', '[\"lontong-sayur-kare-ayam.jpeg\",\"lontong-sayur-rendang-daging.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (114, 2, 4, 12, NULL, 'nasi goreng teri', 'Supresso\'s take on teh tradisional Indonesian Fried Rice with Shrimp paste and Sliced pan - Fried Chicken Breast, Accompanied With Pickles, Sunny Side up and Shrimp Cracker on the Side\r\n', '', 50, NULL, 'Pax', '[\"nasi-goreng-teri-medan.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (115, 2, 4, 12, NULL, 'gado-gado', 'Aneka Sayuran (Selada, Timun, tomat, Kecambah dan Kacang Panjang) Telur Rebus, Tahu dan Tempe Goreng, Lontong , Kerupuk Udang , Emping Blinjo, Sambal Soto dan Olahan Bumbu Gado - gado\r\n', '', 60, NULL, 'Pax', '[\"gado-gado.jpg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (116, 2, 4, 13, NULL, 'nasi ayam kemangi', 'Special Indonesian Food ayam dimasak dengan bumbu merah dengan santan disajikan dengan sayur kacang panjang dengan bumbu Jukut dan Sambal Matah\r\n', '', 38, NULL, 'Pax', '[\"nasi-ayam-kemangi.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (117, 2, 4, 13, NULL, 'nasi ayam teriyaki', 'Rice Bowl, Ayam Crispy, Saus Teriyaki, Tumis wortel,Kubis dan Telur\r\n', '', 38, NULL, 'Pax', '[\"nasi-ayam-teriyaki.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (118, 2, 4, 13, NULL, 'nasi dory sambal matah', 'Rice Bowl, Dorry Crispy,Sambal Matah ( Cabe rawit, Daun jeruk, Sereh, Bawang merah, Terasi Udang, Minyak Ayam )\r\n', '', 38, NULL, 'Pax', '[\"nasi-dory-sambal-matah.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (119, 2, 4, 13, NULL, 'nasi goreng bali', NULL, '', 38, NULL, 'Pax', '[\"nasi-goreng-bali.jpeg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (120, 2, 4, 13, NULL, 'nasi goreng gila', 'Nasi goreng Rice Bowl, Saos Tomat, Bumbu Terasi, Chicken Sausage, Ayam Suwir, Telur Mata Sapi, Acar Timun dan Kerupuk Bintang\r\n', '', 60, NULL, 'Pax', '[\"nasi-goreng-gila.jpeg\"]', NULL, 'true', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (121, 2, 4, 14, NULL, 'bubur candil', 'Bola - bola ketan di masak dengan gula merah dan santan\r\n', '', 30, NULL, 'Pax', '[\"bubur-candil.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (122, 2, 4, 14, NULL, 'es cendol', 'Santan Tapioca pandan with coconut milk\r\n', '', 30, NULL, 'Pax', '[\"es-cendol.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (123, 2, 4, 14, NULL, 'es kelapa jelly', 'Syrup coco pandan, dan Selasih\r\n', '', 30, NULL, 'Pax', '[\"es-kelapa-jelly.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (124, 2, 4, 14, NULL, 'es jagung manis', NULL, '', 30, NULL, 'Pax', '[\"es-jagung-manis.jpeg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (125, 2, 4, 14, NULL, 'ronde', 'Hidangan dessert cake, dengan Kuah Jahe, Bola - Bola Ketan, Kelapa Jelly, Mutiara, Dan Kacang Tanah\r\n', '', 30, NULL, 'Pax', '[\"ronde.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (126, 2, 4, 15, NULL, 'nasi tongseng ayam', 'Soup Ayam dengan kuah santan dan sayuran kubis, tomat, cabe rawit dan disajikan dengan emping\r\n', '', 65, NULL, 'Pax', '[\"nasi-tongseng-ayam.jpeg\",\"nasi-tongseng-kambing.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (127, 2, 4, 15, NULL, 'nasi gulai kambing', NULL, '', 65, NULL, 'Pax', '[\"nasi-gulai-kambing.jpeg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (128, 2, 4, 15, NULL, 'nasi rawon daging', 'Soup Daging sapi dimasak dengan bumbu kluwek, Disajikan dengan tempe dan telur asin, Tauge, Kerupuk udang, sambal terasi dan daun bawang\r\n', '', 65, NULL, 'Pax', '[\"nasi-rawon-daging.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (129, 2, 4, 15, NULL, 'nasi soto betawi', 'Soup Daging dimasak dengan santan dan susu, disajikan dengan emping, jeruk nipis, Kentang, Tomat, Daun Bawang, dan sambal Soto\r\n', '', 65, NULL, 'Pax', '[\"nasi-soto-betawi.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (130, 2, 4, 15, NULL, 'nasi soto ayam', 'Soup Ayam disajikan dengan Soun, telur, Kubis, Krupuk Udang, Kripik kentang, Jeruk Nipis dan Sambal Soto\r\n', '', 60, NULL, 'Pax', '[\"nasi-soto-ayam.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (131, 2, 4, 15, NULL, 'soto ayam medan', 'Sup Ayam khas Medan , Santan, Soun, Telur Rebus,Perkedel Kentang, Jeruk Nipis, Sambal Soto, Tomat dan Emping Mlinjo\r\n', '', 60, NULL, 'Pax', '[\"nasi-soto-medan.jpg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (132, 2, 4, 15, NULL, 'nasi asem-asem ayam', NULL, '', 60, NULL, 'Pax', '[\"nasi-asem-asem-ayam.jpeg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (133, 2, 4, 15, NULL, 'nasi sayur asem komplit', 'Kuah Sayur Asem ( Daging , Labu Siam , Kacang Panjang, Kubis Putih, Jagung Manis, Kacang Tanah) Ikan Asin Jombrong,Telur Asin, Tempe Goreng dan Sambal Terasi\r\n', '', 60, NULL, 'Pax', '[\"nasi-sayur-asem-komplit.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (134, 2, 4, 15, NULL, 'sayur asem', NULL, '', 35, NULL, 'Pax', '[\"sayur-asem.jpeg\"]', NULL, 'false', 'true', 'false', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (135, 2, 4, 16, NULL, 'nasi putih', 'Nasi Putih\r\n', '', 12, NULL, 'Pax', '[\"nasi-putih.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (136, 2, 4, 16, NULL, 'nasi merah', 'Nasi Merah\r\n', '', 12, NULL, 'Pax', '[\"nasi-merah.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (137, 2, 4, 16, NULL, 'nasi jagung', 'Nasi Jagung\r\n', '', 12, NULL, 'Pax', '[\"nasi-jagung.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (138, 2, 4, 17, NULL, 'sambal terasi', 'Cabe Rawit, Bawang Putih , Terasi, Udang Tumis dengan Minyak Bawang\r\n', '', 12, NULL, 'Pax', '[\"sambal-terasi.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (139, 2, 4, 17, NULL, 'sambal korek', 'Cabe rawit, Bawang Putih dengan minyak bawang\r\n', '', 12, NULL, 'Pax', '[\"sambal-korek.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (140, 2, 4, 18, NULL, 'pastel', NULL, '', 18, NULL, 'Pax', '[\"pastel.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (141, 2, 4, 18, NULL, 'kroket ayam', NULL, '', 18, NULL, 'Pax', '[\"kroket-ayam.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (142, 2, 4, 18, NULL, 'risoles ayam', 'Risoles, daging ayam, Telur Rebus, Jagung Manis, Mayonise, dan SKM\r\n', '', 18, NULL, 'Pax', '[\"risoles-ayam.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (143, 2, 4, 18, NULL, 'risoles mayo smoked beef', 'Risoles, Smokeed Beef, Telur Rebus, Jagung Manis, Mayonise, dan SKM\r\n', '', 18, NULL, 'Pax', '[\"risoles-mayo-smoked-beef.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (144, 2, 4, 18, NULL, 'lumpia goreng', 'Lumpia Goreng ( Ayam dan Rebung )\r\n', '', 18, NULL, 'Pax', '[\"lumpia-goreng.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (145, 2, 4, 18, NULL, 'tahu isi', NULL, '', 35, NULL, 'Pax', '[\"tahu-isi.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (146, 2, 4, 18, NULL, 'tempe mendoan', NULL, '', 35, NULL, 'Pax', '[\"tempe-mendoan.jpeg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (147, NULL, NULL, NULL, NULL, 'jaheku', NULL, NULL, 25, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (148, NULL, NULL, NULL, NULL, 'aqua reflection still', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (149, NULL, NULL, NULL, NULL, 'aqua reflection sparkling', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (150, NULL, NULL, NULL, NULL, 'iced lemon tea', NULL, NULL, 28, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (151, NULL, NULL, NULL, NULL, 'camomile', NULL, NULL, 28, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (152, NULL, NULL, NULL, NULL, 'iced shaken espresso', NULL, NULL, 46, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (153, NULL, NULL, NULL, NULL, 'drip coffee west java', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (154, NULL, NULL, NULL, NULL, 'drip coffee toraja kalosi', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (155, NULL, NULL, NULL, NULL, 'drip coffee sumatra mandheling', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (156, NULL, NULL, NULL, NULL, 'drip coffee peaberry', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (157, NULL, NULL, NULL, NULL, 'drip coffee manglayang', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (158, NULL, NULL, NULL, NULL, 'drip coffee luwak arabica', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (159, NULL, NULL, NULL, NULL, 'drip coffee lampung', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (160, NULL, NULL, NULL, NULL, 'drip coffee java', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (161, NULL, NULL, NULL, NULL, 'drip coffee flores bajawa', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (162, NULL, NULL, NULL, NULL, 'drip coffee bali kintami', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (163, NULL, NULL, NULL, NULL, 'drip coffee aceh gayo', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (164, NULL, NULL, NULL, NULL, 'mie goreng', NULL, NULL, 45, NULL, 'Pax', NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (165, NULL, NULL, NULL, NULL, 'nasi pecel sayur empal suwir', NULL, NULL, 45, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (166, NULL, NULL, NULL, NULL, 'nasi urap sayur empal suwir', NULL, NULL, 45, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (167, NULL, NULL, NULL, NULL, 'nasi tongseng kambing', NULL, NULL, 65, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (168, NULL, NULL, NULL, NULL, 'lontong sayur medan', 'Kuah Sayur Lodeh ( Wortel, Labu Siam, Kacang Panjang, Pepaya Muda, Santan, Cabe rawit) Kare Ayam, Telur Rebus, Serundeng, dan Emping Blinjo\r\n', '', 60, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (169, NULL, NULL, NULL, NULL, 'apple crumble cake ck', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (170, NULL, NULL, NULL, NULL, 'banana cake ck', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (171, NULL, NULL, NULL, NULL, 'chocolate brownies ck', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (172, NULL, NULL, NULL, NULL, 'red velvet marble cake ck', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (173, NULL, NULL, NULL, NULL, 'signature sampler', NULL, NULL, 45, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (174, NULL, NULL, NULL, NULL, 'traditional sampler', NULL, NULL, 35, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for pos_sales
@@ -1560,6 +1589,7 @@ CREATE TABLE `pos_sub_category`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `deleted` enum('false','true') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'false',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -1568,24 +1598,24 @@ CREATE TABLE `pos_sub_category`  (
 -- ----------------------------
 -- Records of pos_sub_category
 -- ----------------------------
-INSERT INTO `pos_sub_category` VALUES (1, 1, 'manual brew', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (2, 1, 'drip coffee', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (3, 1, 'coffee', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (4, 1, 'Coffee frappe', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (5, 2, 'frappe', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (6, 2, 'tea', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (7, 2, 'soda', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (8, 2, 'add-ons', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (9, 3, 'Supresso Specials', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (10, 3, 'pizza', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (11, 3, 'pasta', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (12, 4, 'main course', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (13, 4, 'rice bowl', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (14, 4, 'dessert', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (15, 4, 'soup', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (16, 4, 'rice', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (17, 4, 'sambal', NULL, NULL);
-INSERT INTO `pos_sub_category` VALUES (18, 4, 'appetizer', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (1, 1, 'manual brew', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (2, 1, 'drip coffee', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (3, 1, 'coffee', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (4, 1, 'Coffee frappe', 'true', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (5, 2, 'frappe', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (6, 2, 'tea', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (7, 2, 'soda', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (8, 2, 'add-ons', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (9, 3, 'Supresso Specials', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (10, 3, 'pizza', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (11, 3, 'pasta', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (12, 4, 'main course', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (13, 4, 'rice bowl', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (14, 4, 'dessert', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (15, 4, 'soup', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (16, 4, 'rice', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (17, 4, 'sambal', 'false', NULL, NULL);
+INSERT INTO `pos_sub_category` VALUES (18, 4, 'appetizer', 'false', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for pos_users
