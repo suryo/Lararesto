@@ -261,34 +261,31 @@ var spicyprice = 5000;
 document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
 
 
-function myFunction<?php echo $modalitem->id ?>(id) {
-   var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
-   var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
-   var checkedValue = null; 
-   var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
-   total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
-   var len = inputElements.length;
-   var additionalstring = "";
+   function myFunction<?php echo $modalitem->id ?>(id) {
+      var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
+      var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
+      var checkedValue = null; 
+      var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
+      total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
+      var len = inputElements.length;
+      var additionalstring = "";
 
-   //recalc choice start
-   var chooseadd = [];
-    for (var i=0; i<len; i++) {
-      let arrayval = JSON.parse(inputElements[i].value);
-      if (inputElements[i].checked) {
-         arrayval.qty = qty{{ $modalitem->id }};
-         chooseadd.push(arrayval)
-         total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }});     
-      } 
-    }
-    //recalc choice end
+      //recalc choice start
+      var chooseadd = [];
+      for (var i=0; i<len; i++) {
+         let arrayval = JSON.parse(inputElements[i].value);
+         if (inputElements[i].checked) {
+            arrayval.qty = qty{{ $modalitem->id }};
+            chooseadd.push(arrayval)
+            total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }});     
+         } 
+      }
+      //recalc choice end
 
-    additionalstring = "{"+additionalstring+"}";
-    document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
-    document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
+      additionalstring = "{"+additionalstring+"}";
+      document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
+      document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
    }
-
-
-
 
    function spicy<?php echo $modalitem->id ?>(id, spicystatus){
            
@@ -437,7 +434,8 @@ function myFunction<?php echo $modalitem->id ?>(id) {
       return chooseadd;
    }
 
-   function codeAddress(id) {
+   function codeAddress(id) 
+   {
         console.log("test add to cart");
         let urlAction = "{{ route('cart.store') }}";
         let strFooter = '';

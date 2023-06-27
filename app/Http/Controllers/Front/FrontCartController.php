@@ -133,6 +133,36 @@ class FrontCartController extends Controller
         //\Cart::clear();
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
+
+       
+      
+        $conditiontax = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'TAX 10.0%',
+            'type' => 'tax',
+            'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+            'value' => '10.0%',
+            'attributes' => array( // attributes field is optional
+                'description' => 'Value added tax',
+                'more_data' => 'more data here'
+            )
+        )); 
+        \Cart::condition($conditiontax);
+        $total = \Cart::getTotal();
+        $subtotal = \Cart::getSubTotal();
+        $subtotalwithoutconditions = \Cart::getSubTotalWithoutConditions();
+        
+        $tax = ($subtotalwithoutconditions * 10/100);
+
+        // dump($total);
+        // dump($tax);
+        // dump($subtotal);
+        // dump($subtotalwithoutconditions);
+
+        // dd("cart");
+
+        // \Cart::clearCartConditions()
+
+        // 
        
 
         $cartItems = \Cart::getContent();
@@ -173,7 +203,7 @@ class FrontCartController extends Controller
 
         $title = "Cart";
         $pages = "cart";
-        return view('waiters/cart', compact('cartItems', 'title', 'pages', 'product'));
+        return view('waiters/cart', compact('cartItems', 'title', 'pages', 'product', 'tax'));
         // return view('front/cart', compact('cartItems', 'title', 'pages'));
     }
 
@@ -292,8 +322,9 @@ class FrontCartController extends Controller
 
         $cartItem = \Cart::getContent();
         $cartItems = $cartItem->sort();
-
-       
+        
+        
+             
 
         # fungsi untuk cek apakah menu yang di tambahkan pada cart sudah ada atau belum ada
         $checkstatus = false;
@@ -359,7 +390,7 @@ $res_additional = json_decode($request->additional);
                 dump($res_additional);
                 $add = $res_additional[$i];
                 //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
-                $this->AddItemCart('add-' . $add->id . '|' . $request->id . '-' . $countitem,  $add->name, $add->price, $add->qty, "", $types,"", "", "", "", "", "", "");
+                $this->AddItemCart('add-' . $add->id . '|' . $request->id . '-' . $countitem,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "");
             }
         }
 

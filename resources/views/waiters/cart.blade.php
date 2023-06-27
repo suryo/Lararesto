@@ -113,20 +113,20 @@
             <div class="col">Subtotal</div>
             <div class="col d-flex justify-content-between">
                <span>Rp</span>
-               <span>{{ Cart::getSubTotal() }},-</span>
+               <span>{{ Cart::getSubTotalWithoutConditions() }},-</span>
             </div>
          </div>
-         <div class="row row-cols-2">
+         {{-- <div class="row row-cols-2">
             <div class="col">Voucher</div>
             <div class="col text-end">
                <span>(- Rp 25.000,-)</span>
             </div>
-         </div>
+         </div> --}}
          <div class="row row-cols-2">
             <div class="col">Tax</div>
             <div class="col d-flex justify-content-between">
                <span>Rp</span>
-               <span>35.000,-</span>
+               <span>{{ $tax }},-</span>
             </div>
          </div>
          <hr class="mt-1 mb-2 border border-dark">
