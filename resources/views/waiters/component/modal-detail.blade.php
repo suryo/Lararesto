@@ -90,7 +90,10 @@
                           <!-- mods item -->
                            <li class="list-group-item px-0">
                               <div class="form-check">
-                                 <input onclick="myFunction<?php echo $modalitem->id ?>({{ $modalitem->id }})" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" >
+                                 {{-- <input onclick="myFunction<?php echo $modalitem->id ?>({{ $modalitem->id }})" id="optionaloption" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" > --}}
+                                 
+                                 <input name="choice" id="choice" type="radio" active onchange="choice{{ $modalitem->id }}({{ $modalitem->id }},'{{ $optional->name }}')" class="form-check-input rounded-circle bg-dark border-dark" value="{{ $optional->name }}" >
+                                 
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                                     <div><span>{{ $optional->name }}</span></div>
                                   
@@ -180,7 +183,7 @@
            
 
             <div class="container-fluid p-3">
-               <textarea name="" id="" rows="2" placeholder="*Tap to enter special requirement" class="form-control p-0 rounded-0 border-top-0 border-end-0 border-start-0 bg-light"></textarea>
+               <textarea name="notestring{{ $modalitem->id }}" onkeyup="setvaluenote{{$modalitem->id}}({{$modalitem->id}})"  id="notestring{{ $modalitem->id }}" rows="2" placeholder="*Tap to enter special requirement" class="form-control p-0 rounded-0 border-top-0 border-end-0 border-start-0 bg-light"></textarea>
             </div>
 
          </div>
@@ -232,7 +235,7 @@
                   
 
                   <input type="hidden" value="" id="additional{{ $modalitem->id }}" name="additional">
-                  
+                  <input type="text" value="" id="note{{ $modalitem->id }}" name="note">
 
                   <button class="btn btn-lg text-bg-dark w-100">Order Now!</button>
                </form>
@@ -257,9 +260,9 @@
 var qty{{ $modalitem->id }} = 1;
 var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
 var spicy= false;
-var spicyprice = 5000;
+var spicyprice = 0;
+var choice = "";
 document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
-
 
    function myFunction<?php echo $modalitem->id ?>(id) {
       var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
@@ -285,16 +288,52 @@ document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $moda
       additionalstring = "{"+additionalstring+"}";
       document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
       document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
+     
    }
 
-   function spicy<?php echo $modalitem->id ?>(id, spicystatus){
-           
+   function setvaluenote{{ $modalitem->id}}(id)
+   {
+      console.log(document.getElementById("notestring"+id).value)
+      document.getElementById("note"+id).value = document.getElementById("notestring"+id).value; 
+   }
+
+   function choice{{ $modalitem->id}}(id, choicestatus){
+      console.log(choicestatus);
+      document.getElementById("note"+id).value = "";
+      document.getElementById("note"+id).value = document.getElementById("note"+id).value + choicestatus; 
+      console.log(document.getElementById("spicylevel").value);
+      if (document.getElementById("spicylevel").value ==0) {
+         document.getElementById("note"+id).value = "Option : "+document.getElementById("note"+id).value + ", Level Spicy : No Spicy";
+      } else {
+         document.getElementById("note"+id).value = "Option : "+document.getElementById("note"+id).value + ", Level Spicy : Spicy";
+      }
+   }
+
+   function spicy{{ $modalitem->id}}(id, spicystatus){
+      document.getElementById("note"+id).value = "";
+      //document.getElementById("note"+id).value = document.getElementById("note"+id).value + ; 
+      //console.log(document.getElementById("spicylevel").value);
+      // if (spicystatus ==true) {
+      //    document.getElementById("note"+id).value = "Option : "+document.getElementById("choice").value + ", Level Spicy : Spicy";
+      // } else {
+      //    document.getElementById("note"+id).value = "Option : "+document.getElementById("choice").value + ", Level Spicy : No Spicy";
+      // }
+
+
+
       if (spicystatus==true) {
          spicy = true;
+         console.log("spicy");
+         console.log(document.getElementById("choice").value);
+         document.getElementById("note"+id).value = document.getElementById("note"+id).value + "Spicy";
+         
       }
       else
       {
+         console.log("no spicy");
+         console.log(document.getElementById("choice").value);
          spicy = false;
+         document.getElementById("note"+id).value = document.getElementById("note"+id).value + "No Spicy";
       }
 
       var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
@@ -306,7 +345,6 @@ document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $moda
       {  
          total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
       }
-
 
       var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
       var checkedValue = null; 
@@ -329,7 +367,6 @@ document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $moda
       document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
       document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
       document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
-
       document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
 
       

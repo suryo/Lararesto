@@ -13,9 +13,9 @@
       @endphp
       <div class="col-8">
          <div class="card-body p-0">
-            <h6 class="card-title text-capitalize small mb-1 opacity-75">
+            {{-- <h6 class="card-title text-capitalize small mb-1 opacity-75">
                {{  $cartitems->attributes->category }} &nbsp;&nbsp;&nbsp; {{  $cartitems->attributes->subcategory }}
-            </h6>
+            </h6> --}}
             <h6 class="card-title text-capitalize fw-semibold mb-1">
                {{  $cartitems->attributes->brand }}-{{  $cartitems->name }}
             </h6>
@@ -32,7 +32,10 @@
                @endphp
             </p>
 
-
+           
+            @php
+               $totaladditional =0;
+            @endphp
             @foreach ($array as $additional)
             @if ((strpos($additional->id, $iditems) !== false)&&(strpos($additional->id, "add") !== false))
                @if ($index==0)
@@ -40,6 +43,10 @@
                @else
                | {{ strtolower($additional->name) }} 
                @endif
+               
+               @php
+               $totaladditional =  $totaladditional + $additional->price; 
+               @endphp
                
                {{-- <form action="{{ route('cart.remove') }}" method="POST"  id="formdeleteadditionalcart{{ $additional->id }}">
                   @csrf
@@ -52,8 +59,60 @@
             @php $index++ @endphp
          @endforeach
 
+         {{-- @foreach ($array as $additional)
+                  @php
+                     if ((strpos($additional->id, "add") !== false)&&(strpos($additional->id, $iditemswithoutmenu) !== false)) {
+                     $explode_code_additional =  (explode("|",$additional->id));
+                     $code_additional = $explode_code_additional;
+                     $get_id_additioinal =  (explode("-",$code_additional[0]));
+                     $id_additional = $get_id_additioinal[1];
+                
+                     array_push($aditionalchoosen, $id_additional);
+                     }
+               
+                  @endphp
+                  
+         @endforeach --}}
+
+         {{-- @foreach ($modalitem->additional as $additional)
+         <li class="list-group-item px-0">
+            <div class="form-check">
+               @php
+                  # filter berdasarkan id
+                  $additionanlId = $additional->id;
+                  $filteredArray = array_filter($aditionalchoosen, function($key) use ($additionanlId) {
+                     $isFound = $key == $additionanlId;
+                     return $isFound;
+                  });
+                  # jika ada maka true
+                  $isAvailable = count($filteredArray) > 0; 
+                  if ($isAvailable) {
+                     $totaladditional =  $totaladditional + $additional->price;
+                  }
+                 
+               @endphp
+               <input {{ $isAvailable ? "checked" : "" }} onclick="myFunction<?php echo $iditems ?>('{{ $iditems}}')" name="additionaloption{{ $modalitem->id }}[]" type="checkbox" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $additional->id }}, "name":"{{ $additional->name }}", "price":{{ $additional->price }} }' id="mods{{ $additional->id }}" >
+               <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
+                  <div><span>{{ $additional->name }}</span></div>
+                  <div class="d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
+                     <span>+&nbsp;Rp&nbsp;</span>
+                     <span>{{ $additional->price }};-</span>
+                  </div>
+               </label>
+            </div>
+         </li>
+       @endforeach --}}
+
+       <p class="card-text small mb-0">
+         NOTE :
+      </p>
+      <p>
+          {{$cartitems->attributes->note}}
+      </p>
+
+
             <p class="card-text fw-semibold pt-2 mb-2">
-               Rp {{  $cartitems->price }},-
+               Rp {{  $cartitems->price +  $totaladditional }},-
             </p>
             <p class="card-text">             
                <form action="{{ route('cart.remove') }}" method="POST"  id="formdeleteitemscart{{ $cartitems->id }}">

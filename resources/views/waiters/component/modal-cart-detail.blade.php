@@ -177,12 +177,6 @@
 
             <div class="container-fluid p-3">
                <ul id="mods" class="list-group list-group-flush text-capitalize">
-
-          
-                     
-             
-      
-      
                   @foreach ($array as $additional)
                   @php
                      if ((strpos($additional->id, "add") !== false)&&(strpos($additional->id, $iditemswithoutmenu) !== false)) {
@@ -247,7 +241,7 @@
             </div>
 
             <div class="container-fluid p-3">
-               <textarea name="" id="" rows="2" placeholder="*Tap to enter special requirement" class="form-control p-0 rounded-0 border-top-0 border-end-0 border-start-0 bg-light"></textarea>
+               <textarea name="notestring{{ $iditems }}" onkeyup="setvaluenote{{$iditems}}({{$iditems}})"  id="notestring{{ $iditems }}" rows="2" placeholder="*Tap to enter special requirement" class="form-control p-0 rounded-0 border-top-0 border-end-0 border-start-0 bg-light"></textarea>
             </div>
 
          </div>
@@ -305,6 +299,7 @@
                   <input type="hidden" value="{{ $modalitem->attributes->subcategory }}" name="subcategory">
                   <input type="hidden" value="{{ $modalitem->attributes->idcategory }}" name="id_category">
                   <input type="hidden" value="" id="additional{{ $iditems }}" name="additional">
+                  <input type="hidden" value="" id="note{{ $modalitem->id }}" name="note">
                   <button class="btn btn-lg text-bg-dark w-100">Update Order!</button>
                </form>
                {{-- <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress({{$modalitem->id}})">Order Now!</button> --}}
@@ -389,6 +384,12 @@
                document.getElementById("inputtotal"+id).value = total{{ $iditems }};
                document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
             }
+            }
+
+            function setvaluenote<?php echo $iditems ?>(id)
+            {
+               console.log(document.getElementById("notestring"+id).value)
+               document.getElementById("note"+id).value = document.getElementById("notestring"+id).value; 
             }
 
             function myFunction<?php echo $iditems ?>(id) 

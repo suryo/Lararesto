@@ -321,6 +321,7 @@ class FrontCartController extends Controller
 
     public function addToCart(Request $request)
     {   
+
         $cartItem = \Cart::getContent();
         $cartItems = $cartItem->sort();
         
@@ -379,13 +380,13 @@ class FrontCartController extends Controller
             // dd("barang sudah di hapus");
         }
         //dd("barang ditambahkan");
-        $this->AddItemCart("menu-".$request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
+        $this->AddItemCart("menu-".$request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category, $request->note);
         if ($res_additional != null){
             for ($i = 0; $i < count($res_additional); $i++) {
                 dump($res_additional);
                 $add = $res_additional[$i];
                 //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
-                $this->AddItemCart('add-' . $add->id . '|' . $request->id . '-' . $countitem,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "");
+                $this->AddItemCart('add-' . $add->id . '|' . $request->id . '-' . $countitem,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "", "");
             }
         }
 
@@ -574,7 +575,7 @@ class FrontCartController extends Controller
         }
         return $gift;
     }
-    public function AddItemCart($id, $name, $price, $qty, $images, $types,$description, $portion, $units, $brand, $category, $subcategory, $idcategory)
+    public function AddItemCart($id, $name, $price, $qty, $images, $types,$description, $portion, $units, $brand, $category, $subcategory, $idcategory, $note)
     {
         //if($types =='Giftset')
 
@@ -594,6 +595,7 @@ class FrontCartController extends Controller
                     'category' => $category,
                     'subcategory' => $subcategory,
                     'idcategory' => $idcategory,
+                    'note' => $note
                 )
             ]
         );
