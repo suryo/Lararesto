@@ -272,7 +272,7 @@
                </div>
             </div>
             <div class="w-100">
-               <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data" class="d-md-flex w-100 gap-3">
+               <form action="{{ route('cart.update') }}" method="POST" enctype="multipart/form-data" class="d-md-flex w-100 gap-3">
                   @csrf
                   @php
                  
@@ -294,7 +294,7 @@
                   <input type="hidden" name="quant" value="1" id="qty-product{{ $iditems }}">
                   <input type="hidden" name="stock" value="1" id="stock-product">
                   <input type="hidden" name="stockweb" value="{{ $modalitem->id }}" id="stockweb">
-                  <input type="hidden" value="{{ $modalitem->price/1000 }}" name="price">
+                  <input type="hidden" value="{{ $modalitem->price }}" name="price">
                   <input type="hidden" value="{{ $imageName }}" name="images">
                   <input type="hidden" value="{{ $imageName }}" name="types">
                   <input type="hidden" value="{{ $modalitem->attributes->portion }}" name="portion">
@@ -305,7 +305,7 @@
                   <input type="hidden" value="{{ $modalitem->attributes->subcategory }}" name="subcategory">
                   <input type="hidden" value="{{ $modalitem->attributes->idcategory }}" name="id_category">
                   <input type="hidden" value="" id="additional{{ $iditems }}" name="additional">
-                  <button class="btn btn-lg text-bg-dark w-100">Order Now!</button>
+                  <button class="btn btn-lg text-bg-dark w-100">Update Order!</button>
                </form>
                {{-- <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress({{$modalitem->id}})">Order Now!</button> --}}
             </div>

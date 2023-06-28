@@ -57,12 +57,12 @@
             </p>
             <p class="card-text">             
                <form action="{{ route('cart.remove') }}" method="POST"  id="formdeleteitemscart{{ $cartitems->id }}">
-                  <a data-bs-toggle="modal" href="#modal-cart-detail-menu{{ $cartitems->id }}" class="text-dark text-decoration-none me-3">
+                  <a data-bs-toggle="modal" href="#modal-cart-detail-menu{{ $cartitems->id }}" class="text-dark me-3">
                      <u><small>EDIT</small></u> <i class="bi bi-pencil-fill"></i>
                   </a>
                   @csrf
                   <input type="hidden" value="{{ $cartitems->id }}" name="id">
-                  <a class="text-dark text-decoration-none" onclick="document.getElementById('formdeleteitemscart{{ $cartitems->id }}').submit()">
+                  <a class="text-dark" onclick="document.getElementById('formdeleteitemscart{{ $cartitems->id }}').submit()" style="cursor: pointer !important;">
                      <u><small>DELETE</small></u> <i class="bi bi-trash2-fill"></i>
                   </a>
                   {{-- <button class="text-dark text-decoration-none"><u><small>DELETE</small></u> <i class="bi bi-trash2-fill"></i></button> --}}

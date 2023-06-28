@@ -130,6 +130,8 @@ class FrontCartController extends Controller
 
     public function cartList(Request $request)
     {
+        $cartItem = \Cart::getContent();
+        dump($cartItem);
         //\Cart::clear();
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
@@ -319,13 +321,9 @@ class FrontCartController extends Controller
 
     public function addToCart(Request $request)
     {   
-
         $cartItem = \Cart::getContent();
         $cartItems = $cartItem->sort();
         
-        
-             
-
         # fungsi untuk cek apakah menu yang di tambahkan pada cart sudah ada atau belum ada
         $checkstatus = false;
         $countitem = 1;
@@ -333,8 +331,6 @@ class FrontCartController extends Controller
             if($key->id == $request->id)
             {
                 $checkstatus = true;
-              
-
             }
             if (strpos($key->id, $request->id) !== false)
             {
@@ -343,9 +339,8 @@ class FrontCartController extends Controller
         }
 
         #additional start
-
-$res_additional = json_decode($request->additional);
-//dd(($additional));
+        $res_additional = json_decode($request->additional);
+        //dd(($additional));
         #additional end
 
         // dump($request->additional);
@@ -420,26 +415,83 @@ $res_additional = json_decode($request->additional);
 
     public function updateCart(Request $request)
     {
-       
-        $value = 0;
-        //## kondisi saat qty barang dikurangi
-        if (isset($_POST['minus'])) {
-            if ($request->quantity > 1) {
-                $value = $request->quantity - 1;
-                $this->UpdateItemCart($request->id, $value);
-            } else {
-                $this->RemoveItemCart($request->id);
-            }
-            # Publish-button was clicked
+        $cartItem = \Cart::getContent();
+        $cartItems = $cartItem->sort();
 
-            //## kondisi saat qty barang dikurangi
-        } elseif (isset($_POST['plus'])) {
-            if ($request->quantity < 100) {
-                $value = $request->quantity + 1;
-                $this->UpdateItemCart($request->id, $value);
+         # fungsi untuk cek apakah menu yang di tambahkan pada cart sudah ada atau belum ada
+         $checkstatus = false;
+         $countitem = 1;
+         foreach ($cartItems as $key) {
+             if($key->id == $request->id)
+             {
+                 $checkstatus = true;
+             }
+             if (strpos($key->id, $request->id) !== false)
+             {
+                 $countitem = $countitem + 1;
+             }
+         }
+
+        $res_additional = json_decode($request->additional);
+        dump($request->id);
+        dump($request->name);
+        dump($request->quant);
+        dump($request->stock);
+        dump($request->stockweb);
+        dump($request->price);
+        dump($request->images);
+
+        dump($request->description);
+        dump($request->portion);
+        dump($request->units);
+        dump($request->brand);
+        dump($request->category);
+        dump($request->subcategory);
+        dump($res_additional);
+        //dd("update cart");
+
+        $qty = 1;
+        $types = "NORMAL";
+        $qty = $request->quant;
+        //$types = $request->types;
+        $id_category = $request->id_category;  
+        
+        // if($checkstatus==true)
+        // {
+        //     Cart::remove($request->id);
+            
+        // }
+
+        $iditems = str_replace('menu-', '', $request->id);
+        dump( $iditems);
+        # check apakah ada additional, lalu hapus additional
+        foreach ($cartItem as $key => $value) {
+            if(strpos($value->id, "add") !== false)
+            {
+                $addexplode = ((explode("|",$value->id))[1]);
+                if($addexplode== $iditems){
+                   Cart::remove($value->id); 
+                }
             }
         }
-        $this->GiftBoxCart();
+
+        # insert ulang additional
+        if ($res_additional != null){
+            for ($i = 0; $i < count($res_additional); $i++) {
+                dump($res_additional);
+                $add = $res_additional[$i];
+                //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
+                $this->AddItemCart('add-' . $add->id . '|' . $iditems,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "");
+                //dd($add);
+            }
+        }
+
+        // Cart::update($request->id, array(
+        //     'name' => $request->name, // new item name
+        //     'price' => $request->price // new item price, price can also be a string format like so: '98.67'
+
+        //   ));
+       
         session(['totalbeforediscount' => \Cart::getTotal()]);
         session()->flash('success', 'Item Cart is Updated Successfully !');
         return redirect()->route('cart.list');
@@ -447,8 +499,20 @@ $res_additional = json_decode($request->additional);
 
     public function removeCart(Request $request)
     {
-        //dd($request->id);
+        # dd($request->id);
         $items = \Cart::getContent();
+        $iditems = str_replace('menu-', '', $request->id);
+        dump( $iditems);
+        # check apakah ada additional
+        foreach ($items as $key => $value) {
+            if(strpos($value->id, "add") !== false)
+            {
+                $addexplode = ((explode("|",$value->id))[1]);
+                if($addexplode== $iditems){
+                   Cart::remove($value->id); 
+                }
+            }
+        }
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
         return redirect()->route('cart.list');
