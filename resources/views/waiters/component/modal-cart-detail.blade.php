@@ -120,7 +120,8 @@
                           <!-- mods item -->
                            <li class="list-group-item px-0">
                               <div class="form-check">
-                                 <input onclick="myFunction<?php echo $iditems ?>('{{ $iditems }}')" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" >
+                                 {{-- <input onclick="updatechoice<?php echo $iditems ?>('{{ $iditems }}')" name="optionaloption{{ $modalitem->id }}[]" type="radio" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $optional->id }}, "name":"{{ $optional->name }}", "price":{{ $optional->price }} }' id="mods{{ $optional->id }}" > --}}
+                                 <input name="choice" id="choice" type="radio" active onchange="updatechoice{{ $iditems }}('{{ $iditems }}','{{ $optional->name }}')" class="form-check-input rounded-circle bg-dark border-dark" value="{{ $optional->name }}" >
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                                     <div><span>{{ $optional->name }}</span></div>
                                   
@@ -143,7 +144,7 @@
                <ul id="mods" class="list-group list-group-flush text-capitalize">
                   <li class="list-group-item px-0">
                      <div class="form-check">
-                        <input name="spicylevel" id="spicylevel" type="radio" active onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},false)" class="form-check-input rounded-circle bg-dark border-dark" value="0" >
+                        <input name="spicylevel" id="spicylevel" type="radio" active onchange="updatespicy{{ $iditems }}('{{ $iditems }}',0)" class="form-check-input rounded-circle bg-dark border-dark" value="0" >
                         <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                            <div><span>No Spicy</span></div>
                            <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
@@ -156,9 +157,22 @@
 
                   <li class="list-group-item px-0">
                      <div class="form-check">
-                        <input name="spicylevel" id="spicylevel" type="radio" onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},true)" class="form-check-input rounded-circle bg-dark border-dark" value="5000" >
+                        <input name="spicylevel" id="spicylevel" type="radio" onchange="updatespicy{{ $iditems }}('{{ $iditems }}',1)" class="form-check-input rounded-circle bg-dark border-dark" value="1" >
                         <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                            <div><span>Spicy</span></div>
+                           <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
+                              <span>+&nbsp;Rp&nbsp;</span>
+                              <span>1000;-</span>
+                           </div>
+                        </label>
+                     </div>
+                  </li>
+
+                  <li class="list-group-item px-0">
+                     <div class="form-check">
+                        <input name="spicylevel" id="spicylevel" type="radio" onchange="updatespicy{{ $iditems }}('{{ $iditems }}',2)" class="form-check-input rounded-circle bg-dark border-dark" value="2" >
+                        <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
+                           <div><span>Extra Spicy</span></div>
                            <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
                               <span>+&nbsp;Rp&nbsp;</span>
                               <span>1000;-</span>
@@ -219,6 +233,7 @@
                                    
                                  @endphp
                                  <input {{ $isAvailable ? "checked" : "" }} onclick="myFunction<?php echo $iditems ?>('{{ $iditems}}')" name="additionaloption{{ $modalitem->id }}[]" type="checkbox" class="form-check-input rounded-circle bg-dark border-dark" value='{"id":{{ $additional->id }}, "name":"{{ $additional->name }}", "price":{{ $additional->price }} }' id="mods{{ $additional->id }}" >
+                                
                                  <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                                     <div><span>{{ $additional->name }}</span></div>
                                     <div class="d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
@@ -236,7 +251,10 @@
             </div>
 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
-               <strong>Special Request</strong>
+               <strong>Special Request</strong>@php
+                  $string = JSON_ENCODE($additional);
+                  dump($string);
+               @endphp
                <span></span>
             </div>
 
@@ -298,8 +316,8 @@
                   <input type="hidden" value="{{ $modalitem->attributes->category }}" name="category">
                   <input type="hidden" value="{{ $modalitem->attributes->subcategory }}" name="subcategory">
                   <input type="hidden" value="{{ $modalitem->attributes->idcategory }}" name="id_category">
-                  <input type="hidden" value="" id="additional{{ $iditems }}" name="additional">
-                  <input type="hidden" value="" id="note{{ $modalitem->id }}" name="note">
+                  <input type="text" value="" id="additional{{ $iditems }}" name="additional">
+                  <input type="text" value="" id="note{{ $iditems }}" name="note">
                   <button class="btn btn-lg text-bg-dark w-100">Update Order!</button>
                </form>
                {{-- <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress({{$modalitem->id}})">Order Now!</button> --}}
@@ -313,7 +331,22 @@
       var qty<?php echo $iditems ?> = {{ $modalitem->quantity }};
       var total<?php echo $iditems ?> = {{ $modalitem->price }};
       var spicy= false;
-      var spicyprice = 5000;
+      var spicystring = "";
+      var spicyprice = 0;
+      var choice = "";
+     
+      //document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
+      document.getElementById("choice").checked = true;
+      document.getElementById("spicylevel").checked = true;
+      
+      spicystring = "No Spicy";
+      choice = "-";
+
+      console.log(<?php echo $iditems ?>);
+      //document.getElementById("additional"+{{ $modalitem->id }}).value = JSON.stringify(@json($aditionalchoosen));
+      console.log(@json($aditionalchoosen));
+      console.log(JSON.stringify(@json($aditionalchoosen)));
+
       function itempluscart<?php echo $iditems ?>(id){
                qty{{ $iditems }} = qty{{ $iditems }} + 1;
                var total<?php echo $iditems ?> = {{ $modalitem->price }};
@@ -418,6 +451,79 @@
                document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $iditems }}+" ,-";
                document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
             }
+
+            function updatechoice<?php echo $iditems ?>(id, choicestatus){
+               console.log(choicestatus);
+               document.getElementById("note"+id).value = "";
+               document.getElementById("note"+id).value = document.getElementById("note"+id).value + choicestatus; 
+               console.log(document.getElementById("spicylevel").value);
+               if (document.getElementById("spicylevel").value ==0) {
+                  document.getElementById("note"+id).value = "Choice : "+document.getElementById("note"+id).value + "<br> Level Spicy : "+spicystring;
+                  choice = choicestatus;
+               } else {
+                  document.getElementById("note"+id).value = "Choice : "+document.getElementById("note"+id).value + "<br> Level Spicy : "+spicystring;
+                  choice = choicestatus;
+               }
+            }
+
+            function updatespicy<?php echo $iditems ?>(id, spicystatus){
+           
+               if (spicystatus==2) {
+               spicy = true;
+               console.log("extra spicy");
+               spicystring = "Extra Spicy";
+               document.getElementById("note"+id).value = "Choice : "+choice + "<br> Level Spicy : "+spicystring;
+               }
+               else
+               if (spicystatus==1) {
+                  spicy = true;
+                  console.log("spicy");
+                  spicystring = "Spicy";
+                  document.getElementById("note"+id).value = "Choice : "+choice + "<br> Level Spicy : "+spicystring;
+
+               }
+               else
+               {
+                  spicy = false;
+                  spicystring = "No Spicy";
+                  document.getElementById("note"+id).value = "Choice : "+choice + "<br> Level Spicy : "+spicystring;
+               }
+     
+               // var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
+               // if (spicy==true)
+               // {  
+               //    total{{ $modalitem->id }} = (total{{ $modalitem->id }} * qty{{ $modalitem->id }}) + (spicyprice* qty{{ $modalitem->id }});
+               // }
+               // else
+               // {  
+               //    total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
+               // }
+     
+               // var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
+               // var checkedValue = null; 
+               // var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
+               // var len = inputElements.length;
+         
+               // //recalc choice start
+               // var chooseadd = [];
+               // for (var i=0; i<len; i++) {
+               //    let arrayval = JSON.parse(inputElements[i].value);
+               //    if (inputElements[i].checked) {
+               //       arrayval.qty = qty{{ $modalitem->id }};
+               //       chooseadd.push(arrayval)
+               //       total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }}) ;
+               //    }      
+               // }
+               // //recalc choice end
+         
+               // document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
+               // document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
+               // document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
+               // document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
+               // document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
+     
+           
+         }
 </script>
 
 <style>
@@ -453,53 +559,7 @@
 
    
 
-   function spicy<?php echo $modalitem->id ?>(id, spicystatus){
-           
-      if (spicystatus==true) {
-         spicy = true;
-      }
-      else
-      {
-         spicy = false;
-      }
-
-      var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
-      if (spicy==true)
-      {  
-         total{{ $modalitem->id }} = (total{{ $modalitem->id }} * qty{{ $modalitem->id }}) + (spicyprice* qty{{ $modalitem->id }});
-      }
-      else
-      {  
-         total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
-      }
-
-
-      var strvar<?php echo $modalitem->id ?> = "additionaloption"+'<?php echo $modalitem->id ?>'+"[]";
-      var checkedValue = null; 
-      var inputElements = document.getElementsByName(strvar<?php echo $modalitem->id ?>);
-      var len = inputElements.length;
-
-      //recalc choice start
-      var chooseadd = [];
-      for (var i=0; i<len; i++) {
-         let arrayval = JSON.parse(inputElements[i].value);
-         if (inputElements[i].checked) {
-            arrayval.qty = qty{{ $modalitem->id }};
-            chooseadd.push(arrayval)
-            total{{ $modalitem->id }} = total{{ $modalitem->id }} + (arrayval.price * qty{{ $modalitem->id }}) ;
-         }      
-      }
-      //recalc choice end
-
-      document.getElementById("totallabel"+id).innerHTML = "Rp"+"."+total{{ $modalitem->id }}+" ,-";
-      document.getElementById("totalqty"+id).value = qty{{ $modalitem->id }};
-      document.getElementById("qty-product"+id).value = qty{{ $modalitem->id }};
-      document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
-
-      document.getElementById("additional"+id).value = JSON.stringify(chooseadd);
-
-      
-   }
+  
 
   
 
