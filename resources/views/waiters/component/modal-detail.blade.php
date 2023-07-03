@@ -235,7 +235,7 @@
                   
 
                   <input type="hidden" value="" id="additional{{ $modalitem->id }}" name="additional">
-                  <input type="text" value="" id="note{{ $modalitem->id }}" name="note">
+                  <input type="hidden" value="" id="note{{ $modalitem->id }}" name="note">
 
                   <button class="btn btn-lg text-bg-dark w-100">Order Now!</button>
                </form>
