@@ -79,7 +79,7 @@
 
             @if ($modalitem->flag_optional == "true") 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
-               <strong>Choice asd</strong>
+               <strong>Choice</strong>
             </div>
 
             <div class="container-fluid p-3">
@@ -117,7 +117,7 @@
                <ul id="mods" class="list-group list-group-flush text-capitalize">
                   <li class="list-group-item px-0">
                      <div class="form-check">
-                        <input name="spicylevel" id="spicylevel" type="radio" active onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},false)" class="form-check-input rounded-circle bg-dark border-dark" value="0" >
+                        <input name="spicylevel" id="spicylevel" type="radio" active onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},0)" class="form-check-input rounded-circle bg-dark border-dark" value="0" >
                         <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                            <div><span>No Spicy</span></div>
                            <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
@@ -130,9 +130,22 @@
 
                   <li class="list-group-item px-0">
                      <div class="form-check">
-                        <input name="spicylevel" id="spicylevel" type="radio" onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},true)" class="form-check-input rounded-circle bg-dark border-dark" value="5000" >
+                        <input name="spicylevel" id="spicylevel" type="radio" onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},1)" class="form-check-input rounded-circle bg-dark border-dark" value="1" >
                         <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
                            <div><span>Spicy</span></div>
+                           <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
+                              <span>+&nbsp;Rp&nbsp;</span>
+                              <span>1000;-</span>
+                           </div>
+                        </label>
+                     </div>
+                  </li>
+
+                  <li class="list-group-item px-0">
+                     <div class="form-check">
+                        <input name="spicylevel" id="spicylevel" type="radio" onchange="spicy{{ $modalitem->id }}({{ $modalitem->id }},2)" class="form-check-input rounded-circle bg-dark border-dark" value="2" >
+                        <label for="mods1" class="form-check-label d-flex flex-nowrap justify-content-between">
+                           <div><span>Extra Spicy</span></div>
                            <div class="d-none d-inline-flex flex-nowrap justify-content-between" style="width: 42%;">
                               <span>+&nbsp;Rp&nbsp;</span>
                               <span>1000;-</span>
@@ -236,7 +249,7 @@
                   
 
                   <input type="hidden" value="" id="additional{{ $modalitem->id }}" name="additional">
-                  <input type="hidden" value="" id="note{{ $modalitem->id }}" name="note">
+                  <input type="text" value="" id="note{{ $modalitem->id }}" name="note">
 
                   <button class="btn btn-lg text-bg-dark w-100">Order Now!</button>
                </form>
@@ -336,7 +349,17 @@ choice = "-";
       
 
 
-      if (spicystatus==true) {
+      if (spicystatus==2) {
+         spicy = true;
+         console.log("extra spicy");
+         spicystring = "Extra Spicy";
+         //console.log(document.getElementById("choice").value);
+         // document.getElementById("note"+id).value = document.getElementById("note"+id).value + "Spicy";
+         document.getElementById("note"+id).value = "Choice : "+choice + "<br> Level Spicy : "+spicystring;
+
+      }
+      else
+      if (spicystatus==1) {
          spicy = true;
          console.log("spicy");
          spicystring = "Spicy";
