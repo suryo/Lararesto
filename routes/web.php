@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Koperasifront\FrontController;
 use App\Http\Controllers\Front\FrontCategoryProductController;
+
 use App\Http\Controllers\Front\FrontLandingController;
 use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\RoleController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Product\ProductController;
 
 use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\Front\FrontCartController;
+use App\Http\Controllers\Front\FrontCheckoutController;
 
 use App\Http\Controllers\Back\CrudBuilderController;
 use App\Http\Controllers\Back\ApiBuilderController;
@@ -126,6 +128,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('remove', [FrontCartController::class, 'removeCart'])->name('cart.remove');
     Route::post('clear', [FrontCartController::class, 'clearAllCart'])->name('cart.clear');
     Route::post('cart-update-discount', [FrontCartController::class, 'updateDiscountCart'])->name('cart.updatediscount');
+
+    Route::get('/cart', [FrontCartController::class, 'cartList'])->name('cart.list');
+    Route::get('/checkout', [FrontCheckoutController::class, 'index'])->name('checkout.list');
+    // Route::post('/checkout', [FrontCheckoutController::class, 'index'])->name('checkout.list');
+    
 
 
 });

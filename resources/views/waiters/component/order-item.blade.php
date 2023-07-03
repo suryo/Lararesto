@@ -107,7 +107,7 @@
          NOTE :
       </p>
       <p>
-          {{$cartitems->attributes->note}}
+         {!! $cartitems->attributes->note!!}
       </p>
 
 

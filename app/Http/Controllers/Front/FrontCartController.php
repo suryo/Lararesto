@@ -482,7 +482,7 @@ class FrontCartController extends Controller
                 dump($res_additional);
                 $add = $res_additional[$i];
                 //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
-                $this->AddItemCart('add-' . $add->id . '|' . $iditems,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "");
+                $this->AddItemCart('add-' . $add->id . '|' . $iditems,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "","");
                 //dd($add);
             }
         }

@@ -83,7 +83,7 @@
       </div>
    </section>
 
-   <section class="bg-dark-subtle">
+   <section class="bg-dark-subtle d-none">
       <div class="container py-4 text-center">
          <a href="#" class="text-dark text-decoration-none">
             <i class="bi bi-tag-fill me-1"></i>
@@ -97,7 +97,7 @@
 <nav class="text-bg-light border-top border-dark-subtle fixed-bottom">
    <div class="container py-3">
       <div class="mx-auto" style="width: 100%; max-width: 460px;">
-         <div class="row row-cols-2 gx-2">
+         <div class="row row-cols-2 gx-2 d-none">
             <div class="col">
                <button class="btn btn-outline-dark w-100 active">Dine-In</button>
             </div>

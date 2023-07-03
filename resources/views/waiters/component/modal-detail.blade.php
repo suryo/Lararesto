@@ -260,9 +260,15 @@
 var qty{{ $modalitem->id }} = 1;
 var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
 var spicy= false;
+var spicystring = "";
 var spicyprice = 0;
 var choice = "";
 document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
+document.getElementById("choice").checked = true;
+document.getElementById("spicylevel").checked = true;
+
+spicystring = "No Spicy";
+choice = "-";
 
    function myFunction<?php echo $modalitem->id ?>(id) {
       var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
@@ -272,6 +278,7 @@ document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $moda
       total{{ $modalitem->id }} = total{{ $modalitem->id }} * qty{{ $modalitem->id }};
       var len = inputElements.length;
       var additionalstring = "";
+
 
       //recalc choice start
       var chooseadd = [];
@@ -303,9 +310,11 @@ document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $moda
       document.getElementById("note"+id).value = document.getElementById("note"+id).value + choicestatus; 
       console.log(document.getElementById("spicylevel").value);
       if (document.getElementById("spicylevel").value ==0) {
-         document.getElementById("note"+id).value = "Option : "+document.getElementById("note"+id).value + ", Level Spicy : No Spicy";
+         document.getElementById("note"+id).value = "Choice : "+document.getElementById("note"+id).value + "<br> Level Spicy : "+spicystring;
+         choice = choicestatus;
       } else {
-         document.getElementById("note"+id).value = "Option : "+document.getElementById("note"+id).value + ", Level Spicy : Spicy";
+         document.getElementById("note"+id).value = "Choice : "+document.getElementById("note"+id).value + "<br> Level Spicy : "+spicystring;
+         choice = choicestatus;
       }
    }
 
@@ -319,21 +328,30 @@ document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $moda
       //    document.getElementById("note"+id).value = "Option : "+document.getElementById("choice").value + ", Level Spicy : No Spicy";
       // }
 
+      //document.getElementById("note"+id).value = document.getElementById("note"+id).value + (document.getElementById("choice").value); 
+
+      console.log("choice");
+      console.log(choice);
+      
 
 
       if (spicystatus==true) {
          spicy = true;
          console.log("spicy");
-         console.log(document.getElementById("choice").value);
-         document.getElementById("note"+id).value = document.getElementById("note"+id).value + "Spicy";
-         
+         spicystring = "Spicy";
+         //console.log(document.getElementById("choice").value);
+         // document.getElementById("note"+id).value = document.getElementById("note"+id).value + "Spicy";
+         document.getElementById("note"+id).value = "Choice : "+choice + "<br> Level Spicy : "+spicystring;
+
       }
       else
       {
          console.log("no spicy");
-         console.log(document.getElementById("choice").value);
+         //console.log(document.getElementById("choice").value);
          spicy = false;
-         document.getElementById("note"+id).value = document.getElementById("note"+id).value + "No Spicy";
+         spicystring = "No Spicy";
+         //document.getElementById("note"+id).value = document.getElementById("note"+id).value + spicystring;
+         document.getElementById("note"+id).value = "Choice : "+choice + "<br> Level Spicy : "+spicystring;
       }
 
       var total{{ $modalitem->id }} = {{ $modalitem->price }}*1000;
