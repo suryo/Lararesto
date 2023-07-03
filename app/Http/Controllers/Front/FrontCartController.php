@@ -131,7 +131,7 @@ class FrontCartController extends Controller
     public function cartList(Request $request)
     {
         $cartItem = \Cart::getContent();
-        dump($cartItem);
+        //dump($cartItem);
         //\Cart::clear();
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
@@ -349,20 +349,20 @@ class FrontCartController extends Controller
         // '{item0:{"id":5,"name":"NASI JAGUNG","price":12000},item1:{"id":6,"name":"NASI MERAH","price":12000},item2:{"id":7,"name":"NASI PUTIH","price":12000}}'
         //dd(json_decode($jsn));
 
-        dump($request->id);
-        dump($request->name);
-        dump($request->quant);
-        dump($request->stock);
-        dump($request->stockweb);
-        dump($request->price);
-        dump($request->images);
+        // dump($request->id);
+        // dump($request->name);
+        // dump($request->quant);
+        // dump($request->stock);
+        // dump($request->stockweb);
+        // dump($request->price);
+        // dump($request->images);
 
-        dump($request->description);
-        dump($request->portion);
-        dump($request->units);
-        dump($request->brand);
-        dump($request->category);
-        dump($request->subcategory);
+        // dump($request->description);
+        // dump($request->portion);
+        // dump($request->units);
+        // dump($request->brand);
+        // dump($request->category);
+        // dump($request->subcategory);
         //dd("masuk ke cart")     ;
       
         $qty = 1;
@@ -434,21 +434,21 @@ class FrontCartController extends Controller
          }
 
         $res_additional = json_decode($request->additional);
-        dump($request->id);
-        dump($request->name);
-        dump($request->quant);
-        dump($request->stock);
-        dump($request->stockweb);
-        dump($request->price);
-        dump($request->images);
+        // dump($request->id);
+        // dump($request->name);
+        // dump($request->quant);
+        // dump($request->stock);
+        // dump($request->stockweb);
+        // dump($request->price);
+        // dump($request->images);
 
-        dump($request->description);
-        dump($request->portion);
-        dump($request->units);
-        dump($request->brand);
-        dump($request->category);
-        dump($request->subcategory);
-        dump($res_additional);
+        // dump($request->description);
+        // dump($request->portion);
+        // dump($request->units);
+        // dump($request->brand);
+        // dump($request->category);
+        // dump($request->subcategory);
+        // dump($res_additional);
         //dd("update cart");
 
         $qty = 1;
@@ -464,7 +464,7 @@ class FrontCartController extends Controller
         // }
 
         $iditems = str_replace('menu-', '', $request->id);
-        dump( $iditems);
+        // dump( $iditems);
         # check apakah ada additional, lalu hapus additional
         foreach ($cartItem as $key => $value) {
             if(strpos($value->id, "add") !== false)
@@ -503,7 +503,7 @@ class FrontCartController extends Controller
         # dd($request->id);
         $items = \Cart::getContent();
         $iditems = str_replace('menu-', '', $request->id);
-        dump( $iditems);
+        // dump( $iditems);
         # check apakah ada additional
         foreach ($items as $key => $value) {
             if(strpos($value->id, "add") !== false)

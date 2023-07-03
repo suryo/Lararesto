@@ -77,9 +77,9 @@
                </div>
             </div>
 
+            @if ($modalitem->flag_optional == "true") 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
-               <strong>Choice</strong>
-              
+               <strong>Choice asd</strong>
             </div>
 
             <div class="container-fluid p-3">
@@ -105,8 +105,9 @@
                   <!-- mods item -->
                </ul>
             </div>
+            @endif
 
-            @if ($modalitem->flag_spicy == true)
+            @if ($modalitem->flag_spicy == "true")
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Spicy Level</strong>
                
@@ -143,7 +144,7 @@
             </div>
             @endif
 
-            @if ($modalitem->flag_additional == true) 
+            @if ($modalitem->flag_additional == "true") 
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Additional</strong>
                <span>Choose up to 1</span>
