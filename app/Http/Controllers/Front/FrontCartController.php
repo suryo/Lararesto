@@ -131,7 +131,7 @@ class FrontCartController extends Controller
     public function cartList(Request $request)
     {
         $cartItem = \Cart::getContent();
-        dump($cartItem);
+        //dump($cartItem);
         //\Cart::clear();
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
@@ -493,7 +493,7 @@ class FrontCartController extends Controller
         # insert ulang additional
         if ($res_additional != null){
             for ($i = 0; $i < count($res_additional); $i++) {
-                dump($res_additional);
+                //dump($res_additional);
                 $add = $res_additional[$i];
                 //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
                 $this->AddItemCart('add-' . $add->id . '|' . $updateid,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "","");
@@ -504,22 +504,22 @@ class FrontCartController extends Controller
         }
 
 
-        dump($updateid);
-        dump($request->name);
-        dump($request->price);
-        dump($request->description);
-        dump($request->portion);
-        dump($request->units);
-        dump($request->images);
+        // dump($updateid);
+        // dump($request->name);
+        // dump($request->price);
+        // dump($request->description);
+        // dump($request->portion);
+        // dump($request->units);
+        // dump($request->images);
 
-        dump($types);
-        dump($request->brand);
-        dump($request->units);
-        dump($request->brand);
-        dump($request->category);
-        dump($request->subcategory);
-        dump($id_category);
-        dump($request->note);
+        // dump($types);
+        // dump($request->brand);
+        // dump($request->units);
+        // dump($request->brand);
+        // dump($request->category);
+        // dump($request->subcategory);
+        // dump($id_category);
+        // dump($request->note);
 
         //dd("update");
         // dump($updateid);

@@ -14,7 +14,7 @@
                </div>
                @php
 
-               dump($modalitem);
+               //dump($modalitem);
                // $image=[];
                // if (isset($modalitem->fileimages)) {
                //    $imagetype = gettype(json_decode($modalitem->fileimages));
@@ -253,7 +253,7 @@
             <div class="container-fluid px-3 py-4 bg-dark-subtle d-flex justify-content-between align-items-center">
                <strong>Special Request</strong>@php
                   $string = JSON_ENCODE($additional);
-                  dump($string);
+                  //dump($string);
                @endphp
                <span></span>
             </div>
@@ -316,8 +316,8 @@
                   <input type="hidden" value="{{ $modalitem->attributes->category }}" name="category">
                   <input type="hidden" value="{{ $modalitem->attributes->subcategory }}" name="subcategory">
                   <input type="hidden" value="{{ $modalitem->attributes->idcategory }}" name="id_category">
-                  <input type="text" value="" id="additional{{ $iditems }}" name="additional">
-                  <input type="text" value="" id="note{{ $iditems }}" name="note">
+                  <input type="hidden" value="" id="additional{{ $iditems }}" name="additional">
+                  <input type="hidden" value="" id="note{{ $iditems }}" name="note">
                   <button class="btn btn-lg text-bg-dark w-100">Update Order!</button>
                </form>
                {{-- <button class="btn btn-lg text-bg-dark w-100" onclick="codeAddress({{$modalitem->id}})">Order Now!</button> --}}
