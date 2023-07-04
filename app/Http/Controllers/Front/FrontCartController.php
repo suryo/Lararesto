@@ -131,7 +131,7 @@ class FrontCartController extends Controller
     public function cartList(Request $request)
     {
         $cartItem = \Cart::getContent();
-        //dump($cartItem);
+        dump($cartItem);
         //\Cart::clear();
         \Cart::clearCartConditions();
         session(['totalbeforediscount' => \Cart::getTotal()]);
@@ -433,6 +433,8 @@ class FrontCartController extends Controller
              }
          }
 
+
+
         $res_additional = json_decode($request->additional);
         // dump($request->id);
         // dump($request->name);
@@ -449,6 +451,7 @@ class FrontCartController extends Controller
         // dump($request->category);
         // dump($request->subcategory);
         // dump($res_additional);
+        // dump($request->note);
         //dd("update cart");
 
         $qty = 1;
@@ -464,17 +467,28 @@ class FrontCartController extends Controller
         // }
 
         $iditems = str_replace('menu-', '', $request->id);
+        $updateidwithmenu = str_replace('_', '-', $request->id);
+        $updateid = str_replace('_', '-', $request->id);
+        $updateid = str_replace('menu-', '', $updateid);
         // dump( $iditems);
+
+
+        if($request->additional!="no-update")
+        {
+         //dd("ada update");
         # check apakah ada additional, lalu hapus additional
         foreach ($cartItem as $key => $value) {
             if(strpos($value->id, "add") !== false)
             {
+                //dd("ada");
                 $addexplode = ((explode("|",$value->id))[1]);
-                if($addexplode== $iditems){
+                if($addexplode== $updateid){
                    Cart::remove($value->id); 
                 }
-            }
+            }   
         }
+
+        //dd("ada update");
 
         # insert ulang additional
         if ($res_additional != null){
@@ -482,16 +496,52 @@ class FrontCartController extends Controller
                 dump($res_additional);
                 $add = $res_additional[$i];
                 //$this->AddItemCart($request->id.'-'. $countitem, $request->name, $request->price, $qty, $request->images, $types,$request->description, $request->portion, $request->units, $request->brand, $request->category, $request->subcategory, $id_category);
-                $this->AddItemCart('add-' . $add->id . '|' . $iditems,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "","");
+                $this->AddItemCart('add-' . $add->id . '|' . $updateid,  $add->name, $add->price/1000, $add->qty, "", $types,"", "", "", "", "", "", "","");
                 //dd($add);
             }
         }
 
-        // Cart::update($request->id, array(
-        //     'name' => $request->name, // new item name
-        //     'price' => $request->price // new item price, price can also be a string format like so: '98.67'
+        }
 
-        //   ));
+
+        dump($updateid);
+        dump($request->name);
+        dump($request->price);
+        dump($request->description);
+        dump($request->portion);
+        dump($request->units);
+        dump($request->images);
+
+        dump($types);
+        dump($request->brand);
+        dump($request->units);
+        dump($request->brand);
+        dump($request->category);
+        dump($request->subcategory);
+        dump($id_category);
+        dump($request->note);
+
+        //dd("update");
+        // dump($updateid);
+        // dd($request->note);
+
+        \Cart::update($updateidwithmenu, array(
+            'name' => $request->name, // new item name
+            'price' => $request->price, // new item price, price can also be a string format like so: '98.67'
+            'attributes' => array(
+                'description' => $request->description,
+                'portion' => $request->portion,
+                'units' => $request->units,
+                'images' => $request->images,
+                'types' => $types,
+                'brand' => $request->brand,
+                'category' => $request->category,
+                'subcategory' => $request->subcategory,
+                'idcategory' => $id_category,
+                'note' => $request->note)
+          ));
+
+        
        
         session(['totalbeforediscount' => \Cart::getTotal()]);
         session()->flash('success', 'Item Cart is Updated Successfully !');

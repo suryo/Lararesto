@@ -301,7 +301,7 @@
                   // }
                   //dump($modalitem)
                   @endphp
-                  <input type="hidden" value="{{ $modalitem->id }}" name="id">
+                  <input type="hidden" value="{{ $iditems }}" name="id">
                   <input type="hidden" value="{{ $modalitem->name }}" name="name">
                   <input type="hidden" name="quant" value="1" id="qty-product{{ $iditems }}">
                   <input type="hidden" name="stock" value="1" id="stock-product">
@@ -334,6 +334,7 @@
       var spicystring = "";
       var spicyprice = 0;
       var choice = "";
+      var additional<?php echo $iditems ?> = (@json($aditionalchoosen));
      
       //document.getElementById("inputtotal"+{{ $modalitem->id }}).value = total{{ $modalitem->id }};
       document.getElementById("choice").checked = true;
@@ -342,10 +343,25 @@
       spicystring = "No Spicy";
       choice = "-";
 
-      console.log(<?php echo $iditems ?>);
+      console.log("additional");
+      console.log(additional<?php echo $iditems ?>);
       //document.getElementById("additional"+{{ $modalitem->id }}).value = JSON.stringify(@json($aditionalchoosen));
-      console.log(@json($aditionalchoosen));
-      console.log(JSON.stringify(@json($aditionalchoosen)));
+      // console.log(@json($aditionalchoosen));
+      console.log(JSON.stringify(additional<?php echo $iditems ?>));
+      //document.getElementById("additional"+'{{ $iditems }}').value = JSON.stringify(additional<?php echo $iditems ?>);
+      document.getElementById("additional"+'{{ $iditems }}').value = 'no-update';
+      document.getElementById("note"+'{{ $iditems }}').value = htmlDecode('{{ $modalitem->attributes->note }}');
+
+      console.log(htmlDecode('{!! $modalitem->attributes->note !!}'));
+
+      console.log("test additional");
+      console.log(JSON.stringify(additional<?php echo $iditems ?>));
+
+      function htmlDecode(input){
+  var e = document.createElement('div');
+  e.innerHTML = input;
+  return e.childNodes[0].nodeValue;
+}
 
       function itempluscart<?php echo $iditems ?>(id){
                qty{{ $iditems }} = qty{{ $iditems }} + 1;
