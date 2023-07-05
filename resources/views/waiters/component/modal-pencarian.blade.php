@@ -4,17 +4,37 @@
          <div class="modal-header border-0 pb-0">
             <div class="input-group input-group-lg border border-2 border-dark rounded overflow-hidden">
                <button class="btn px-2"><i class="bi bi-search"></i></button>
-               <input type="search" class="form-control border-0 px-0 bg-transparent" placeholder="Search Menu" style="font-size: 1rem!important;">
+               <input id="inputsearch" type="search" onkeyup="search()" class="form-control border-0 px-0 bg-transparent" placeholder="Search Menu" style="font-size: 1rem!important;">
             </div>
             <button class="btn text-dark border-0 d-md-none" data-bs-dismiss="modal">Cancel</button>
          </div>
          <div class="modal-body">
 
+            @php
+               //dump($res_allproduct);
+            @endphp
+
             <!-- preview search section -->
             <section class="mb-4">
                <h6 class="small"><strong>Searching Item</strong></h6>
                <div class="list-group text-capitalize">
-                  <a class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center active" href="#">
+                  
+                  <div id="resultsearch">
+
+                  </div>
+                  
+                   <a data-bs-toggle="modal" class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center active" href="#modal-detail-menu1">
+                     <div>
+                        <i class="bi bi-file-earmark me-2"></i>
+                        <span>lampung</span>
+                     </div>
+                     <div class="btn-group" style="margin-right: -.5rem;">
+                        <button class="btn px-2" style="color: inherit;">
+                           <i class="bi bi-arrow-return-left"></i>
+                        </button>
+                     </div>
+                  </a>
+                  {{--<a class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center" href="#">
                      <div>
                         <i class="bi bi-file-earmark me-2"></i>
                         <span>how it works</span>
@@ -24,18 +44,7 @@
                            <i class="bi bi-arrow-return-left"></i>
                         </button>
                      </div>
-                  </a>
-                  <a class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center" href="#">
-                     <div>
-                        <i class="bi bi-file-earmark me-2"></i>
-                        <span>how it works</span>
-                     </div>
-                     <div class="btn-group" style="margin-right: -.5rem;">
-                        <button class="btn px-2" style="color: inherit;">
-                           <i class="bi bi-arrow-return-left"></i>
-                        </button>
-                     </div>
-                  </a>
+                  </a> --}}
                </div>
             </section>
 
@@ -83,3 +92,61 @@
       </div>
    </div>
 </div>
+
+<script>
+   var allproduct = @json($res_allproduct);
+   console.log(allproduct);
+  
+
+   function search() {
+   // const res = allproduct.filter(obj => Object.values(obj).some(val => val.includes('lampung')));
+   // console.log(res);
+   var stringresult = '';
+   var inputs = document.getElementById('inputsearch').value;
+   var resultsearch = searcharray(inputs, allproduct);
+
+   resultsearch.forEach(element => {
+      stringresult +=  "<a data-bs-toggle='modal' class='list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center' href='#modal-detail-menu"+element.id+"'>"+
+      "<div>"+
+      "<i class='bi bi-file-earmark me-2'></i>"+
+      "<span>"+element.name+"</span>"+
+      "</div>"+
+      "<div class='btn-group' style='margin-right: -.5rem;'>"+
+      "<button class='btn px-2' style='color: inherit;'>"+
+      "<i class='bi bi-arrow-return-left'></i>"+
+      "</button>"+
+      "</div>"+
+      "</a>";
+   });
+
+
+      console.log(document.getElementById('inputsearch').value);
+      document.getElementById('resultsearch').innerHTML = stringresult;
+      // "<a data-bs-toggle='modal' class='list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center active' href='#modal-detail-menu1'>"+
+      // "<div>"+
+      // "<i class='bi bi-file-earmark me-2'></i>"+
+      // "<span>lampung</span>"+
+      // "</div>"+
+      // "<div class='btn-group' style='margin-right: -.5rem;'>"+
+      // "<button class='btn px-2' style='color: inherit;'>"+
+      // "<i class='bi bi-arrow-return-left'></i>"+
+      // "</button>"+
+      // "</div>"+
+      // "</a>";
+
+   }
+
+   function searcharray(nameKey, myArray){
+      var ressearch = [];
+    for (let i=0; i < myArray.length; i++) {
+        if ((myArray[i].name.includes(nameKey))) {
+         // if 
+         //console.log((myArray[i].name.includes('caffe')) )
+            //return myArray[i];
+            ressearch.push(myArray[i]);
+
+        }
+    }
+    return ressearch;
+}
+</script>

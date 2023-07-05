@@ -36,7 +36,7 @@
                <p class="card-text small mb-0" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;">
                   {{ $item->description }}
                </p>
-               <p class="card-text small">
+               <p class="card-text small d-none">
                   <span class="text-decoration-underline">More Detail</span>
                   <i class="bi bi-chevron-right"></i>
                </p>

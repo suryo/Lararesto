@@ -3,6 +3,9 @@
       <div class="modal-content">
          <div class="modal-header border-0 pb-0 position-absolute top-0 start-0" style="z-index: 100;">
             <button class="btn-close text-bg-light" data-bs-dismiss="modal"></button>
+
+            <button type="button" class="btn-close text-bg-light" onclick="$('#modal-detail-menu1').modal('hide');$('#modal-pencarian').modal('show');">asdasdas</button>
+          
          </div>
          <div class="modal-body p-0">
 
@@ -58,9 +61,9 @@
                    {{ $modalitem->name }} 
                  
                </h3>
-               <p class="small mb-4">
+               {{-- <p class="small mb-4">
                   {{ $item->description }}
-               </p>
+               </p> --}}
                <div class="overflow-x-auto w-100">
                   <nav id="menu-portion" class="text-nowrap text-capitalize">
                      @if (count($modalitem->variant))

@@ -29,7 +29,7 @@ class FrontProductController extends Controller
      */
     public function menu(Request $request)
     {
-
+        $res_allproduct = DB::select('select * from pos_products where deleted = "false"');
         $category = DB::select('select * from pos_category');
         $subcategory = DB::select('select * from pos_sub_category');
         $product = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
@@ -40,21 +40,22 @@ class FrontProductController extends Controller
 		$pages = "landing";
 
         //dd($category);
-        return view('waiters/landing',compact('title','pages','category','subcategory','product'));
+        return view('waiters/landing',compact('title','pages','category','subcategory','product','res_allproduct'));
     }
 
     public function submenu(Request $request)
     {
-       
-      
+
+        $res_allproduct = DB::select('select * from pos_products where deleted = "false"');
+        
         $menu = $_GET["menu"];
         $category = DB::select('select * from pos_category where id = '.$menu);
-        $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu);
+        $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu . ' and deleted = "false"');
         if ((isset($_GET["menu"]))) {
             if(isset($_GET["id_sub_category"]))
             {
                 $menusubcategory = DB::select('select * from pos_sub_category where deleted="false" and category_id = '.$menu);
-                $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu.' and id='.$_GET["id_sub_category"]);
+                $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu.' and id='.$_GET["id_sub_category"]. ' and deleted = "false"');
                 $res_product = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
                 LEFT JOIN pos_brand as b on b.id = p.id_brand
                 LEFT JOIN pos_category as c on c.id = p.id_category
@@ -63,7 +64,7 @@ class FrontProductController extends Controller
             else
             {
                 $menusubcategory = DB::select('select * from pos_sub_category where deleted="false" and category_id = '.$menu);
-                $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu);
+                $subcategory = DB::select('select * from pos_sub_category where category_id = '.$menu. ' and deleted = "false"');
                 $res_product = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
                 LEFT JOIN pos_brand as b on b.id = p.id_brand
                 LEFT JOIN pos_category as c on c.id = p.id_category
@@ -114,12 +115,12 @@ class FrontProductController extends Controller
             array_push($product, $res_product[$p]);
         }
 
-        //dump($product);
+        //dd($res_allproduct);
  
         $title = "Submenu";
 		$pages = "Submenu";
 
-        return view('waiters/submenu',compact('title','pages','category','subcategory', 'product', 'menu', 'menusubcategory'));
+        return view('waiters/submenu',compact('title','pages','category','subcategory', 'product', 'menu', 'menusubcategory', 'res_allproduct'));
     }
 
     
