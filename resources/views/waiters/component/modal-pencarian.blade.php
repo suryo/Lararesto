@@ -106,8 +106,8 @@
    var resultsearch = searcharray(inputs, allproduct);
 
    resultsearch.forEach(element => {
-      stringresult +=  "<a data-bs-toggle='modal' class='list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center' href='#modal-detail-menu"+element.id+"'>"+
-      "<div>"+
+      stringresult +=  '<button href="#" onclick="$(\'' + "#modal-detail-menu"+element.id + '\').modal(\'' + "show" + '\');$(\'' + "#modal-pencarian"+ '\').modal(\'' + "hide" + '\')">'+
+      'asdasdas</button>'+
       "<i class='bi bi-file-earmark me-2'></i>"+
       "<span>"+element.name+"</span>"+
       "</div>"+

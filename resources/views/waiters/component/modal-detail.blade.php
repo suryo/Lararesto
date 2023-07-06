@@ -2,10 +2,11 @@
    <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable" style="$modal-fade-transform: scale(.8)">
       <div class="modal-content">
          <div class="modal-header border-0 pb-0 position-absolute top-0 start-0" style="z-index: 100;">
-            <button class="btn-close text-bg-light" data-bs-dismiss="modal"></button>
 
-            <button type="button" class="btn-close text-bg-light" onclick="$('#modal-detail-menu1').modal('hide');$('#modal-pencarian').modal('show');">asdasdas</button>
+            <div id="buttonclosemodal"><button class="btn-close text-bg-light" data-bs-dismiss="modal"></button></div>
           
+            {{-- <button type="button" class="btn-close text-bg-light" onclick="$('#modal-detail-menu1').modal('hide');$('#modal-pencarian').modal('show');">asdasdas</button>
+           --}}
          </div>
          <div class="modal-body p-0">
 

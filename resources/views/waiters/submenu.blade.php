@@ -107,11 +107,13 @@
 
 </main>
 
-
+{{-- @php
+   dump($allproduct);
+@endphp --}}
 
 @endsection
 
-@foreach ($product as $modalitem)
+@foreach ($allproduct as $modalitem)
 @include('waiters/component/modal-detail')
 @endforeach
 

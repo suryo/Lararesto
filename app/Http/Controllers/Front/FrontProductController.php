@@ -46,7 +46,10 @@ class FrontProductController extends Controller
     public function submenu(Request $request)
     {
 
-        $res_allproduct = DB::select('select * from pos_products where deleted = "false"');
+        $res_allproduct = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
+        LEFT JOIN pos_brand as b on b.id = p.id_brand
+        LEFT JOIN pos_category as c on c.id = p.id_category
+        LEFT JOIN pos_sub_category as sc on sc.id = p.id_sub_category where p.deleted="false"');
         
         $menu = $_GET["menu"];
         $category = DB::select('select * from pos_category where id = '.$menu);
@@ -115,12 +118,29 @@ class FrontProductController extends Controller
             array_push($product, $res_product[$p]);
         }
 
+        $allproduct = [];
+        for ($p=0; $p < count($res_allproduct); $p++) {
+            $res_alladditional = DB::select("select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product=".$res_allproduct[$p]->id." and ap.deleted='false'");
+            $res_alloptional = DB::select("select * from pos_optional_products as op INNER JOIN pos_optional as a on op.id_optional = a.id where op.id_product=".$res_allproduct[$p]->id." and op.deleted='false'");
+            
+            $res_allvariant = [];
+            if ($res_allproduct[$p]->variant<>"") {
+                $res_allvariant = DB::select("select * from pos_products where deleted='false' and variant=".$res_allproduct[$p]->variant);
+            }
+          
+            $res_allproduct[$p]->additional = $res_alladditional;
+            $res_allproduct[$p]->optional = $res_alloptional;
+            
+            $res_allproduct[$p]->variant = $res_allvariant;
+            array_push($allproduct, $res_allproduct[$p]);
+        }
+
         //dd($res_allproduct);
  
         $title = "Submenu";
 		$pages = "Submenu";
 
-        return view('waiters/submenu',compact('title','pages','category','subcategory', 'product', 'menu', 'menusubcategory', 'res_allproduct'));
+        return view('waiters/submenu',compact('title','pages','category','subcategory', 'product', 'menu', 'menusubcategory', 'res_allproduct', 'allproduct'));
     }
 
     

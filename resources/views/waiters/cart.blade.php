@@ -165,6 +165,7 @@
 
 {{-- @include('waiters/component/modal-detail') --}}
 
+
 @foreach ($product as $modalitem)
   
       @include('waiters/component/modal-cart-detail')
