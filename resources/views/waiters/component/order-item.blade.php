@@ -121,12 +121,33 @@
                   </a>
                   @csrf
                   <input type="hidden" value="{{ $cartitems->id }}" name="id">
-                  <a class="text-dark" onclick="document.getElementById('formdeleteitemscart{{ $cartitems->id }}').submit()" style="cursor: pointer !important;">
+                  <a class="text-dark" 
+                  data-bs-toggle="modal" data-bs-target="#modal-delete-order{{ $cartitems->id }}"
+                  {{-- onclick="document.getElementById('formdeleteitemscart{{ $cartitems->id }}').submit()"  --}}
+                  style="cursor: pointer !important;">
                      <u><small>DELETE</small></u> <i class="bi bi-trash2-fill"></i>
                   </a>
                   {{-- <button class="text-dark text-decoration-none"><u><small>DELETE</small></u> <i class="bi bi-trash2-fill"></i></button> --}}
               </form>
             </p>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="modal-delete-order{{ $cartitems->id }}" class="modal fade center" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header border-0">
+            <h6 class="modal-title">Deleted Item</h6>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+         </div>
+         <div class="modal-body">
+            <h5>Are you sure want to delete this item?</h5>
+         </div>
+         <div class="modal-footer border-0">
+            <button class="btn text-bg-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button onclick="document.getElementById('formdeleteitemscart{{ $cartitems->id }}').submit()" class="btn text-bg-dark">Deleted</button>
          </div>
       </div>
    </div>

@@ -68,3 +68,9 @@
    </div>
 </footer>
 @endsection
+
+
+@foreach ($allproduct as $modalitem)
+@include('waiters/component/modal-detail')
+@endforeach
+

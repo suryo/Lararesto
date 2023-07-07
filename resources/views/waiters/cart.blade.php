@@ -105,7 +105,7 @@
                <button class="btn btn-outline-dark w-100">Takeaway</button>
             </div>
          </div>
-         <hr>
+         
          @foreach ($product as $item)
              
          @endforeach
@@ -144,23 +144,7 @@
    </div>
 </nav>
 
-<div id="modal-delete-order" class="modal fade center" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-header border-0">
-            <h6 class="modal-title">Deleted Item</h6>
-            <button class="btn-close" data-bs-dismiss="modal"></button>
-         </div>
-         <div class="modal-body">
-            <h5>Are you sure want to delete this item?</h5>
-         </div>
-         <div class="modal-footer border-0">
-            <button class="btn text-bg-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button class="btn text-bg-dark">Deleted</button>
-         </div>
-      </div>
-   </div>
-</div>
+
 @endsection
 
 {{-- @include('waiters/component/modal-detail') --}}
