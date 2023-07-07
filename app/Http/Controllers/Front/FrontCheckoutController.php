@@ -31,6 +31,12 @@ class FrontCheckoutController extends Controller
 
     public function index()
     {
+        
+        $res_allproduct = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
+        LEFT JOIN pos_brand as b on b.id = p.id_brand
+        LEFT JOIN pos_category as c on c.id = p.id_category
+        LEFT JOIN pos_sub_category as sc on sc.id = p.id_sub_category where p.deleted="false"');
+
         $cartItem = \Cart::getContent();
         //\Cart::clear();
         \Cart::clearCartConditions();
@@ -77,10 +83,11 @@ class FrontCheckoutController extends Controller
       
 
         }
+        
 
         $title = "Cart";
         $pages = "cart";
-        return view('waiters/resumeorder', compact('cartItems', 'title', 'pages', 'product', 'tax'));
+        return view('waiters/resumeorder', compact('cartItems', 'title', 'pages', 'product', 'tax', 'res_allproduct'));
         // return view('front/cart', compact('cartItems', 'title', 'pages'));
       
       

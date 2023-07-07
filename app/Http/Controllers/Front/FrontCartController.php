@@ -204,7 +204,7 @@ class FrontCartController extends Controller
         }
       
        
-        
+        // dump($product);
         //dump($iditem);
         }
         
@@ -217,6 +217,29 @@ class FrontCartController extends Controller
             if ($res_allproduct[$p]->variant<>"") {
                 $res_allvariant = DB::select("select * from pos_products where deleted='false' and variant=".$res_allproduct[$p]->variant);
             }
+
+          
+
+            if (!empty($res_allproduct[$p]->fileimages)) {
+                 $images = (json_decode($res_allproduct[$p]->fileimages));
+                 $images = $images[0];
+            } else {
+                 $images = null;
+            }
+
+
+            // $res_allproduct[$p]->attributes = array(
+            //     "description" => $res_allproduct[$p]->description,
+            //     "portion" => $res_allproduct[$p]->portion,
+            //     "units" => $res_allproduct[$p]->units,
+            //     "images" => 'manual_brew_lampung.jpg',
+            //     "types" => "",
+            //     "brand" => $res_allproduct[$p]->brand,
+            //     "category" => $res_allproduct[$p]->category,
+            //     "subcategory" => $res_allproduct[$p]->subcategory,
+            //     "idcategory" => "",
+            //     "note" => '',
+            // );
           
             $res_allproduct[$p]->additional = $res_alladditional;
             $res_allproduct[$p]->optional = $res_alloptional;
@@ -224,6 +247,7 @@ class FrontCartController extends Controller
             $res_allproduct[$p]->variant = $res_allvariant;
             array_push($allproduct, $res_allproduct[$p]);
         }
+        //dd($allproduct);
 
         $title = "Cart";
         $pages = "cart";

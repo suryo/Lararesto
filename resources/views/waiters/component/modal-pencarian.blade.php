@@ -93,6 +93,8 @@
    </div>
 </div>
 
+
+
 <script>
    var allproduct = @json($res_allproduct);
    console.log(allproduct);

@@ -12,9 +12,12 @@
          <img src="../waiters-assets/img/logo/logotype.png" height="auto" style="width: 36vw; max-width: 160px;" alt="">
       </a>
       <div class="text-end" style="min-width: 76.8px; margin-right: -.5rem;">
-         <button class="navbar-toggler rounded-0 border-0 px-2 me-md-3" data-bs-toggle="modal" data-bs-target="#modal-pencarian">
+         @if (($title != 'Cart')&&($title != 'checkout'))
+             <button class="navbar-toggler rounded-0 border-0 px-2 me-md-3" data-bs-toggle="modal" data-bs-target="#modal-pencarian">
             <i class="bi bi-search"></i>
          </button>
+         @endif
+        
          <button class="navbar-toggler rounded-0 border-0 px-2 d-none" data-bs-toggle="offcanvas" data-bs-target="#sidebar-account">
             <i class="bi bi-person-circle"></i>
          </button>

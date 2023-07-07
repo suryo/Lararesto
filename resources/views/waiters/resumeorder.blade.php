@@ -145,8 +145,8 @@
 
 {{-- @include('waiters/component-resume/modal-detail') --}}
 
-@foreach ($product as $modalitem)
+{{-- @foreach ($product as $modalitem)
   
       @include('waiters/component-resume/modal-cart-detail')
  
-@endforeach
+@endforeach --}}

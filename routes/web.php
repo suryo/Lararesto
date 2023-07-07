@@ -194,6 +194,7 @@ Route::get('/waiters/order', function () {
 
 Route::get('/waiters/checkout', function () {
     return view('waiters/checkout', [
+        "res_allproduct" => "",
         "title" => "checkout",
         "pages" => "checkout"
     ]);

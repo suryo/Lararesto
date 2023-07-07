@@ -137,7 +137,7 @@
                <span>{{ Cart::getTotal() }},-</span>
             </div>
          </div>
-         <a class="btn text-bg-dark w-100 btn-lg position-relative" href="/waiters/checkout">
+         <a class="btn text-bg-dark w-100 btn-lg position-relative" href="/checkout">
             Checkout <i class="bi bi-chevron-right"></i>
          </a>
       </div>
@@ -164,7 +164,6 @@
 @endsection
 
 {{-- @include('waiters/component/modal-detail') --}}
-
 
 @foreach ($product as $modalitem)
   
