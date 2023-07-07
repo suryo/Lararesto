@@ -130,6 +130,12 @@ class FrontCartController extends Controller
 
     public function cartList(Request $request)
     {
+
+        $res_allproduct = DB::select('select p.*, b.name as brand, c.name as category, sc.name as subcategory from pos_products as p
+        LEFT JOIN pos_brand as b on b.id = p.id_brand
+        LEFT JOIN pos_category as c on c.id = p.id_category
+        LEFT JOIN pos_sub_category as sc on sc.id = p.id_sub_category where p.deleted="false"');
+
         $cartItem = \Cart::getContent();
         //dump($cartItem);
         //\Cart::clear();
@@ -201,11 +207,27 @@ class FrontCartController extends Controller
         
         //dump($iditem);
         }
-         //dump($product);
+        
+        $allproduct = [];
+        for ($p=0; $p < count($res_allproduct); $p++) {
+            $res_alladditional = DB::select("select * from pos_additional_products as ap INNER JOIN pos_additional as a on ap.id_additional = a.id where ap.id_product=".$res_allproduct[$p]->id." and ap.deleted='false'");
+            $res_alloptional = DB::select("select * from pos_optional_products as op INNER JOIN pos_optional as a on op.id_optional = a.id where op.id_product=".$res_allproduct[$p]->id." and op.deleted='false'");
+            
+            $res_allvariant = [];
+            if ($res_allproduct[$p]->variant<>"") {
+                $res_allvariant = DB::select("select * from pos_products where deleted='false' and variant=".$res_allproduct[$p]->variant);
+            }
+          
+            $res_allproduct[$p]->additional = $res_alladditional;
+            $res_allproduct[$p]->optional = $res_alloptional;
+            
+            $res_allproduct[$p]->variant = $res_allvariant;
+            array_push($allproduct, $res_allproduct[$p]);
+        }
 
         $title = "Cart";
         $pages = "cart";
-        return view('waiters/cart', compact('cartItems', 'title', 'pages', 'product', 'tax'));
+        return view('waiters/cart', compact('cartItems', 'title', 'pages', 'product', 'tax', 'res_allproduct','allproduct'));
         // return view('front/cart', compact('cartItems', 'title', 'pages'));
     }
 
