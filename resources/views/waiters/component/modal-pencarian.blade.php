@@ -23,7 +23,7 @@
 
                   </div>
                   
-                   <a data-bs-toggle="modal" class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center active" href="#modal-detail-menu1">
+                   {{-- <a data-bs-toggle="modal" class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center active" href="#modal-detail-menu1">
                      <div>
                         <i class="bi bi-file-earmark me-2"></i>
                         <span>lampung</span>
@@ -33,7 +33,7 @@
                            <i class="bi bi-arrow-return-left"></i>
                         </button>
                      </div>
-                  </a>
+                  </a> --}}
                   {{--<a class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center" href="#">
                      <div>
                         <i class="bi bi-file-earmark me-2"></i>
@@ -51,7 +51,7 @@
             <hr class="mb-4">
 
             <!-- section riwayat pencarian -->
-            <section class="mb-4">
+            <section class="mb-4 d-none">
                <p class="text-center opacity-50">No recent searches</p>
                <h6 class="small"><strong>Recent searches</strong></h6>
                <div class="list-group text-capitalize">
@@ -106,8 +106,10 @@
    var resultsearch = searcharray(inputs, allproduct);
 
    resultsearch.forEach(element => {
-      stringresult +=  '<button href="#" onclick="$(\'' + "#modal-detail-menu"+element.id + '\').modal(\'' + "show" + '\');$(\'' + "#modal-pencarian"+ '\').modal(\'' + "hide" + '\')">'+
-      'asdasdas</button>'+
+      stringresult +='<a data-bs-toggle="modal" class="list-group-item list-group-item-action d-flex flex-nowrap justify-content-between align-items-center" href="#" onclick="$(\'' + "#modal-detail-menu"+element.id + '\').modal(\'' + "show" + '\');$(\'' + "#modal-pencarian"+ '\').modal(\'' + "hide" + '\')">'+
+      // '<button href="#" onclick="$(\'' + "#modal-detail-menu"+element.id + '\').modal(\'' + "show" + '\');$(\'' + "#modal-pencarian"+ '\').modal(\'' + "hide" + '\')">'+
+      // 'asdasdas</button>'+
+      "<div>"+
       "<i class='bi bi-file-earmark me-2'></i>"+
       "<span>"+element.name+"</span>"+
       "</div>"+
