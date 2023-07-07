@@ -11,7 +11,7 @@
  Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 05/07/2023 17:03:32
+ Date: 07/07/2023 14:48:45
 */
 
 SET NAMES utf8mb4;
@@ -1354,21 +1354,21 @@ CREATE TABLE `pos_products`  (
 -- ----------------------------
 -- Records of pos_products
 -- ----------------------------
-INSERT INTO `pos_products` VALUES (1, 1, 1, 1, NULL, 'MANUAL BREW LAMPUNG', '100% Robusta No Acidity and Strong Body', '', 35, NULL, NULL, '[\"manual_brew_lampung.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (2, 1, 1, 1, NULL, 'MANUAL BREW ACEH GAYO', '100% Arabica Medium Acidity and Mild Body', '', 35, NULL, NULL, '[\"manual_brew_aceh_gayo.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (3, 1, 1, 1, NULL, 'MANUAL BREW JAVA', '100% Robusta No Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_java.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (1, 1, 1, 1, NULL, 'manual brew lampung', '100% Robusta No Acidity and Strong Body', '', 35, NULL, NULL, '[\"manual_brew_lampung.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (2, 1, 1, 1, NULL, 'manual brew aceh gayo', '100% Arabica Medium Acidity and Mild Body', '', 35, NULL, NULL, '[\"manual_brew_aceh_gayo.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (3, 1, 1, 1, NULL, 'manual brew java', '100% Robusta No Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_java.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (4, 1, 1, 1, NULL, 'toraja kalosi', '100% Arabica Low Acidity and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_toraja_kalosi.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (5, 1, 1, 1, NULL, 'MANUAL BREW FLORES BAJAWA\r\n', '100% Arabica Low Acidty and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_flores.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (5, 1, 1, 1, NULL, 'manual brew flores bajawa', '100% Arabica Low Acidty and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_flores.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (6, 1, 1, 1, NULL, 'sumatra mandheling', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_sumatra.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (7, 1, 1, 1, NULL, 'bali kintamani', '100% Arabica Lively Acidity and Mild Body', '', 35, NULL, NULL, '[\"manual_brew_bali_kintamani.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (8, 1, 1, 1, NULL, 'MANUAL BREW PEABERRY', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_peaberry.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (8, 1, 1, 1, NULL, 'manual brew peaberry', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_peaberry.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (9, 1, 1, 1, NULL, 'sumatra mandheling rainforest', '100% Arabica Medium Acidity and Good Body', '', 35, NULL, NULL, '[\"manual_brew_sumatra.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (10, 1, 1, 1, NULL, 'MANUAL BREW WEST JAVA', '100% Arabica Mild Acidity and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_java.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (11, 1, 1, 1, NULL, 'MANUAL BREW LUWAK ARABICA', '100% Arabica Mild Acidity and Heavy Body', '', 80, NULL, NULL, '[\"manual_brew_luwak.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (10, 1, 1, 1, NULL, 'manual brew west java', '100% Arabica Mild Acidity and Heavy Body', '', 35, NULL, NULL, '[\"manual_brew_java.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (11, 1, 1, 1, NULL, 'manual brew luwak arabica', '100% Arabica Mild Acidity and Heavy Body', '', 80, NULL, NULL, '[\"manual_brew_luwak.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (12, 1, 1, 1, NULL, 'vietnam drip', 'Robusta Coffee Dripped With Condensed Milk', '', 35, NULL, NULL, '[\"manual_brew_vietnam_drip.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (13, 1, 1, 2, NULL, 'DRIP COFFEE BRAZILIA', NULL, '', 18, NULL, NULL, '[\"drip_coffee_brazilia.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (13, 1, 1, 2, NULL, 'drip coffee brazilia', NULL, '', 18, NULL, NULL, '[\"drip_coffee_brazilia.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (14, 1, 1, 2, NULL, 'drip coffee costa rica', NULL, '', 18, NULL, NULL, '[\"drip_coffee_costa_rica.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
-INSERT INTO `pos_products` VALUES (15, 1, 1, 2, NULL, 'DRIP COFFEE NANYANG', NULL, '', 18, NULL, NULL, '[\"drip_coffee_nanyang.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
+INSERT INTO `pos_products` VALUES (15, 1, 1, 2, NULL, 'drip coffee nanyang', NULL, '', 18, NULL, NULL, '[\"drip_coffee_nanyang.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (16, 1, 1, 3, '1', 'espresso', 'Pure Coffee Single Shoot', 'solo', 26, NULL, NULL, '[\"espresso.jpg\"]', NULL, 'false', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (17, 1, 1, 3, '1', 'espresso', 'Pure Coffee Double Shoot', 'doppio', 32, NULL, NULL, '[\"espresso.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
 INSERT INTO `pos_products` VALUES (18, 1, 1, 3, '2', 'ristretto', 'A \"short shot\" of a highly concentrated espresso. Extracted with a finer grind using half as much water, resulting in about 15ml of richer, smoother, and sweeter coffee.', 'solo', 26, NULL, NULL, '[\"ristretto.jpg\"]', NULL, 'true', 'false', 'false', 'false', NULL, NULL);
@@ -1507,13 +1507,13 @@ INSERT INTO `pos_products` VALUES (150, 1, 2, 6, NULL, 'iced lemon tea', NULL, N
 INSERT INTO `pos_products` VALUES (151, 1, 2, 6, NULL, 'camomile', NULL, NULL, 28, NULL, NULL, '[\"tea_camomile.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (152, 1, 1, 3, NULL, 'iced shaken espresso', NULL, NULL, 46, NULL, NULL, '[\"coffee_iced_shaken_espresso.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (153, 1, 1, 2, NULL, 'drip coffee west java', NULL, NULL, 18, NULL, NULL, '[\"drip_west_java.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (154, 1, 1, 2, NULL, 'DRIP COFFEE TORAJA KALOSI', NULL, NULL, 18, NULL, NULL, '[\"drip_toraja_kalosi.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (155, 1, 1, 2, NULL, 'DRIP COFFEE SUMATRA MANDHELING', NULL, NULL, 18, NULL, NULL, '[\"drip_sumatra.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (156, 1, 1, 2, NULL, 'DRIP COFFEE PEABERRY', NULL, NULL, 18, NULL, NULL, '[\"drip_peaberry.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (157, 1, 1, 2, NULL, 'DRIP COFFEE MANGLAYANG', NULL, NULL, 18, NULL, NULL, '[\"drip_manglayang.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (158, 1, 1, 2, NULL, 'DRIP COFFEE LUWAK ARABICA', NULL, NULL, 18, NULL, NULL, '[\"drip_luwak.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (159, 1, 1, 2, NULL, 'DRIP COFFEE LAMPUNG', 'drip', NULL, 18, NULL, NULL, '[\"drip_lampung.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (160, 1, 1, 2, NULL, 'DRIP COFFEE JAVA', NULL, NULL, 18, NULL, NULL, '[\"drip_java.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (154, 1, 1, 2, NULL, 'drip coffee toraja kalosi', NULL, NULL, 18, NULL, NULL, '[\"drip_toraja_kalosi.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (155, 1, 1, 2, NULL, 'drip coffee sumatra mandheling', NULL, NULL, 18, NULL, NULL, '[\"drip_sumatra.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (156, 1, 1, 2, NULL, 'drip coffee peaberry', NULL, NULL, 18, NULL, NULL, '[\"drip_peaberry.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (157, 1, 1, 2, NULL, 'drip coffee manglayang', NULL, NULL, 18, NULL, NULL, '[\"drip_manglayang.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (158, 1, 1, 2, NULL, 'drip coffee luwak arabica', NULL, NULL, 18, NULL, NULL, '[\"drip_luwak.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (159, 1, 1, 2, NULL, 'drip coffee lampung', 'drip', NULL, 18, NULL, NULL, '[\"drip_lampung.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (160, 1, 1, 2, NULL, 'drip coffee java', NULL, NULL, 18, NULL, NULL, '[\"drip_java.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (161, 1, 1, 2, NULL, 'drip coffee flores bajawa', NULL, NULL, 18, NULL, NULL, '[\"drip_flores_bajava.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (162, 1, 1, 2, NULL, 'drip coffee bali kintami', NULL, NULL, 18, NULL, NULL, NULL, NULL, 'true', 'false', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (163, 1, 1, 2, NULL, 'drip coffee aceh gayo', NULL, NULL, 18, NULL, NULL, '[\"drip_aceh_gayo.jpg\"]', NULL, 'false', 'false', 'true', 'true', NULL, NULL);
@@ -1528,15 +1528,15 @@ INSERT INTO `pos_products` VALUES (171, 1, 4, 14, NULL, 'chocolate brownies ck',
 INSERT INTO `pos_products` VALUES (172, 1, 4, 14, NULL, 'red velvet marble cake ck', NULL, NULL, 20, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (173, 1, 4, 14, NULL, 'signature sampler', NULL, NULL, 45, NULL, NULL, '[\"signature_sampler.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
 INSERT INTO `pos_products` VALUES (174, 1, 4, 14, NULL, 'traditional sampler', NULL, NULL, 35, NULL, NULL, '[\"traditional_sampler.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (175, 1, 4, 14, NULL, 'NASI GORENG BARBEQUE', NULL, NULL, 0, NULL, NULL, '[\"nasi_goreng_barbeque.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (176, 1, 2, 3, NULL, 'ICED SUPRESSO CHOCOLATE', NULL, NULL, 0, NULL, NULL, '[\"choco_iced_supresso_chocolate.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (177, 1, 1, 2, NULL, 'DRIP COFFEE BALI KINTAMANI', NULL, NULL, 0, NULL, NULL, '[\"drip_bali_kintamani.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (178, 1, 1, 1, NULL, 'MANUAL BREW MANGLAYANG', NULL, NULL, 0, NULL, NULL, '[\"manual_brew_lampung.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (179, 1, 1, 3, NULL, 'ICED AMERICANO', NULL, NULL, 0, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (180, 1, 1, 3, NULL, 'ICED CAFFE LATTE', NULL, NULL, 0, NULL, NULL, '[\"coffee_iced _caffe_latte.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (181, 1, 1, 3, NULL, 'ICED CAPPUCCINO', NULL, NULL, 0, NULL, NULL, '[\"coffee_iced_cappuccino.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (182, 1, 1, 3, NULL, 'ICED DELASIA LATTE', NULL, NULL, 0, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
-INSERT INTO `pos_products` VALUES (183, 1, 1, 3, NULL, 'ICED GREEN TEA LATTE', NULL, NULL, 0, NULL, NULL, '[\"tea_iced_green_tea_latte.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (175, 1, 4, 14, NULL, 'nasi goreng barbeque', NULL, NULL, 0, NULL, NULL, '[\"nasi_goreng_barbeque.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (176, 1, 2, 3, NULL, 'iced supresso chocolate', NULL, NULL, 0, NULL, NULL, '[\"choco_iced_supresso_chocolate.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (177, 1, 1, 2, NULL, 'drip coffee bali kintamani', NULL, NULL, 0, NULL, NULL, '[\"drip_bali_kintamani.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (178, 1, 1, 1, NULL, 'manual brew manglayang', NULL, NULL, 0, NULL, NULL, '[\"manual_brew_lampung.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (179, 1, 1, 3, NULL, 'iced americano', NULL, NULL, 0, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (180, 1, 1, 3, NULL, 'iced caffe latte', NULL, NULL, 0, NULL, NULL, '[\"coffee_iced _caffe_latte.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (181, 1, 1, 3, NULL, 'iced cappuccino', NULL, NULL, 0, NULL, NULL, '[\"coffee_iced_cappuccino.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (182, 1, 1, 3, NULL, 'iced delasia latte', NULL, NULL, 0, NULL, NULL, NULL, NULL, 'false', 'true', 'true', 'true', NULL, NULL);
+INSERT INTO `pos_products` VALUES (183, 1, 1, 3, NULL, 'iced green tea latte', NULL, NULL, 0, NULL, NULL, '[\"tea_iced_green_tea_latte.jpg\"]', NULL, 'false', 'true', 'true', 'true', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for pos_sales
